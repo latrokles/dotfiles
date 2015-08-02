@@ -1,0 +1,7 @@
+###
+# some useful aliases
+###
+
+alias vi=vim
+alias pd=pushd
+alias firefox='/opt/firefox/firefox'

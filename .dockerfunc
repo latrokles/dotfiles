@@ -1,0 +1,35 @@
+###
+# wrappers for docker run commands.
+# straight up from @jfrazelle's GH.
+# any errors are my own.
+## 
+
+#
+# delete stopped containers
+# 
+delete_stopped(){
+  local name=$1
+  local state=$(docker inspect --format "{{.State.Running}}" $name 2>/dev/null)
+
+  if [[ "$state" == "false" ]]; then
+     docker rm $name
+  fi
+}
+
+chrome(){
+  delete_stopped chrome
+  docker run -d \
+	--memory 5gb \
+	--net host \
+	-v /etc/localtime:/etc/localtime:ro \
+	-v /tmp/.X11-unix:/tmp/.X11-unix \
+	-e DISPLAY=$DISPLAY \
+	-v $HOME/Downloads:/root/Downloads \
+	-v $HOME/config/chrome:/data \
+	-v /dev/snd:/dev/snd --privileged \
+	--name chrome \
+	jess/chrome --user-data-dir=/data --force-device-scale-factor=1 "$@"
+
+  #exit current shell
+  #exit 0
+}
