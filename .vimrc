@@ -27,4 +27,3 @@ set foldmethod=indent   " fold based on indent level
 
 "PATHOGEN (make sure to install it)
 call pathogen#infect()                      " use pathogen
-call pathogen#runtime_append_all_bundles()  " use pathogen
