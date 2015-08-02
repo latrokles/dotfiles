@@ -4,4 +4,4 @@
 
 alias vi=vim
 alias pd=pushd
-alias firefox='/opt/firefox/firefox'
+alias firefox='/opt/firefox/firefox 2>/dev/null &'
