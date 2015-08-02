@@ -1,4 +1,4 @@
-colorscheme darkblue 
+colorscheme desert
 syntax enable
 set tabstop=4
 set softtabstop=4
@@ -24,3 +24,7 @@ set foldlevelstart=10
 set foldnestmax=10
 nnoremap <space> za "re-map <space> to open/close folds
 set foldmethod=indent   " fold based on indent level
+
+"PATHOGEN (make sure to install it)
+call pathogen#infect()                      " use pathogen
+call pathogen#runtime_append_all_bundles()  " use pathogen
