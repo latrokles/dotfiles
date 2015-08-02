@@ -151,3 +151,7 @@ bindsym $mod+r mode "resize"
 bar {
         status_command i3status
 }
+
+# custom
+bindsym $mod+l exec i3lock
+bindsym --release $mod+x exec --no-startup-id import /tmp/latest-screenshot.png
