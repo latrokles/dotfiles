@@ -74,11 +74,7 @@ source $ZSH/oh-my-zsh.sh
 ################
 # CUSTOM STUFF #
 ################
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/local/games:/usr/games"
+export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin"
 export SSH_KEY_PATH="~/git/config/ssh/dsa_id"
 export EDITOR='vim'
-
-DOTFILES="${HOME}/git/config/dotfiles"
-source ${DOTFILES}/.dockerfunc
-source ${DOTFILES}/.functions
-source ${DOTFILES}/.alias
+DOTFILES="${HOME}/workspace/config/dotfiles"
