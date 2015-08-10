@@ -15,3 +15,21 @@ delete_stopped(){
      docker rm $name
   fi
 }
+
+run-base-env(){
+    delete_stopped dev-base
+    docker run -it \
+            -v ~/workspace:/home/user/workspace \
+            -v ~/.vim:/home/user/.vim \
+            --name dev-base \
+            latrokles/dev-base:1.0
+}
+
+run-rust-env(){
+    delete_stopped dev-rust
+    docker run -it \
+            -v ~/workspace:/home/user/workspace \
+            -v ~/.vim:/home/user/.vim \
+            --name dev-rust \
+            latrokles/dev-rust:1.0
+}

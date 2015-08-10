@@ -1,7 +1,6 @@
 ###
 # some useful aliases
 ###
-
 alias vi=vim
 alias pd=pushd
-alias firefox='/opt/firefox/firefox 2>/dev/null &'
+alias zz=suspend
