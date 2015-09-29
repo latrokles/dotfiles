@@ -29,6 +29,7 @@ install_plugins(){
     git clone https://github.com/scrooloose/nerdtree &&
     git clone https://github.com/majutsushi/tagbar &&
     git clone https://github.com/fatih/vim-go &&
+    git clone --depth=1 https://github.com/rust-lang/rust.vim.git ~/.vim/bundle/rust.vim &&
     popd
 }
 

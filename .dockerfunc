@@ -31,5 +31,5 @@ run-rust-env(){
             -v ~/workspace:/home/user/workspace \
             -v ~/.vim:/home/user/.vim \
             --name dev-rust \
-            latrokles/dev-rust:1.0
+            latrokles/dev-rust
 }
