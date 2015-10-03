@@ -7,6 +7,11 @@
 #
 # delete stopped containers
 # 
+
+clean_untagged_images(){
+  docker images | grep "<none>" | awk '{print $3}' | xargs docker rmi
+}
+
 delete_stopped(){
   local name=$1
   local state=$(docker inspect --format "{{.State.Running}}" $name 2>/dev/null)
