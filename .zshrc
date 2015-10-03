@@ -25,16 +25,6 @@ HIST_STAMPS="mm/dd/yyyy"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 
-# some osx-linux branching here (if this gets too specific, I will split these files)
-case `uname` in
-    Darwin)
-        plugins=(git osx docker)
-        ;;
-    Linux)
-        plugins=(git)
-        ;;
-esac
-
 ########    User configuration
 #####################################
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -43,6 +33,18 @@ source $ZSH/oh-my-zsh.sh
 ################
 # CUSTOM STUFF #
 ################
+# some osx-linux branching here (if this gets too specific, I will split these files)
+case `uname` in
+    Darwin)
+        plugins=(git osx docker)
+        RPROMPT='(osx)'
+        ;;
+    Linux)
+        plugins=(git)
+        RPROMPT='(linux)'
+        ;;
+esac
+
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin"
 export SSH_KEY_PATH="~/git/config/ssh/dsa_id"
 export EDITOR='vim'
