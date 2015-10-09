@@ -10,10 +10,3 @@ remap_workspace() {
     diskutil mount /Volumes/workspace workspace
     sudo diskutil unmount /Volumes/workspace
 }
-
-start-ruby-dev(){
-    docker run -it \
-        -v ${HOME}/workspace/ruby:/home/latrokles/workspace \
-        --name ruby-dev \
-        latrokles/ruby-dev-env:latest
-}

@@ -5,13 +5,15 @@
 ## 
 
 #
-# delete stopped containers
-# 
-
+# remove untagged images
+#
 clean_untagged_images(){
   docker images | grep "<none>" | awk '{print $3}' | xargs docker rmi
 }
 
+#
+# delete stopped containers
+# 
 delete_stopped(){
   local name=$1
   local state=$(docker inspect --format "{{.State.Running}}" $name 2>/dev/null)
@@ -21,13 +23,16 @@ delete_stopped(){
   fi
 }
 
-run-base-env(){
-    delete_stopped dev-base
+
+#
+# development containers 
+#
+start-ruby-dev(){
+    delete_stopped ruby-dev
     docker run -it \
-            -v ~/workspace:/home/user/workspace \
-            -v ~/.vim:/home/user/.vim \
-            --name dev-base \
-            latrokles/dev-base:1.0
+        -v ${HOME}/workspace/ruby:/home/latrokles/workspace \
+        --name ruby-dev \
+        latrokles/ruby-dev-env:latest
 }
 
 run-rust-env(){
