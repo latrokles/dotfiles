@@ -37,9 +37,7 @@ install_plugins(){
 
 
 setup_vimrc(){
-    pushd ${HOME}
-    echo "so ${DOTFILES}/.vimrc" 
-    popd
+    echo "so ${HOME}/dotfiles/vimrc" > ${HOME}/.vimrc 
 }
 
 create_vim_tree && install_pathogen && install_plugins && setup_vimrc

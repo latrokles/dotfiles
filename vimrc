@@ -13,6 +13,7 @@ filetype indent on
 set wildmenu
 set lazyredraw
 set showmatch
+set ruler
 
 "SEARCHING
 set incsearch

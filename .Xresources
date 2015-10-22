@@ -1,5 +1,0 @@
-xterm*renderFont: true
-xterm*faceName: DejaVu Sans Mono
-xterm*faceSize: 10
-xterm*saveLines: 4000
-xterm*termName: xterm-color
