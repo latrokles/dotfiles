@@ -4,7 +4,7 @@ set tabstop=4
 set softtabstop=4
 set expandtab
 set shiftwidth=4
-autocmd Filetype ruby setlocal ts=2 sw=2 expandtab
+autocmd Filetype ruby setlocal ts=2 sw=2 softtabstop=4 expandtab
 
 "UI
 set number
@@ -15,6 +15,8 @@ set wildmenu
 set lazyredraw
 set showmatch
 set ruler
+let &colorcolumn=join(range(81,999),",")
+highlight ColorColumn ctermbg=235 guibg=#393b40
 
 "SEARCHING
 set incsearch
