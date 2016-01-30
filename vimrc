@@ -4,7 +4,8 @@ set tabstop=4
 set softtabstop=4
 set expandtab
 set shiftwidth=4
-autocmd Filetype ruby setlocal ts=2 sw=2 softtabstop=4 expandtab
+autocmd Filetype ruby setlocal ts=2 sw=2 softtabstop=2 expandtab
+autocmd Filetype javascript setlocal ts=2 sw=2 softtabstop=2 expandtab
 set backspace=indent,eol,start
 
 "UI
