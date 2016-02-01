@@ -8,5 +8,5 @@
 # gotten around to mess with this mac's fstab
 remap_workspace() {
     sudo diskutil unmount /Volumes/workspace
-    diskutil mount /dev/disk0s4 ${HOME}/workspace
+    diskutil mount -mountPoint ./workspace /dev/disk0s4
 }
