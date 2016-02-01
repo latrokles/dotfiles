@@ -45,7 +45,7 @@ case `uname` in
         ;;
 esac
 
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin"
+export PATH="/opt/npm/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin"
 export SSH_KEY_PATH="~/git/config/ssh/dsa_id"
 export EDITOR='vim'
 
