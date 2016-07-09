@@ -5,8 +5,20 @@ set softtabstop=4
 set expandtab
 set shiftwidth=4
 autocmd Filetype ruby setlocal ts=2 sw=2 softtabstop=2 expandtab
-autocmd Filetype javascript setlocal ts=2 sw=2 softtabstop=2 expandtab
+autocmd Filetype javascript setlocal ts=2 sw=2 shiftwidth=2 softtabstop=2 expandtab
 set backspace=indent,eol,start
+
+"DISABLE ARROW KEYS (INSERT MODE)
+imap <up> <nop>
+imap <down> <nop>
+imap <left> <nop>
+imap <right> <nop>
+
+"DISABLE ARROW KEYS (NORMAL MODE)
+map <up> <nop>
+map <down> <nop>
+map <left> <nop>
+map <right> <nop>
 
 "UI
 set number
