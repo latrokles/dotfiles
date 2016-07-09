@@ -49,7 +49,6 @@ export PATH="/opt/npm/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/
 export SSH_KEY_PATH="~/git/config/ssh/dsa_id"
 export EDITOR='vim'
 
-source ${HOME}/dotfiles/docker-machine-setup
 source ${HOME}/dotfiles/dockerfunc
 source ${HOME}/dotfiles/functions
 source ${HOME}/dotfiles/aliases
