@@ -1,0 +1,4 @@
+if test -d $HOME/.rvm
+then
+    source /Users/latrokles/.rvm/scripts/rvm
+fi
