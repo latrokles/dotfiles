@@ -1,4 +1,3 @@
-colorscheme desert
 syntax enable
 set tabstop=4
 set softtabstop=4
@@ -45,3 +44,8 @@ set foldmethod=indent   " fold based on indent level
 
 "PATHOGEN (make sure to install it)
 call pathogen#infect()                      " use pathogen
+
+" colorscheme
+colorscheme gruvbox
+set background=dark    " Setting dark mode
+let g:gruvbox_contrast_dark = 'soft'

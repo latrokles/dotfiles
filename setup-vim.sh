@@ -31,6 +31,7 @@ install_plugins(){
     git clone https://github.com/fatih/vim-go &&
     git clone https://github.com/vim-ruby/vim-ruby &&
     git clone https://github.com/ervandew/supertab &&
+    git clone https://github.com/morhetz/gruvbox.git &&
     git clone --depth=1 https://github.com/rust-lang/rust.vim.git ~/.vim/bundle/rust.vim &&
     popd
 }
