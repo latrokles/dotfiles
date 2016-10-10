@@ -33,6 +33,7 @@ source $ZSH/oh-my-zsh.sh
 ################
 # CUSTOM STUFF #
 ################
+
 # some osx-linux branching here (if this gets too specific, I will split these files)
 case `uname` in
     Darwin)
@@ -44,6 +45,9 @@ case `uname` in
         RPROMPT='(linux)'
         ;;
 esac
+
+# use vim keybindings for the shell, because... why not?
+set -o vi
 
 export PATH="/opt/npm/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin"
 export SSH_KEY_PATH="~/git/config/ssh/dsa_id"
