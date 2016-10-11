@@ -48,6 +48,7 @@ esac
 
 # use vim keybindings for the shell, because... why not?
 set -o vi
+bindkey '^R' history-incremental-search-backward # but let's keep familiar search
 
 export PATH="/opt/npm/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin"
 export SSH_KEY_PATH="~/git/config/ssh/dsa_id"
