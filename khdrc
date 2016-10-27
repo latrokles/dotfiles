@@ -1,0 +1,81 @@
+# Enable kwm compatibility
+khd kwm on
+
+# Manage config
+lctrl - z			: subl -n ~/.khdrc
+lctrl + shift - q 	: khd -e "reload"
+
+# Manage kwm
+lctrl - q 			: kwmc quit
+lctrl + shift - r 	: kwmc config reload
+lctrl - e 			: kwmc space -r focused
+lctrl - a 			: subl -n ~/.kwm
+
+# Tiling mode
+lctrl - b : kwmc space -t bsp
+lctrl - f : kwmc space -t monocle
+lctrl - d : kwmc space -t float
+
+# Toggle node mode
+lctrl - v : kwmc window -c type toggle
+
+# Rotate Window-Tree By 90* (Clockwise)
+lctrl - r : kwmc tree rotate 90
+
+# Change split-mode
+lctrl - s : kwmc window -c split-mode toggle
+
+# Resizing
+lctrl - 0x2B : kwmc window -c reduce 0.05 focused
+lctrl - 0x2F : kwmc window -c expand 0.05 focused
+
+cmd + ctrl - h : kwmc window -c expand 0.05 west
+cmd + ctrl - j : kwmc window -c expand 0.05 south
+cmd + ctrl - k : kwmc window -c expand 0.05 north
+cmd + ctrl - l : kwmc window -c expand 0.05 east
+
+cmd + ctrl + shift - h : kwmc window -c reduce 0.05 west
+cmd + ctrl + shift - j : kwmc window -c reduce 0.05 south
+cmd + ctrl + shift - k : kwmc window -c reduce 0.05 north
+cmd + ctrl + shift - l : kwmc window -c reduce 0.05 east
+
+# Set zoom
+lctrl - x : kwmc window -z fullscreen
+lctrl - p : kwmc window -z parent
+lctrl - w : kwmc window -t focused
+
+# Mark Window
+lctrl - m : kwmc window -mk focused
+
+# Pseudo nodes
+lctrl - y 			: kwmc tree -pseudo create
+lctrl + shift - y 	: kwmc tree -pseudo destroy
+
+# Give Focus To Window
+lctrl - h : kwmc window -f west
+lctrl - j : kwmc window -f south
+lctrl - k : kwmc window -f north
+lctrl - l : kwmc window -f east
+
+# Focus next/previous monocle sub-tree
+cmd + ctrl - tab 			: kwmc window -fm next
+cmd + ctrl + shift - tab 	: kwmc window -fm prev
+
+# Swap Focused Window in direction
+lctrl + shift - h : kwmc window -s west
+lctrl + shift - j : kwmc window -s south
+lctrl + shift - k : kwmc window -s north
+lctrl + shift - l : kwmc window -s east
+
+# Move Focused window between spaces (don't follow)
+#  lctrl + shift - tab : kwmc window -m space previous
+# lctrl + shift - 1 	: kwmc window -m space 1
+# lctrl + shift - 2 	: kwmc window -m space 2
+# lctrl + shift - 3 	: kwmc window -m space 3
+# lctrl + shift - 4 	: kwmc window -m space 4
+# lctrl + shift - 5 	: kwmc window -m space 5
+# lctrl + shift - 6 	: kwmc window -m space 6
+# lctrl + shift - 7 	: kwmc window -m space 7
+# lctrl + shift - 8 	: kwmc window -m space 8
+# lctrl + shift - 9 	: kwmc window -m space 9
+# lctrl + shift - 0 	: kwmc window -m space 10
