@@ -16,7 +16,7 @@ install_vundle(){
 
 setup_vimrc(){
     echo -n "Linking dotfiles vimrc..."
-    echo "so ${HOME}/dotfiles/vimrc" > ${HOME}/.vimrc
+    echo "so ${DOTFILESDIR}/vimrc" > ${HOME}/.vimrc
     echo "done!"
 
     echo -n "Installing plugins with Vundle..."
