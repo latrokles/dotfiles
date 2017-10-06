@@ -1,3 +1,38 @@
+"Plugin Management with Vundle
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'tomasr/molokai'
+Plugin 'kien/ctrlp.vim'
+Plugin 'tpope/vim-surround'
+Plugin 'Shougo/vimproc.vim'
+Plugin 'wlangstroth/vim-racket'
+Plugin 'othree/html5.vim'
+Plugin 'tpope/vim-commentary'
+Plugin 'groenewege/vim-less'
+Plugin 'plasticboy/vim-markdown'
+Plugin 'jiangmiao/auto-pairs'
+Plugin 'chriskempson/base16-vim'
+Plugin 'itchyny/lightline.vim'
+Plugin 'scrooloose/syntastic'
+Plugin 'mxw/vim-jsx'
+Plugin 'jaxbot/syntastic-react'
+Plugin 'justinj/vim-react-snippets'
+Plugin 'majutsushi/tagbar'
+Plugin 'fatih/vim-go'
+Plugin 'vim-ruby/vim-ruby'
+Plugin 'ervandew/supertab'
+Plugin 'morhetz/gruvbox.git'
+call vundle#end()
+
 syntax enable
 set tabstop=4
 set softtabstop=4
@@ -42,33 +77,7 @@ set foldlevelstart=10
 set foldnestmax=10
 set foldmethod=indent   " fold based on indent level
 
-"PATHOGEN (make sure to install it)
-call pathogen#infect()                      " use pathogen
-
 " colorscheme
 colorscheme gruvbox
 set background=dark    " Setting dark mode
 let g:gruvbox_contrast_dark = 'soft'
-
-"Vundle Managed Plugins
-Plugin 'tomasr/molokai'
-Plugin 'kien/ctrlp.vim'
-Plugin 'tpope/vim-surround'
-Plugin 'Shougo/vimproc.vim'
-Plugin 'wlangstroth/vim-racket'
-Plugin 'othree/html5.vim'
-Plugin 'tpope/vim-commentary'
-Plugin 'groenewege/vim-less'
-Plugin 'plasticboy/vim-markdown'
-Plugin 'jiangmiao/auto-pairs'
-Plugin 'chriskempson/base16-vim'
-Plugin 'itchyny/lightline.vim'
-Plugin 'scrooloose/syntastic'
-Plugin 'mxw/vim-jsx'
-Plugin 'jaxbot/syntastic-react'
-Plugin 'justinj/vim-react-snippets'
-Plugin 'majutsushi/tagbar'
-Plugin 'fatih/vim-go'
-Plugin 'vim-ruby/vim-ruby'
-Plugin 'ervandew/supertab'
-Plugin 'morhetz/gruvbox.git'

@@ -17,7 +17,7 @@ VIMRC="${HOME}/.vimrc"
 #
 remove_vim_tree(){
     if [ -d "$VIMDIR" ]; then
-        rm -rI $VIMDIR
+        rm -rf $VIMDIR
     fi
 }
 
@@ -55,7 +55,15 @@ setup_vimrc(){
     echo "done!"
 }
 
+#
+# support neovim
+#
+setup_neovim(){
+    ln ${VIMRC} ${VIMDIR}/init.vim
+}
+
 remove_vim_tree && \
     create_vim_tree && \
     install_vundle && \
-    setup_vimrc
+    setup_vimrc && \
+    setup_neovim
