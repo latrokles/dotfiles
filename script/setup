@@ -1,5 +1,12 @@
-#!/usr/local/bin/zsh
+#!/bin/bash
+# setup dotfiles
 
-echo "source ${HOME}/dotfiles/zshrc" > ${HOME}/.zshrc
-ln ${HOME}/dotfiles/gitconfig ${HOME}/.gitconfig
-sh setup-vim.sh
+DOTFILESDIR="${HOME}/.dotfiles"
+
+echo -n "Sourcing dotfiles zshrc..."
+echo "source ${DOTFILESDIR}/zshrc" > ${HOME}/.zshrc
+echo "done!"
+
+echo -n "Copying gitconfig..."
+cp ${DOTFILESDIR}/gitconfig ${HOME}/.gitconfig
+echo "done!"
