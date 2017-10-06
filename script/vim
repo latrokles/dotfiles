@@ -1,22 +1,53 @@
 #!/bin/bash
 
+#
+# this script enforces that all vim plugins and configurations be managed using
+# this dotfiles package.
+# 
+# it deletes all vim configuration and then performs an fresh install (immutable
+# vim configuration)
+#
+
 DOTFILESDIR="${HOME}/.dotfiles"
+VIMDIR="${HOME}/.vim"
+VIMRC="${HOME}/.vimrc"
 
+#
+# remove $VIMDIR if it exists
+#
+remove_vim_tree(){
+    if [ -d "$VIMDIR" ]; then
+        rm -rI $VIMDIR
+    fi
+}
+
+#
+# create $VIMDIR and bundle directory
+#
 create_vim_tree(){
-  echo -n "Creating vim tree..."
-  mkdir -p ${HOME}/.vim/{autoload,bundle}
-  echo "done!"
+    echo -n "Creating vim tree..."
+    mkdir -p ${VIMDIR}/bundle
+    echo "done!"
 }
 
+#
+# clone Vundle, Vim's package/plugin manager
+#
 install_vundle(){
-  echo -n "Installing Vundle..."
-  git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-  echo "done!"
+    echo -n "Installing Vundle..."
+    git clone https://github.com/VundleVim/Vundle.vim.git \
+      ${VIMDIR}/bundle/Vundle.vim
+
+    echo "done!"
 }
 
+#
+# setup vimrc by loading the dotfiles vimrc and then running Vundle's install
+# command
+#
 setup_vimrc(){
     echo -n "Linking dotfiles vimrc..."
-    echo "so ${DOTFILESDIR}/vimrc" > ${HOME}/.vimrc
+    echo "so ${DOTFILESDIR}/vimrc" > ${VIMRC}
     echo "done!"
 
     echo -n "Installing plugins with Vundle..."
@@ -24,6 +55,7 @@ setup_vimrc(){
     echo "done!"
 }
 
-create_vim_tree && \
+remove_vim_tree && \
+    create_vim_tree && \
     install_vundle && \
     setup_vimrc

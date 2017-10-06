@@ -1,4 +1,9 @@
 # dotfiles
-dotfiles for linux box
 
-some need to be copied, others symlinked or sourced.
+my dotfiles...
+
+## installation
+
+- run `script/setup` to install dotfiles
+- run `script/vim` to setup vim and plugins
+
