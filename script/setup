@@ -3,13 +3,34 @@
 
 DOTFILESDIR="${HOME}/.dotfiles"
 ZSHRC="${HOME}/.zshrc"
+ZSH="${HOME}/.oh-my-zsh"
 
-echo -n "Sourcing dotfiles zshrc..."
-echo "source ${DOTFILESDIR}/zshrc" > ${ZSHRC}
+#
+# install oh my zsh
+#
+if [ -d "$ZSH" ];then
+    echo -n "Installing oh-my-zsh..."
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+    echo "done!"
+fi
+
+#
+# install zsh
+#
+echo -n "Installing zsh..."
+brew install zsh
 echo "done!"
 
-# TODO setup zsh and switch over, along with aliases and whatnot
+#
+# change shell to zsh
+#
+echo -n "Setting zsh as default shell..."
+chsh -s /usr/local/bin/zsh
+echo "done!"
 
-echo -n "Copying gitconfig..."
-cp ${DOTFILESDIR}/gitconfig ${HOME}/.gitconfig
+#
+# set up zshrc
+#
+echo -n "Sourcing dotfiles zshrc..."
+echo "source ${DOTFILESDIR}/zshrc" > ${ZSHRC}
 echo "done!"

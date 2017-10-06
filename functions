@@ -1,12 +1,17 @@
-####
+#
 # Some useful functions to perform simple operations
-###
+#
 
-# lazy function to remount workspace partition so
-# that it works with the boot2docker home volume
-# mount on osx. Symlinks don't work and I haven't
-# gotten around to mess with this mac's fstab
-remap_workspace() {
-    sudo diskutil unmount /Volumes/workspace
-    diskutil mount -mountPoint ./workspace /dev/disk0s4
+#
+# quick function to take notes
+#
+notes() {
+    NOTES="${HOME}/Desktop/notes.md"
+    if [ ! -z "$1" ]; then
+        # write params to notes
+        echo "$@" >> "${NOTES}"
+    else
+        # no arguments, use STDIN
+        cat - >> "${NOTES}"
+    fi
 }
