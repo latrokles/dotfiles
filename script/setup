@@ -2,9 +2,10 @@
 # setup dotfiles
 
 DOTFILESDIR="${HOME}/.dotfiles"
+ZSHRC="${HOME}/.zshrc"
 
 echo -n "Sourcing dotfiles zshrc..."
-echo "source ${DOTFILESDIR}/zshrc" > ${HOME}/.zshrc
+echo "source ${DOTFILESDIR}/zshrc" > ${ZSHRC}
 echo "done!"
 
 # TODO setup zsh and switch over, along with aliases and whatnot

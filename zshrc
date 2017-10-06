@@ -1,3 +1,5 @@
+DOTFILESDIR="${HOME}/.dotfiles"
+
 # Path to your oh-my-zsh installation.
 export ZSH=${HOME}/.oh-my-zsh
 
@@ -54,6 +56,6 @@ export PATH="/opt/npm/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/
 export SSH_KEY_PATH="~/git/config/ssh/dsa_id"
 export EDITOR='nvim'
 
-source ${HOME}/dotfiles/dockerfunc
-source ${HOME}/dotfiles/functions
-source ${HOME}/dotfiles/aliases
+source ${DOTFILESDIR}/dockerfunc
+source ${DOTFILESDIR}/functions
+source ${DOTFILESDIR}/aliases
