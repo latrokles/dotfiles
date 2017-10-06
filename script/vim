@@ -1,0 +1,29 @@
+#!/bin/bash
+
+DOTFILESDIR="${HOME}/.dotfiles"
+
+create_vim_tree(){
+  echo -n "Creating vim tree..."
+  mkdir -p ${HOME}/.vim/{autoload,bundle}
+  echo "done!"
+}
+
+install_vundle(){
+  echo -n "Installing Vundle..."
+  git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+  echo "done!"
+}
+
+setup_vimrc(){
+    echo -n "Linking dotfiles vimrc..."
+    echo "so ${DOTFILESDIR}/vimrc" > ${HOME}/.vimrc
+    echo "done!"
+
+    echo -n "Installing plugins with Vundle..."
+    vim +PluginInstall +qall
+    echo "done!"
+}
+
+create_vim_tree && \
+    install_vundle && \
+    setup_vimrc

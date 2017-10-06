@@ -1,0 +1,14 @@
+#!/bin/bash
+# setup dotfiles
+
+DOTFILESDIR="${HOME}/.dotfiles"
+
+echo -n "Sourcing dotfiles zshrc..."
+echo "source ${DOTFILESDIR}/zshrc" > ${HOME}/.zshrc
+echo "done!"
+
+# TODO setup zsh and switch over, along with aliases and whatnot
+
+echo -n "Copying gitconfig..."
+cp ${DOTFILESDIR}/gitconfig ${HOME}/.gitconfig
+echo "done!"

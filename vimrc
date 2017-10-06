@@ -49,3 +49,26 @@ call pathogen#infect()                      " use pathogen
 colorscheme gruvbox
 set background=dark    " Setting dark mode
 let g:gruvbox_contrast_dark = 'soft'
+
+"Vundle Managed Plugins
+Plugin 'tomasr/molokai'
+Plugin 'kien/ctrlp.vim'
+Plugin 'tpope/vim-surround'
+Plugin 'Shougo/vimproc.vim'
+Plugin 'wlangstroth/vim-racket'
+Plugin 'othree/html5.vim'
+Plugin 'tpope/vim-commentary'
+Plugin 'groenewege/vim-less'
+Plugin 'plasticboy/vim-markdown'
+Plugin 'jiangmiao/auto-pairs'
+Plugin 'chriskempson/base16-vim'
+Plugin 'itchyny/lightline.vim'
+Plugin 'scrooloose/syntastic'
+Plugin 'mxw/vim-jsx'
+Plugin 'jaxbot/syntastic-react'
+Plugin 'justinj/vim-react-snippets'
+Plugin 'majutsushi/tagbar'
+Plugin 'fatih/vim-go'
+Plugin 'vim-ruby/vim-ruby'
+Plugin 'ervandew/supertab'
+Plugin 'morhetz/gruvbox.git'
