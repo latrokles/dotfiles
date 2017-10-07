@@ -34,3 +34,10 @@ echo "done!"
 echo -n "Sourcing dotfiles zshrc..."
 echo "source ${DOTFILESDIR}/zshrc" > ${ZSHRC}
 echo "done!"
+
+#
+# copy Brewfile over
+#
+echo -n "Copying Brewfile to $HOME..."
+cp $DOTFILESDIR/Brewfile ${HOME}/
+echo "done!"
