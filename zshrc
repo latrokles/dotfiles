@@ -1,14 +1,13 @@
 #
 # oh my zsh
 #
-export ZSH=/Users/duqruben/.oh-my-zsh
+export ZSH=${HOME}/.oh-my-zsh
 ENABLE_CORRECTION="true"
 ZSH_THEME="ys"
 plugins=(git)
-
 source $ZSH/oh-my-zsh.sh
-#
 
+#
 # User configuration
 #
 DOTFILESDIR="${HOME}/.dotfiles"
