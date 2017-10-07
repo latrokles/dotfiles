@@ -39,5 +39,5 @@ echo "done!"
 # copy Brewfile over
 #
 echo -n "Copying Brewfile to $HOME..."
-cp $DOTFILESDIR/Brewfile ${HOME}/
+cp $DOTFILESDIR/Brewfile ${HOME}/.Brewfile
 echo "done!"
