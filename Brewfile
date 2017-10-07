@@ -39,7 +39,6 @@ cask "docker"
 cask "eagle"
 cask "electron"
 cask "etcher"
-cask "ext2fuse"
 cask "firefoxdeveloperedition"
 cask "icons8"
 cask "iterm2"
@@ -50,6 +49,9 @@ cask "virtualbox"
 cask "vlc"
 cask "wireshark"
 cask "xquartz"
+
+cask "osxfuse"
+brew "ext2fuse"
 
 mas "123D Design", id: 566042322
 mas "123DMake", id: 515318186
