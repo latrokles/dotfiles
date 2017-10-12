@@ -12,6 +12,9 @@ DOTFILESDIR="${HOME}/.dotfiles"
 VIMDIR="${HOME}/.vim"
 VIMRC="${HOME}/.vimrc"
 
+NEOVIMDIR="${HOME}/.config/nvim"
+NEOVIMRC="${NEOVIMDIR}/init.vim"
+
 #
 # remove $VIMDIR if it exists
 #
@@ -58,8 +61,13 @@ setup_vimrc(){
 #
 # support neovim
 #
-setup_neovim(){
-    ln ${VIMRC} ${VIMDIR}/init.vim
+setup_neovim(){	
+    echo -n "Setting up neovim to load vimrc..."
+    mkdir -p ${NEOVIMDIR}
+    echo "set runtimepath^=~/.vim runtimepath+=~/.vim/after" > ${NEOVIMRC}
+    echo "let &packpath = &runtimepath" >> ${NEOVIMRC}
+    echo "source ~/.vimrc" >> ${NEOVIMRC}
+    echo "done!"
 }
 
 remove_vim_tree && \
