@@ -10,27 +10,35 @@
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
-Plugin 'tomasr/molokai'
-Plugin 'kien/ctrlp.vim'
-Plugin 'tpope/vim-surround'
+
+" general
 Plugin 'Shougo/vimproc.vim'
-Plugin 'wlangstroth/vim-racket'
-Plugin 'othree/html5.vim'
-Plugin 'tpope/vim-commentary'
-Plugin 'groenewege/vim-less'
-Plugin 'plasticboy/vim-markdown'
-Plugin 'jiangmiao/auto-pairs'
 Plugin 'chriskempson/base16-vim'
+Plugin 'ervandew/supertab'
+Plugin 'groenewege/vim-less'
 Plugin 'itchyny/lightline.vim'
+Plugin 'jiangmiao/auto-pairs'
+Plugin 'kien/ctrlp.vim'
+Plugin 'majutsushi/tagbar'
+Plugin 'plasticboy/vim-markdown'
 Plugin 'scrooloose/syntastic'
-Plugin 'mxw/vim-jsx'
+Plugin 'tpope/vim-commentary'
+Plugin 'tpope/vim-surround'
+
+" language support
+Plugin 'fatih/vim-go'
 Plugin 'jaxbot/syntastic-react'
 Plugin 'justinj/vim-react-snippets'
-Plugin 'majutsushi/tagbar'
-Plugin 'fatih/vim-go'
+Plugin 'mxw/vim-jsx'
+Plugin 'othree/html5.vim'
+Plugin 'rust-lang/rust.vim'
 Plugin 'vim-ruby/vim-ruby'
-Plugin 'ervandew/supertab'
+Plugin 'wlangstroth/vim-racket'
+
+" themes
 Plugin 'morhetz/gruvbox.git'
+Plugin 'tomasr/molokai'
+
 call vundle#end()
 
 syntax enable
