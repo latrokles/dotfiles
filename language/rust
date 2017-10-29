@@ -1,0 +1,5 @@
+RUST_ENV=${HOME}/.cargo/env
+if test -f ${RUST_ENV}
+then
+    source ${RUST_ENV}
+fi

@@ -32,3 +32,8 @@ export VISUAL=${EDITOR}
 source ${DOTFILESDIR}/dockerfunc
 source ${DOTFILESDIR}/functions
 source ${DOTFILESDIR}/aliases
+
+ls ${DOTFILESDIR}/language | while read line;
+do
+    source ${DOTFILESDIR}/language/${line}
+done
