@@ -4,3 +4,5 @@
 alias vi=nvim
 alias pd=pushd
 alias zz=suspend
+
+alias devwork="cd dev/src/github.com/$USER"
