@@ -34,6 +34,7 @@ brew "watch"
 brew "wget"
 
 cask "alfred"
+cask "atom"
 cask "dash"
 cask "docker"
 cask "eagle"
