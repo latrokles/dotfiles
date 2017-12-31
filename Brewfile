@@ -30,6 +30,7 @@ brew "ruby"
 brew "ruby-build"
 brew "socat"
 brew "tree"
+brew "tmux"
 brew "watch"
 brew "wget"
 
