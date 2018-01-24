@@ -41,3 +41,19 @@ echo "done!"
 echo -n "Copying Brewfile to $HOME..."
 cp $DOTFILESDIR/Brewfile ${HOME}/.Brewfile
 echo "done!"
+
+#
+# copy chunkwm config
+#
+echo -n "Copying our chunkwm configuration to $HOME..."
+cp $DOTFILESDIR/chunkwmrc ${HOME}/.chunkwmrc
+chmod 755 ${HOME}/.chunkwmrc
+echo "done!"
+
+#
+# copy skhd config
+#
+echo -n "Copying our khd configuration to $HOME..."
+cp $DOTFILESDIR/khdrc ${HOME}/.khdrc
+echo "done!"
+
