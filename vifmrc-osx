@@ -205,10 +205,8 @@ fileviewer *.avi,*.mp4,*.wmv,*.dat,*.3gp,*.ogv,*.mkv,*.mpg,*.mpeg,*.vob,
 
 " Web
 filetype *.html,*.htm
-       \ {Open in Safari}
-       \ open -a Safari.app,
        \ {Open in Firefox}
-       \ open -a Firefox.app,
+       \ open -a FirefoxDeveloperEdition
        \ {Open in Chrome}
        \ open -a Google\ Chrome.app,
        \ {Open in vim}
