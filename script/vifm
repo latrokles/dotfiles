@@ -1,0 +1,17 @@
+#!/bin/bash
+
+DOTFILESDIR="${HOME}/.dotfiles"
+
+create_dir(){
+    echo -n "Creating vifm config dir"
+    mkdir ${HOME}/.vifm
+    echo "done!"
+}
+
+copy_config(){
+    echo -n "Copying vifmrc"
+    cp ${DOTFILESDIR}/vifmrc-osx ~/.vifm/vifmrc
+    echo "done!"
+}
+
+create_dir && copy_config

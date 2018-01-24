@@ -2,6 +2,7 @@
 # some useful aliases
 ###
 alias vi=nvim
+alias mvim=nvim
 alias pd=pushd
 alias zz=suspend
 
