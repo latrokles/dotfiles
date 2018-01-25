@@ -31,7 +31,6 @@ chunkc core::hotload 1
 #
 chunkc set global_desktop_mode           bsp
 chunkc set 1_desktop_mode                monocle
-chunkc set 2_desktop_mode                float
 
 #
 # desktop border offsets
@@ -104,3 +103,7 @@ chunkc core::load ffm.so
 
 chunkc tiling::rule --owner Finder --name Copy --state float
 chunkc tiling::rule --owner \"App Store\" --state float
+
+# amazon music always opens on desktop 1
+chunkc tiling::rule --owner \"Amazon Music\" --desktop 1 --state fullscreen
+
