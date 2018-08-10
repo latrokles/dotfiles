@@ -34,6 +34,7 @@ Plugin 'othree/html5.vim'
 Plugin 'rust-lang/rust.vim'
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'wlangstroth/vim-racket'
+Plugin 'keith/swift.vim'
 
 " themes
 Plugin 'morhetz/gruvbox.git'
@@ -47,6 +48,7 @@ set softtabstop=4
 set expandtab
 set shiftwidth=4
 autocmd Filetype ruby setlocal ts=2 sw=2 softtabstop=2 expandtab
+autocmd Filetype python setlocal ts=2 sw=2 softtabstop=2 expandtab
 autocmd Filetype javascript setlocal ts=2 sw=2 shiftwidth=2 softtabstop=2 expandtab
 set backspace=indent,eol,start
 
