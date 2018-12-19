@@ -37,6 +37,8 @@ brew "tree"
 brew "tmux"
 brew "watch"
 brew "wget"
+brew "libbtbb"
+brew "libpcap"
 
 cask "alfred"
 cask "atom"
