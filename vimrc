@@ -35,6 +35,7 @@ Plugin 'rust-lang/rust.vim'
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'wlangstroth/vim-racket'
 Plugin 'keith/swift.vim'
+Plugin 'elmcast/elm-vim'
 
 " themes
 Plugin 'morhetz/gruvbox.git'
