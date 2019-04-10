@@ -101,7 +101,7 @@ chunkc tiling::rule --owner \"App Store\" --state float
 chunkc tiling::rule --owner \"iTerm2\" --desktop 1 --state fullscreen
 
 # personal browser (Safari) always opens on desktop 2 tiled
-chunkc tiling::rule --owner \"Safari\" --desktop 1 --state tile
+chunkc tiling::rule --owner \"Safari\" --desktop 2 --state tile
 
 # work browser (Firefox) always opens on Desktop 2 tiled
-chunkc tiling::rule --owner \"Firefox\" --desktop 1 --state tile
+chunkc tiling::rule --owner \"Firefox\" --desktop 2 --state tile
