@@ -38,9 +38,9 @@ echo "done!"
 #
 # copy Brewfile over
 #
-echo -n "Copying Brewfile to $HOME..."
-cp $DOTFILESDIR/Brewfile ${HOME}/.Brewfile
-echo "done!"
+#echo -n "Copying Brewfile to $HOME..."
+#cp $DOTFILESDIR/Brewfile ${HOME}/.Brewfile
+#echo "done!"
 
 #
 # copy chunkwm config

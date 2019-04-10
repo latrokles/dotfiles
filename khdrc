@@ -2,7 +2,7 @@
 cmd + alt + ctrl - r : khd -e "reload"
 
 # open iTerm (maybe one day I'll switch over to Kitty)
-cmd - return : open -na iTerm
+cmd - return : open -na kitty
 
 # focus window
 alt - h : chunkc tiling::window --focus west

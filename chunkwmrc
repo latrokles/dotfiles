@@ -30,7 +30,6 @@ chunkc core::hotload 1
 # desktop modes
 #
 chunkc set global_desktop_mode           bsp
-chunkc set 1_desktop_mode                monocle
 
 #
 # desktop border offsets
@@ -41,12 +40,6 @@ chunkc set global_desktop_offset_bottom  20
 chunkc set global_desktop_offset_left    20
 chunkc set global_desktop_offset_right   20
 chunkc set global_desktop_offset_gap     15
-
-chunkc set 1_desktop_offset_top          90
-chunkc set 1_desktop_offset_bottom       90
-chunkc set 1_desktop_offset_left         90
-chunkc set 1_desktop_offset_right        90
-chunkc set 1_desktop_offset_gap          15
 
 chunkc set desktop_padding_step_size     10.0
 chunkc set desktop_gap_step_size         5.0
@@ -104,6 +97,11 @@ chunkc core::load ffm.so
 chunkc tiling::rule --owner Finder --name Copy --state float
 chunkc tiling::rule --owner \"App Store\" --state float
 
-# amazon music always opens on desktop 1
-chunkc tiling::rule --owner \"Amazon Music\" --desktop 1 --state fullscreen
+# iTerm (work) always opens on desktop 1
+chunkc tiling::rule --owner \"iTerm2\" --desktop 1 --state fullscreen
 
+# personal browser (Safari) always opens on desktop 2 tiled
+chunkc tiling::rule --owner \"Safari\" --desktop 1 --state tile
+
+# work browser (Firefox) always opens on Desktop 2 tiled
+chunkc tiling::rule --owner \"Firefox\" --desktop 1 --state tile
