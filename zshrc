@@ -37,3 +37,4 @@ ls ${DOTFILESDIR}/language | while read line;
 do
     source ${DOTFILESDIR}/language/${line}
 done
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
