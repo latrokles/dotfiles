@@ -99,6 +99,7 @@
     "kitty"
     "terminal"
     "qutebrowser"
+    "emacs"
 ]
 
 # open terminal, blazingly fast compared to iTerm/Hyper
