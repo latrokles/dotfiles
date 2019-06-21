@@ -92,3 +92,5 @@ set foldmethod=indent   " fold based on indent level
 colorscheme gruvbox
 set background=dark    " Setting dark mode
 let g:gruvbox_contrast_dark = 'soft'
+
+au BufRead,BufNewFile *.md setlocal textwidth=80
