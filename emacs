@@ -16,7 +16,7 @@
     ("274fa62b00d732d093fc3f120aca1b31a6bb484492f31081c1814a858e25c72e" default)))
  '(package-selected-packages
    (quote
-    (markdown-mode evil-magit magit powerline twittering-mode evil-tabs dracula-theme helm use-package evil-visual-mark-mode))))
+    (yaml-mode engine-mode markdown-mode evil-magit magit powerline twittering-mode evil-tabs dracula-theme helm use-package evil-visual-mark-mode))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -29,6 +29,7 @@
 
 (setq make-backup-files nil) ; stop creating backup~ files
 (setq auto-save-default nil) ; stop creating #autosave# files
+(setq x-select-enable-clipboard t) ; enable copy pasting from osx clipboard
 (tool-bar-mode -1)           ; disable toolbar
 
 
@@ -86,3 +87,23 @@
 (defun swap-down nil
   (interactive)
   (swap-window "south"))
+
+;; using engine mode to perform-searches in browser
+(require 'engine-mode)
+(engine-mode t)
+
+;; duckduckgo (mainline)
+(defengine ddg
+  "https://duckduckgo.com/?q=%s")
+  
+;; google as a fallback
+(defengine goog
+  "https://google.com/search?ie=utf-8&oe=utf-8&q=%s")
+
+;; github
+(defengine gh
+  "https://github.com/search?ref=simplesearch&q=%s")
+
+;; youtube
+(defengine yt
+  "https://www.youtube.com/results?aq=f&oq=&search_query=%s")
