@@ -36,6 +36,7 @@ Plugin 'vim-ruby/vim-ruby'
 Plugin 'wlangstroth/vim-racket'
 Plugin 'keith/swift.vim'
 Plugin 'elmcast/elm-vim'
+Plugin 'raichoo/haskell-vim'
 
 " themes
 Plugin 'morhetz/gruvbox.git'
