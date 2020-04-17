@@ -32,18 +32,18 @@
 (setq x-select-enable-clipboard t) ; enable copy pasting from osx clipboard
 (tool-bar-mode -1)           ; disable toolbar
 
-
-(require 'powerline)
 (require 'evil)
 (evil-mode t)
 (load-theme 'dracula t)
+
+(require 'powerline)
+(powerline-center-evil-theme)
 
 (require 'tramp)
 (setq tramp-default-method "scpx")
 
 ;; SOME ANSI-TERM CONFIGURATION
 (setq explicit-shell-file-name "/usr/local/bin/zsh")   ; use brew zsh default
-;(evil-set-initial-state 'term-mode 'emacs)             ; use emacs mode in ansi-term
 
 ; automatically kill the ansi-term buffer after exiting terminal
 (defun oleh-term-exec-hook ()
