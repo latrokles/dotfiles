@@ -29,7 +29,6 @@
 
 (setq make-backup-files nil) ; stop creating backup~ files
 (setq auto-save-default nil) ; stop creating #autosave# files
-(setq x-select-enable-clipboard t) ; enable copy pasting from osx clipboard
 (tool-bar-mode -1)           ; disable toolbar
 
 (require 'evil)
@@ -38,6 +37,25 @@
 
 (require 'powerline)
 (powerline-center-evil-theme)
+
+;; copy paste per: https://apple.stackexchange.com/a/127082
+(defun pbcopy ()
+  (interactive)
+  (call-process-region (point) (mark) "pbcopy")
+  (setq deactivate-mark t))
+
+(defun pbpaste ()
+  (interactive)
+  (call-process-region (point) (if mark-active (mark) (point)) "pbpaste" t t))
+
+(defun pbcut ()
+  (interactive)
+  (pbcopy)
+  (delete-region (region-beginning) (region-end)))
+
+(global-set-key (kbd "C-c c") 'pbcopy)
+(global-set-key (kbd "C-c v") 'pbpaste)
+(global-set-key (kbd "C-c x") 'pbcut)
 
 (require 'tramp)
 (setq tramp-default-method "scpx")
