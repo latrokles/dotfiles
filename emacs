@@ -112,6 +112,21 @@
 (global-set-key (kbd "C-c s") 'swap-down)
 (global-set-key (kbd "C-c d") 'swap-right)
 
+;; control Mac OS volume from emacs
+;; pass an integer from 0 - 100
+(defun set-volume (level)
+  (interactive "sVolume level [0-100]: ")
+    (start-process-shell-command "" nil (concat "osascript -e \"set Volume output volume " level "\"")))
+ 
+;; for the two below I should use an integer and convert to a string?
+(defun mute nil
+  (interactive)
+  (start-process-shell-command "" nil "osascript -e \"set Volume output muted true\""))
+
+(defun unmute nil
+  (interactive)
+  (start-process-shell-command "" nil "osascript -e \"set Volume output muted false\""))
+
 ;; using engine mode to perform-searches in browser
 (require 'engine-mode)
 (engine-mode t)
