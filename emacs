@@ -88,7 +88,7 @@
 ;; execute commands to the chunkwm daemon to place the current emacs frame
 ;; wherever I want it.
 (defun swap-window (direction)
-  (call-process-shell-command (concat "chunkc tiling:window --swap " direction) nil t))
+  (start-process-shell-command "" nil (concat "chunkc tiling:window --swap " direction)))
 
 (defun swap-right nil
   (interactive)
@@ -105,6 +105,12 @@
 (defun swap-down nil
   (interactive)
   (swap-window "south"))
+
+;; use C-(wasd) to interact with chunkc
+(global-set-key (kbd "C-c w") 'swap-up)
+(global-set-key (kbd "C-c a") 'swap-left)
+(global-set-key (kbd "C-c s") 'swap-down)
+(global-set-key (kbd "C-c d") 'swap-right)
 
 ;; using engine mode to perform-searches in browser
 (require 'engine-mode)
