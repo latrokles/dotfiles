@@ -61,12 +61,12 @@
 (global-set-key (kbd "C-c v") 'pbpaste)
 (global-set-key (kbd "C-c x") 'pbcut)
 
-
 (require 'tramp)
 (setq tramp-default-method "scpx")
 
 ;; SOME ANSI-TERM CONFIGURATION
-(setq explicit-shell-file-name "/usr/local/bin/zsh")   ; use brew zsh default
+;; set ansi-term default shell
+(setq explicit-shell-file-name "/usr/local/bin/zsh") 
 
 ; automatically kill the ansi-term buffer after exiting terminal
 (defun oleh-term-exec-hook ()
