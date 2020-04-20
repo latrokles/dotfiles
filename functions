@@ -15,3 +15,60 @@ notes() {
         cat - >> "${NOTES}"
     fi
 }
+
+#
+# take fullscreen screenshot and save to Desktop/capture.png
+#
+screen_capture_fullscreen() {
+  screencapture ~/Desktop/capture.png
+}
+
+#
+# take manual crop screenshot and save to Desktop/capture_crop.png
+#
+screen_capture_crop() {
+  screencapture -is ~/Desktop/capture_crop.png
+}
+
+#
+# take manual crop screenshot and put it in clipboard
+#
+screen_capture_crop_to_clipboard() {
+  screencapture -cis
+}
+
+#
+# take a screen recording
+# TODO find a way to use this from emacs (to stop it)
+#
+screen_capture_video() {
+  screencapture -v ~/Desktop/screen_recording.mp4
+}
+
+#
+# raise volume by 10%
+#
+volume_up() {
+  osascript -e "set volume output volume (output volume of (get volume settings) + 10) --100%"
+}
+
+#
+# lower volume by 10%
+#
+volume_down() {
+  osascript -e "set volume output volume (output volume of (get volume settings) - 10) --100%"
+}
+
+#
+# mute audio
+#
+mute() {
+  osascript -e "set volume output muted true"
+}
+
+#
+# unmute audio
+#
+unmute() {
+  osascript -e "set volume output muted false"
+}
