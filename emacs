@@ -68,6 +68,13 @@
 ;; set ansi-term default shell
 (setq explicit-shell-file-name "/usr/local/bin/zsh") 
 
+; use emacs mode in ansi-term
+(evil-set-initial-state 'term-mode 'emacs)
+
+;; set a way to paste into ansi-term
+(eval-after-load "ansi-term"
+  '(define-key ansi-term-raw-map (kbd "C-c C-y") 'term-paste))
+
 ; automatically kill the ansi-term buffer after exiting terminal
 (defun oleh-term-exec-hook ()
   (let* ((buff (current-buffer))
