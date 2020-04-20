@@ -120,7 +120,7 @@
 ;; ------ window manager
 (defun wm-swap-window (direction)
   "move the active emacs buffer to direction [east, west, north, south]"
-  (start-process-shell-command "" nil (concat "yabai -m window --swap" direction)))
+  (start-process-shell-command "" nil (concat "yabai -m window --swap " direction)))
 
 (defun wm-swap-window-e nil
   (interactive)
@@ -139,10 +139,10 @@
   (wm-swap-window "south"))
 
 ;; use C-(wasd) to interact with chunkc
-(global-set-key (kbd "C-c h") 'swap-west)
-(global-set-key (kbd "C-c j") 'swap-south)
-(global-set-key (kbd "C-c k") 'swap-north)
-(global-set-key (kbd "C-c l") 'swap-east)
+(global-set-key (kbd "C-c h") 'wm-swap-window-w)
+(global-set-key (kbd "C-c j") 'wm-swap-window-s)
+(global-set-key (kbd "C-c k") 'wm-swap-window-n)
+(global-set-key (kbd "C-c l") 'wm-swap-window-e)
 
 ;; control Mac OS volume from emacs
 ;; pass an integer from 0 - 100
