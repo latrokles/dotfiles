@@ -87,51 +87,6 @@
 ; set option as meta
 (setq-default mac-option-modifier 'meta)
 
-;; some configuration to get emacs working with chunkwm
-;; a lot of skhd shortcuts interfere with emacs (and terminal commands)
-;; so I have disabled skhd in both emacs and iterm, but I can have emcas
-;; execute commands to the chunkwm daemon to place the current emacs frame
-;; wherever I want it.
-(defun swap-window (direction)
-  (start-process-shell-command "" nil (concat "chunkc tiling:window --swap " direction)))
-
-(defun swap-right nil
-  (interactive)
-  (swap-window "east"))
-
-(defun swap-left nil
-  (interactive)
-  (swap-window "west"))
-
-(defun swap-up nil
-  (interactive)
-  (swap-window "north"))
-
-(defun swap-down nil
-  (interactive)
-  (swap-window "south"))
-
-;; use C-(wasd) to interact with chunkc
-(global-set-key (kbd "C-c w") 'swap-up)
-(global-set-key (kbd "C-c a") 'swap-left)
-(global-set-key (kbd "C-c s") 'swap-down)
-(global-set-key (kbd "C-c d") 'swap-right)
-
-;; control Mac OS volume from emacs
-;; pass an integer from 0 - 100
-(defun set-volume (level)
-  (interactive "sVolume level [0-100]: ")
-    (start-process-shell-command "" nil (concat "osascript -e \"set Volume output volume " level "\"")))
- 
-;; for the two below I should use an integer and convert to a string?
-(defun mute nil
-  (interactive)
-  (start-process-shell-command "" nil "osascript -e \"set Volume output muted true\""))
-
-(defun unmute nil
-  (interactive)
-  (start-process-shell-command "" nil "osascript -e \"set Volume output muted false\""))
-
 ;; using engine mode to perform-searches in browser
 (require 'engine-mode)
 (engine-mode t)
@@ -154,3 +109,53 @@
 
 ;; for flycheck
 (exec-path-from-shell-initialize)
+
+;; OSX control from emacs
+;; some configuration to get emacs working with chunkwm
+;; a lot of skhd shortcuts interfere with emacs (and terminal commands)
+;; so I have disabled skhd in both emacs and iterm, but I can have emcas
+;; execute commands to the chunkwm daemon to place the current emacs frame
+;; wherever I want it.
+
+;; ------ window manager
+(defun wm-swap-window (direction)
+  "move the active emacs buffer to direction [east, west, north, south]"
+  (start-process-shell-command "" nil (concat "yabai -m window --swap" direction)))
+
+(defun wm-swap-window-e nil
+  (interactive)
+  (wm-swap-window "east"))
+
+(defun wm-swap-window-w nil
+  (interactive)
+  (wm-swap-window "west"))
+
+(defun wm-swap-window-n nil
+  (interactive)
+  (wm-swap-window "north"))
+
+(defun wm-swap-window-s nil
+  (interactive)
+  (wm-swap-window "south"))
+
+;; use C-(wasd) to interact with chunkc
+(global-set-key (kbd "C-c h") 'swap-west)
+(global-set-key (kbd "C-c j") 'swap-south)
+(global-set-key (kbd "C-c k") 'swap-north)
+(global-set-key (kbd "C-c l") 'swap-east)
+
+;; control Mac OS volume from emacs
+;; pass an integer from 0 - 100
+(defun set-volume (level)
+  (interactive "sVolume level [0-100]: ")
+    (start-process-shell-command "" nil (concat "osascript -e \"set Volume output volume " level "\"")))
+ 
+;; for the two below I should use an integer and convert to a string?
+(defun mute nil
+  (interactive)
+  (start-process-shell-command "" nil "osascript -e \"set Volume output muted true\""))
+
+(defun unmute nil
+  (interactive)
+  (start-process-shell-command "" nil "osascript -e \"set Volume output muted false\""))
+
