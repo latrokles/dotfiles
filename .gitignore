@@ -1,1 +1,8 @@
 .DS_Store
+
+# ignore all the compiled and downloaded stuff in emacs.d
+emacs.d/*
+# but not my emacs configs
+!emacs.d/init.el
+!emacs.d/lisp
+
