@@ -28,6 +28,7 @@
 
 (require 'init-utils)
 (require 'init-elpa)
+(require 'init-platform)
 
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)

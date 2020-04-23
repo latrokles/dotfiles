@@ -17,6 +17,8 @@
     :config
     (global-evil-surround-mode))
 
-  (add-to-list 'evil-emacs-state-modes 'term-mode))
+  (add-to-list 'evil-emacs-state-modes 'term-mode)
+  (delete 'term-mode evil-insert-state-modes)
+  (delete 'eshell-mode evil-insert-state-modes))
 
 (provide 'init-evil)
