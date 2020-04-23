@@ -15,6 +15,8 @@
   (use-package evil-surround
     :ensure t
     :config
-    ((global-evil-surround-mode)))
+    (global-evil-surround-mode))
 
-  (add-to-list 'evil-emacs-state-mode 'term-mode))
+  (add-to-list 'evil-emacs-state-modes 'term-mode))
+
+(provide 'init-evil)
