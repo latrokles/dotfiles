@@ -17,4 +17,4 @@
     :config
     ((global-evil-surround-mode)))
 
-  (add-to-list 'evil-emacs-state-mode term-mode))
+  (add-to-list 'evil-emacs-state-mode 'term-mode))
