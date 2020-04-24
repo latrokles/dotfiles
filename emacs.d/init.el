@@ -64,12 +64,13 @@
 
 
 ;; -- packages
+(require 'init-evil-leader)
 (require 'init-evil)
 
-(use-package dracula-theme
+(use-package doom-themes
   :ensure t
   :config
-  (load-theme 'dracula t))
+  (load-theme 'doom-vibrant t))
 
 (use-package powerline
   :ensure t
@@ -124,6 +125,33 @@
   (define-key projectile-mode-map (kbd "C-c C-s") 'projectile-command-map)
   (define-key projectile-mode-map (kbd "C-c C-p") 'projectile-command-map)
   (projectile-mode +1))
+
+(use-package all-the-icons :ensure t)
+
+(use-package neotree
+  :ensure t
+  :init
+  (setq neo-theme (if (display-graphic-p) 'icons 'arrow))
+
+  :config
+
+  ;; tried to set-key to 'neotree-toggle, but ran into the issue detailed:
+  ;; https://github.com/cofi/evil-leader/issues/37
+  ;; this is my current workaround
+  (defun toggle-neotree nil
+    (interactive)
+    (neotree-toggle))
+
+  (evil-leader/set-key
+    "m" 'toggle-neotree))
+
+(use-package which-key
+  :ensure t
+  :init
+  (setq which-key-separator " ")
+  (setq which-key-prefix-prefix "+")
+  :config
+  (which-key-mode 1))
 
 (use-package engine-mode
   :ensure t
