@@ -113,6 +113,18 @@
   :ensure t
   :defer t)
 
+(use-package perspective
+  :ensure t
+  :config
+  (persp-mode))
+
+(use-package projectile
+  :ensure t
+  :config
+  (define-key projectile-mode-map (kbd "C-c C-s") 'projectile-command-map)
+  (define-key projectile-mode-map (kbd "C-c C-p") 'projectile-command-map)
+  (projectile-mode +1))
+
 (use-package engine-mode
   :ensure t
   :defer t
