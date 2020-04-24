@@ -66,6 +66,7 @@
 ;; -- packages
 (require 'init-evil-leader)
 (require 'init-evil)
+(require 'init-clojure)
 
 (use-package doom-themes
   :ensure t
@@ -97,6 +98,13 @@
 (use-package flycheck-haskell
   :ensure t
   :defer t)
+
+(use-package smartparens
+  :ensure t
+  :defer t
+  :config
+  (require 'smartparens-config)
+  (add-hook 'lisp-mode-hook #'smartparens-strict-mode))
 
 (use-package magit
   :ensure t
