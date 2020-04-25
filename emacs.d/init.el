@@ -136,22 +136,45 @@
 
 (use-package all-the-icons :ensure t)
 
-(use-package neotree
+(use-package treemacs
   :ensure t
+  :defer t
   :init
-  (setq neo-theme (if (display-graphic-p) 'icons 'arrow))
-
+  (with-eval-after-load 'winum
+    (define-key winum-keymap (kbd "M-0") #'treemacs-select-window))
   :config
+  ;; maybe a good thing to come back and look at
+  ;; https://github.com/Alexander-Miller/treemacs#installation later for
+  ;; configuration options
 
-  ;; tried to set-key to 'neotree-toggle, but ran into the issue detailed:
-  ;; https://github.com/cofi/evil-leader/issues/37
-  ;; this is my current workaround
-  (defun toggle-neotree nil
-    (interactive)
-    (neotree-toggle))
+  (use-package treemacs-evil
+    :after treemacs evil
+    :ensure t)
+
+  (use-package treemacs-projectile
+    :after treemacs projectile
+    :ensure t)
+
+  (use-package treemacs-icons-dired
+    :after treemacs dired
+    :ensure t
+    :config (treemacs-icons-dired-mode))
+
+  (use-package treemacs-magit
+    :after treemacs magit
+    :ensure t)
+
+  (use-package treemacs-persp
+    :after treemacs persp-mode
+    :ensure t
+    :config (treemacs-set-scope-type 'Perspectives))
 
   (evil-leader/set-key
-    "m" 'toggle-neotree))
+    "to" 'treemacs
+    "tf" 'treemacs-find-file
+    "tp" 'treemacs-projectile
+    "tca" 'treemacs-add-project-to-workspace
+    "tco" 'treemacs-collapse-all-projects))
 
 (use-package which-key
   :ensure t
