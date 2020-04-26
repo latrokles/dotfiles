@@ -77,12 +77,45 @@
   :config
   (powerline-center-evil-theme))
 
-;; make time to read: https://github.com/auto-complete/auto-complete
-;; or consider switching over to https://github.com/company-mode/company-mode
-(use-package auto-complete
+;; let's try this out, may have to pull this out into its own config
+(use-package company
   :ensure t
+  :defer t
   :config
-  (ac-config-default))
+
+  ;; get company to behave closer to auto-complete
+  ;; per https://github.com/company-mode/company-mode/wiki/Switching-from-AC 
+  (eval-after-load 'company
+    '(progn
+       (define-key company-active-map (kbd "TAB") 'company-complete-common-or-cycle)
+       (define-key company-active-map (kbd "TAB") 'company-complete-common-or-cycle)
+       (define-key company-active-map (kbd "S-TAB") 'company-select-previous)
+       (define-key company-active-map (kbd "<backtab>") 'company-select-previous)))
+
+  (setq company-frontends
+	'(company-pseudo-tooltip-unless-just-one-frontend
+	  company-preview-frontend
+	  company-echo-metadata-frontend))
+
+  (setq company-require-match 'never)
+
+  (defun my-company-visible-and-explict-action-p ()
+    (and (company-tooltip-visible-p)
+	 (company-explicit-action-p)))
+
+  (defun company-ac-setup ()
+    "Sets up `company-mode' to behave similarly to `auto-complete-mode'."
+    (setq company-require-match nil)
+    (setq company-auto-complete #'my-company-visible-and-explict-action-p)
+    (setq company-frontends '(company-echo-metadata-frontend
+			      company-pseudo-tooltip-unless-just-one-frontend-with-delay
+			      company-preview-frontend))
+    (define-key company-active-map [tab]
+      'company-select-next-if-tooltip-visible-or-complete-selection)
+    (define-key company-active-map (kbd "TAB")
+      'company-select-next-if-tooltip-visible-or-complete-selection))
+  
+  (global-company-mode))
 
 (use-package helm
   :ensure t
@@ -137,8 +170,10 @@
 (use-package projectile
   :ensure t
   :config
-  (define-key projectile-mode-map (kbd "C-c C-s") 'projectile-command-map)
-  (define-key projectile-mode-map (kbd "C-c C-p") 'projectile-command-map)
+
+  (evil-leader/set-key
+    "pc" 'projectile-command-map)
+
   (projectile-mode +1))
 
 (use-package all-the-icons :ensure t)
@@ -185,7 +220,8 @@
 
 (use-package lsp-mode
   :commands lsp
-  :ensure t)
+  :ensure t
+  :init (setq lsp-keymap-prefix "<f1>"))
 
 (use-package lsp-ui
   :commands lsp-ui-mode
@@ -214,7 +250,8 @@
 
 (use-package kotlin-mode
   :ensure t
-  :defer t)
+  :defer t
+  :config (add-hook 'kotlin-mode-hook 'lsp))
 
 (use-package engine-mode
   :ensure t
