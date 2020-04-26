@@ -44,7 +44,7 @@
 (setq vc-follow-symlinks t)  ; allways follow the symlink and edit the file it points to directly
 (setq tramp-default-method "ssh")
 (setq tramp-syntax 'simplified)(setq visual-line-fringe-indicators '(left-curly-arrow right-curly-arrow))
-(setq explicit-shell-file-name "/usr/local/bin/zsh") 
+(setq explicit-shell-file-name "/usr/local/bin/zsh")
 (setq-default mac-option-modifier 'meta) ; set alt/option as meta
 
 ; automatically kill the ansi-term buffer after exiting terminal
@@ -61,7 +61,6 @@
 ;; set a way to paste into ansi-term
 (eval-after-load "ansi-term"
   '(define-key ansi-term-raw-map (kbd "C-c C-y") 'term-paste))
-
 
 ;; -- packages
 (require 'init-evil-leader)
@@ -84,6 +83,18 @@
   :ensure t
   :config
   (ac-config-default))
+
+(use-package helm
+  :ensure t
+  :defer t)
+
+(use-package which-key
+  :ensure t
+  :init
+  (setq which-key-separator " ")
+  (setq which-key-prefix-prefix "+")
+  :config
+  (which-key-mode 1))
 
 (use-package exec-path-from-shell
   :ensure t
@@ -115,10 +126,6 @@
   :defer t)
 
 (use-package markdown-mode
-  :ensure t
-  :defer t)
-
-(use-package helm
   :ensure t
   :defer t)
 
@@ -176,13 +183,38 @@
     "tca" 'treemacs-add-project-to-workspace
     "tco" 'treemacs-collapse-all-projects))
 
-(use-package which-key
+(use-package lsp-mode
+  :commands lsp
+  :ensure t)
+
+(use-package lsp-ui
+  :commands lsp-ui-mode
   :ensure t
-  :init
-  (setq which-key-separator " ")
-  (setq which-key-prefix-prefix "+")
+  :after lsp-mode)
+
+(use-package lsp-treemacs
   :config
-  (which-key-mode 1))
+  (lsp-metals-treeview-enable t)
+  (setq lsp-metals-treeview-show-when-views-received t))
+
+(use-package helm-lsp
+  :ensure t
+  :defer t)
+
+(use-package lsp-java
+  :ensure t
+  :config (add-hook 'java-mode-hook 'lsp))
+
+(use-package dap-mode
+  :ensure t
+  :after lsp-mode lsp-ui)
+
+(use-package dap-java
+  :after (lsp-java))
+
+(use-package kotlin-mode
+  :ensure t
+  :defer t)
 
 (use-package engine-mode
   :ensure t
