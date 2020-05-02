@@ -66,6 +66,7 @@
 (require 'init-evil-leader)
 (require 'init-evil)
 (require 'init-clojure)
+(require 'init-company)
 
 (use-package doom-themes
   :ensure t
@@ -76,46 +77,6 @@
   :ensure t
   :config
   (powerline-center-evil-theme))
-
-;; let's try this out, may have to pull this out into its own config
-(use-package company
-  :ensure t
-  :defer t
-  :config
-
-  ;; get company to behave closer to auto-complete
-  ;; per https://github.com/company-mode/company-mode/wiki/Switching-from-AC 
-  (eval-after-load 'company
-    '(progn
-       (define-key company-active-map (kbd "TAB") 'company-complete-common-or-cycle)
-       (define-key company-active-map (kbd "TAB") 'company-complete-common-or-cycle)
-       (define-key company-active-map (kbd "S-TAB") 'company-select-previous)
-       (define-key company-active-map (kbd "<backtab>") 'company-select-previous)))
-
-  (setq company-frontends
-	'(company-pseudo-tooltip-unless-just-one-frontend
-	  company-preview-frontend
-	  company-echo-metadata-frontend))
-
-  (setq company-require-match 'never)
-
-  (defun my-company-visible-and-explict-action-p ()
-    (and (company-tooltip-visible-p)
-	 (company-explicit-action-p)))
-
-  (defun company-ac-setup ()
-    "Sets up `company-mode' to behave similarly to `auto-complete-mode'."
-    (setq company-require-match nil)
-    (setq company-auto-complete #'my-company-visible-and-explict-action-p)
-    (setq company-frontends '(company-echo-metadata-frontend
-			      company-pseudo-tooltip-unless-just-one-frontend-with-delay
-			      company-preview-frontend))
-    (define-key company-active-map [tab]
-      'company-select-next-if-tooltip-visible-or-complete-selection)
-    (define-key company-active-map (kbd "TAB")
-      'company-select-next-if-tooltip-visible-or-complete-selection))
-  
-  (global-company-mode))
 
 (use-package helm
   :ensure t
@@ -270,9 +231,6 @@
   :ensure t
   :defer t)
 
-(use-package org
-  :ensure t)
-
 (use-package nov
   :ensure t
   :init
@@ -281,8 +239,17 @@
 (use-package doc-view
   :magic ("%pdf" . pdf-view-mode))
 
+(use-package pdf-tools
+  :ensure t
+  :config
+  (setq pdf-info-epdfinfo-program "/usr/local/bin/epdfinfo"))
+
+(require 'init-org)
+
+
+
 ;; run as server
-(server-start)
-(setq server-socket-dir "~/.emacs.d/server")
+;(server-start)
+;(setq server-socket-dir "~/.emacs.d/server")
 
 (provide 'init)
