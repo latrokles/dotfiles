@@ -21,7 +21,7 @@
                     (not (gnutls-available-p))))
        (proto (if no-ssl "http" "https")))
   (add-to-list 'package-archives (cons "gnu" (concat proto "://elpa.gnu.org/packages/")) t)
-  (add-to-list 'package-archives (cons "org" (concat proto "://orgmode.org/packages/")) t)
+  (add-to-list 'package-archives (cons "org" (concat proto "://orgmode.org/elpa/")) t)
   (add-to-list 'package-archives (cons "melpa" (concat proto "://melpa.org/packages/")) t)
   (add-to-list 'package-archives (cons "melpa-stable" (concat proto "://stable.melpa.org/packages/")) t)
   ;; Official MELPA Mirror, in case necessary.

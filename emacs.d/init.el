@@ -246,10 +246,8 @@
 
 (require 'init-org)
 
-
-
 ;; run as server
-;(server-start)
-;(setq server-socket-dir "~/.emacs.d/server")
+(server-start)
+(setq server-socket-dir "~/.emacs.d/server")
 
 (provide 'init)

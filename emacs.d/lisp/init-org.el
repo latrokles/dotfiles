@@ -7,9 +7,6 @@
   :ensure org-plus-contrib
   :config
 
-  (use-package org-tempo
-    :ensure t)
-
   (use-package ob-clojure
     :init
     (setq org-babel-clojure-backend 'cider))
