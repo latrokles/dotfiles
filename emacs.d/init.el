@@ -227,10 +227,6 @@
   :ensure t
   :defer t)
 
-(use-package twittering-mode
-  :ensure t
-  :defer t)
-
 (use-package nov
   :ensure t
   :init
@@ -245,6 +241,7 @@
   (setq pdf-info-epdfinfo-program "/usr/local/bin/epdfinfo"))
 
 (require 'init-org)
+(require 'init-social-media)
 
 ;; run as server
 (server-start)
