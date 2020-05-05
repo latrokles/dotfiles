@@ -243,8 +243,9 @@
 (require 'init-org)
 (require 'init-social-media)
 
-;; run as server
-(server-start)
+;; run server if it's not running
+(load "server")
 (setq server-socket-dir "~/.emacs.d/server")
+(unless (server-running-p) (server-start))
 
 (provide 'init)
