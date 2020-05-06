@@ -247,11 +247,6 @@
   :config
   (setq pdf-info-epdfinfo-program "/usr/local/bin/epdfinfo"))
 
-;; zoom focused window
-(use-package zoom
-  :config
-  (zoom-mode t))
-
 (require 'init-org)
 (require 'init-social-media)
 

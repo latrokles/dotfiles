@@ -8,6 +8,7 @@ tap "koekeishiya/formulae"
 tap "railwaycat/emacsmacport"
 
 brew "aspell"
+brew "borkdude/brew/clj-kondo"
 brew "chunkwm"
 brew "dep"
 brew "exercism"
