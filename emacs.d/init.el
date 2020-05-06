@@ -38,14 +38,21 @@
   (require 'use-package))
 
 ;; -- basic settings
+(tool-bar-mode -1)           ; disable toolbar
+(savehist-mode 1)            ; save minibuffer history (per machine really)
+(global-linum-mode 1)        ; always show line numbers
+(global-hl-line-mode 1)      ; highlight current line
+(show-paren-mode 1)          ; highlight parens
+(setq show-paren-style 'expression) ; highlight expression inside parens
 (setq make-backup-files nil) ; stop creating backup~ files
 (setq auto-save-default nil) ; stop creating #autosave# files
-(tool-bar-mode -1)           ; disable toolbar
 (setq vc-follow-symlinks t)  ; allways follow the symlink and edit the file it points to directly
 (setq tramp-default-method "ssh")
 (setq tramp-syntax 'simplified)(setq visual-line-fringe-indicators '(left-curly-arrow right-curly-arrow))
 (setq explicit-shell-file-name "/usr/local/bin/zsh")
 (setq-default mac-option-modifier 'meta) ; set alt/option as meta
+(defalias 'yes-or-no-p 'y-or-n-p) ; I'm tired of typing yes (yolo!)
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
 
 ; automatically kill the ansi-term buffer after exiting terminal
 (defun oleh-term-exec-hook ()
@@ -239,6 +246,11 @@
   :ensure t
   :config
   (setq pdf-info-epdfinfo-program "/usr/local/bin/epdfinfo"))
+
+;; zoom focused window
+(use-package zoom
+  :config
+  (zoom-mode t))
 
 (require 'init-org)
 (require 'init-social-media)

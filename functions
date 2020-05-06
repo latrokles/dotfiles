@@ -72,3 +72,17 @@ mute() {
 unmute() {
   osascript -e "set volume output muted false"
 }
+
+#
+# turn wifi off 
+#
+wifi_off() {
+  networksetup -setairportpower en0 off
+}
+
+#
+# turn wifi on
+#
+wifi_in() {
+  networksetup -setairportpower en0 on
+}
