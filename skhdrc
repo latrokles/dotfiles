@@ -134,7 +134,7 @@ alt - p : yabai -m window --toggle zoom-parent
 
 # toogle window configuration (horizontal vs. vertical
 # from emacs with wm-toogle-split and wm-toggle-float
-ctrl - e : yabai -m window --toggle split
+ctrl - s : yabai -m window --toggle split
 ctrl - f : yabai -m window --toggle float
 
 # balance split partitions
@@ -146,7 +146,7 @@ ctrl + alt - b : yabai -m space --balance
 ctrl + alt - r : yabai -m space --rotate 90
 
 # mirror windows
-# from emacs with wm-mirror 
+# from emacs with wm-mirror
 ctrl - x : yabai -m space --mirror x-axis
 ctrl - y : yabai -m space --mirror y-axis
 

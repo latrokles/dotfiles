@@ -74,7 +74,7 @@ unmute() {
 }
 
 #
-# turn wifi off 
+# turn wifi off
 #
 wifi_off() {
   networksetup -setairportpower en0 off
@@ -83,6 +83,6 @@ wifi_off() {
 #
 # turn wifi on
 #
-wifi_in() {
+wifi_on() {
   networksetup -setairportpower en0 on
 }
