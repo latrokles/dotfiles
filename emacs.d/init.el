@@ -47,6 +47,7 @@
 (setq make-backup-files nil) ; stop creating backup~ files
 (setq auto-save-default nil) ; stop creating #autosave# files
 (setq vc-follow-symlinks t)  ; allways follow the symlink and edit the file it points to directly
+(setq ibuffer-expert t)      ; stop prompting me to confirm killing a buffer
 (setq tramp-default-method "ssh")
 (setq tramp-syntax 'simplified)(setq visual-line-fringe-indicators '(left-curly-arrow right-curly-arrow))
 (setq explicit-shell-file-name "/usr/local/bin/zsh")
@@ -296,6 +297,20 @@
   :custom
   (dashboard-items '((recents . 5)
 		     (projects . 5))))
+
+;; -- ibuffer config
+
+(use-package ibuffer-sidebar
+  :ensure t
+  :config
+  (evil-leader/set-key
+    "tib" 'ibuffer-sidebar-toggle-sidebar))
+
+(use-package imenu-list
+  :ensure t
+  :config
+  (evil-leader/set-key
+    "tim" 'imenu-list-smart-toggle))
 
 ;; run server if it's not running
 (load "server")

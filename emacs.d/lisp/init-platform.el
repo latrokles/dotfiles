@@ -1,5 +1,5 @@
 ;;; init-platform.el --- Platform specific settings
-;;; 
+;;;
 ;;; Right now this is a series of osx only configuration and a bunch of
 ;;; hacks to get some things working right now. It'll see a lot of
 ;;; changes as I learn more about emacs and evil (would like to use evil
@@ -12,7 +12,7 @@
 ;; execute commands to the chunkwm daemon to place the current emacs frame
 ;; wherever I want it.
 (defun wm-swap-window (direction)
-  "move the active emacs buffer to direction [east, west, north, south]"
+  "move the active emacs frame to direction [east, west, north, south]"
   (start-process-shell-command "" nil (concat "yabai -m window --swap " direction)))
 
 (defun wm-swap-window-e nil
@@ -47,7 +47,7 @@
   "lower volume by 10%"
   (interactive)
   (start-process-shell-command "" nil "volume_down"))
- 
+
 (defun mute nil
   "mute audio"
   (interactive)
@@ -78,4 +78,3 @@
 (global-set-key (kbd "C-c x") 'pbcut)
 
 (provide 'init-platform)
-
