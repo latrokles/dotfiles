@@ -75,6 +75,9 @@
 (require 'init-clojure)
 (require 'init-company)
 
+(use-package restart-emacs
+  :ensure t)
+
 (use-package doom-themes
   :ensure t
   :config
@@ -245,10 +248,54 @@
 (use-package pdf-tools
   :ensure t
   :config
-  (setq pdf-info-epdfinfo-program "/usr/local/bin/epdfinfo"))
+  (setq pdf-info-epdfinfo-program "/usr/local/bin/epdfinfo")
+  (add-hook 'pdf-view-mode-hook (lambda() (linum-mode -1))))
 
 (require 'init-org)
 (require 'init-social-media)
+
+(use-package zoom
+  :ensure t
+  :config
+  (zoom-mode t))
+
+(use-package xkcd
+  :commands (xkcd-get xkcd-get-latest)
+  :ensure t)
+
+(use-package dashboard
+  :ensure t
+  :config
+
+  (dashboard-setup-startup-hook)
+  (setq dashboard-startup-banner 'logo)
+  (setq dashboard-set-navigator t)
+  (setq dashboard-navigator-buttons
+	`(;; line 1
+	  ((,(all-the-icons-alltheicon "git" :height 0.8 :v-adjust 0.0)
+	    "code"
+	    "Dired to Code"
+	    (lambda (&rest _) (dired "~/src/github.com/latrokles")))
+	   (,(all-the-icons-fileicon "org" :height 0.8 :v-adjust 0.0)
+	    "org"
+	    "Dired to Org"
+	    (lambda (&rest _) (dired "~/org")))
+	   (,(all-the-icons-octicon "home" :height 0.8 :v-adjust 0.0)
+	    "home"
+	    "Dired to Home"
+	    (lambda (&rest _) (dired "~")))
+	   (,(all-the-icons-fileicon "emacs" :height 0.8 :v-adjust 0.0)
+	    "init.el"
+	    "Open init.el config file"
+	    (lambda (&rest _) (find-file "~/.emacs.d/init.el"))))))
+
+  (setq dashboard-set-init-info t)
+  (setq dashboard-set-heading-icons t)
+  (setq dashboard-set-file-icons t)
+
+  :custom
+  (dashboard-items '((recents . 5)
+		     (projects . 5))))
 
 ;; run server if it's not running
 (load "server")
