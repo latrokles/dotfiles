@@ -50,21 +50,9 @@
 (setq ibuffer-expert t)      ; stop prompting me to confirm killing a buffer
 (setq tramp-default-method "ssh")
 (setq tramp-syntax 'simplified)(setq visual-line-fringe-indicators '(left-curly-arrow right-curly-arrow))
-(setq explicit-shell-file-name "/usr/local/bin/zsh")
 (setq-default mac-option-modifier 'meta) ; set alt/option as meta
 (defalias 'yes-or-no-p 'y-or-n-p) ; I'm tired of typing yes (yolo!)
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
-
-; automatically kill the ansi-term buffer after exiting terminal
-(defun oleh-term-exec-hook ()
-  (let* ((buff (current-buffer))
-         (proc (get-buffer-process buff)))
-    (set-process-sentinel
-     proc
-     `(lambda (process event)
-        (if (string= event "finished\n")
-            (kill-buffer ,buff))))))
-(add-hook 'term-exec-hook 'oleh-term-exec-hook)
 
 ;; set a way to paste into ansi-term
 (eval-after-load "ansi-term"
@@ -95,7 +83,7 @@
   :bind (("M-x" . helm-M-x)
 	 ("C-x b" . helm-mini)
 	 ("C-x C-f" . helm-find-files)
-	 ("C-x o" . helm-projectile-switch-project))
+	 ("C-x p" . helm-projectile-switch-project))
   :config
   (use-package helm-projectile
     :ensure t)
@@ -331,6 +319,35 @@
   :config
   (evil-leader/set-key
     "tim" 'imenu-list-smart-toggle))
+
+;; shell configuration
+(use-package multi-term
+  :ensure t
+  :bind
+  ("<f5>" . 'multi-term-dedicated-toggle)
+
+  :config
+  (setq multi-term-program "/usr/local/bin/zsh")
+  (add-hook 'term-mode-hook (lambda ()
+			      (setq term-buffer-maximum-size 10000)
+			      (define-key term-raw-map (kbd "C-c y") 'term-paste)
+			      (linum-mode 0)))
+  (add-hook 'term-mode-hook (lambda ()
+			      (add-to-list 'term-bind-key-alist '("M-]" . multi-term-next))
+			      (add-to-list 'term-bind-key-alist '("M-[" . multi-term-prev)))))
+
+; automatically kill the ansi-term buffer after exiting terminal
+(setq explicit-shell-file-name "/usr/local/bin/zsh")
+(defun oleh-term-exec-hook ()
+  (let* ((buff (current-buffer))
+         (proc (get-buffer-process buff)))
+    (set-process-sentinel
+     proc
+     `(lambda (process event)
+        (if (string= event "finished\n")
+            (kill-buffer ,buff))))))
+(add-hook 'term-exec-hook 'oleh-term-exec-hook)
+
 
 ;; run server if it's not running
 (load "server")
