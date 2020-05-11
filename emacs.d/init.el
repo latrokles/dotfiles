@@ -91,7 +91,27 @@
 
 (use-package helm
   :ensure t
-  :defer t)
+  :defer t
+  :bind (("M-x" . helm-M-x)
+	 ("C-x b" . helm-mini)
+	 ("C-x C-f" . helm-find-files)
+	 ("C-x o" . helm-projectile-switch-project))
+  :config
+  (use-package helm-projectile
+    :ensure t)
+
+  (use-package helm-company
+    :ensure t)
+
+  (use-package helm-eww
+    :ensure t)
+
+  (use-package helm-osx-app
+    :ensure t
+    :defer t
+    :config
+    (evil-leader/set-key
+      "ha" 'helm-osx-app)))
 
 (use-package which-key
   :ensure t

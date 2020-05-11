@@ -43,6 +43,14 @@
     :diminish clj-refactor-mode
     :config (cljr-add-keybindings-with-prefix "C-c C-m"))
 
+  (use-package helm-clojuredocs
+    :ensure t
+    :defer t)
+
+  (use-package helm-cider
+    :ensure t
+    :defer t)
+
   (use-package flycheck-clj-kondo
     :ensure t)
 

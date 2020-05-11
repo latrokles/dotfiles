@@ -26,9 +26,13 @@
 			    compsci
 			    emacs
 			    haskell
-			    programming 
+			    programming
 			    racket
 			    serverless
 			    unisonweb)))
+
+(use-package helm-lobsters
+  :ensure t
+  :defer t)
 
 (provide 'init-social-media)
