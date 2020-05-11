@@ -23,6 +23,8 @@ brew "libbtbb"
 brew "libpcap"
 brew "libusb"
 brew "mas"
+brew "mp3info"
+brew "mplayer"
 brew "mpv"
 brew "nmap"
 brew "node"
@@ -58,7 +60,5 @@ cask "vlc"
 cask "wireshark"
 cask "xquartz"
 
-mas "123D Design", id: 566042322
-mas "123DMake", id: 515318186
 mas "The Unarchiver", id: 425424353
 mas "Xcode", id: 497799835
