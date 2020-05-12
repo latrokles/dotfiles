@@ -35,19 +35,19 @@
   :ensure t
   :defer t)
 
-(use-package soundklaus
-  :ensure t
-  :commands
-  (soundklaus-activities
-   soundklaus-connect
-   soundklaus-my-favorites
-   soundklaus-my-playlists
-   soundklaus-my-tracks
-   soundklaus-playlists
-   soundklaus-tracks))
+;;(use-package soundklaus
+;;  :ensure t
+;;  :commands
+;;  (soundklaus-activities
+;;   soundklaus-connect
+;;   soundklaus-my-favorites
+;;   soundklaus-my-playlists
+;;   soundklaus-my-tracks
+;;   soundklaus-playlists
+;;   soundklaus-tracks))
 
-(require 'emms-setup)
-(emms-standard)
-(emms-default-players)
+;; (require 'emms-setup)
+;; (emms-standard)
+;; (emms-default-players)
 
 (provide 'init-social-media)

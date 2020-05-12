@@ -34,7 +34,7 @@
 	  ("pn" "Notes" entry
 	   (file+datetree "org-self/notes.org")
 	   "* %?\nEntered on %U\n %i\n %a"
-	   :empty-lines-after 1)
+	   :empty-lines 1)
 	  ("pb" "Bookmark" entry
 	   (file+datetree "org-self/bookmarks.org")
 	   ,(concat "* TODO %annotation\n"
@@ -58,8 +58,8 @@
 		    ":PROPERTIES:\n"
 		    ":CREATED: %u\n"
 		    ":END:\n\n"
-		    "%link\n\n"
+		    "%link\n"
 		    "%?")
-	   :empty-lines-after 1))))
+	   :empty-lines 1))))
 
 (provide 'init-org)
