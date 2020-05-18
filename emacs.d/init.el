@@ -62,6 +62,7 @@
 (require 'init-evil-leader)
 (require 'init-evil)
 (require 'init-clojure)
+(require 'init-scheme)
 (require 'init-company)
 
 (use-package restart-emacs
