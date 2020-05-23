@@ -35,6 +35,12 @@
   :ensure t
   :defer t)
 
+;; gopher and gemini client
+;; https://thelambdalab.xyz/elpher/
+;; https://gemini.circumlunar.space/clients.html
+(use-package elpher
+  :ensure t)
+
 ;;(use-package soundklaus
 ;;  :ensure t
 ;;  :commands
