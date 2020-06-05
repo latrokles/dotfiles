@@ -20,28 +20,27 @@
 	(("C-c n i" . org-roam-insert)))
   :config
   (setq org-roam-completion-system 'helm)
-
   (setq org-roam-capture-templates
 	'(("d" "default" plain (function org-roam--capture-get-point)
 	   "%?"
-	   :file-name "org/%<%Y%m%d-%H>-${slug}"
-	   :head "#+TITLE: ${title}\n#+ROAM_TAGS:"
+	   :file-name "org/%<%Y%m%d>-${slug}"
+	   :head "#+TITLE: ${title}\n#+CREATED_AT: %U\n#+ROAM_TAGS:\n\n%x"
 	   :unnarrowed t)
 	  ("p" "private" plain (function org-roam--capture-get-point)
 	   "%?"
-	   :file-name "org/private/%<%Y%m%d-%H>-${slug}"
-	   :head "#+TITLE: ${title}\n#+ROAM_TAGS:"
+	   :file-name "org/private/%<%Y%m%d>-${slug}"
+	   :head "#+TITLE: ${title}\n#+CREATED_AT: %U\n#+ROAM_TAGS:\n\n%x"
 	   :unnarrowed t)
 	  ("w" "website")
 	  ("wd" "draft" plain (function org-roam--capture-get-point)
 	   "%?"
-	   :file-name "journal/_drafts/%s<%Y-%m-%d>-${slug}"
-	   :head "#+TITLE: ${title}\n#+CREATED_AT: %u\n#+LAYOUT: post\n#+ROAM_TAGS:"
+	   :file-name "journal/_drafts/%<%Y-%m-%d>-${slug}"
+	   :head "#+TITLE: ${title}\n#+CREATED_AT: %U\n#+LAYOUT: post\n#+ROAM_TAGS:\n\n%x"
 	   :unnarrowed t)
-	  ("wd" "post" plain (function org-roam--capture-get-point)
+	  ("wp" "post" plain (function org-roam--capture-get-point)
 	   "%?"
-	   :file-name "journal/_posts/%s<%Y-%m-%d>-${slug}"
-	   :head "#+TITLE: ${title}\n#+CREATED_AT: %u\n#+LAYOUT: post\n#+ROAM_TAGS:"
+	   :file-name "journal/_posts/%<%Y-%m-%d>-${slug}"
+	   :head "#+TITLE: ${title}\n#+CREATED_AT: %U\n#+LAYOUT: post\n#+ROAM_TAGS:\n\n%x"
 	   :unnarrowed t))))
 
 (use-package company-org-roam
