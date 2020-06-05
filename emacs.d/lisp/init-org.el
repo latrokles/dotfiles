@@ -17,6 +17,7 @@
   (org-babel-do-load-languages 'org-babel-load-languages
 			       '((shell . t)
 				 (emacs-lisp . t)
+				 (scheme . t)
 				 (clojure . t)))
 
   ;; indent text to match heading in org mode
@@ -56,32 +57,7 @@
 	   ,(concat "* TODO %? %:description\n"
 		    ":PROPERTIES:\n"
 		    ":CREATED: %u\n"
-		    ":END:\n"
 		    ":END:\n")
 	   :empty-lines 1))))
-
-(use-package org-roam
-  :ensure t
-  :hook
-  (after-init . org-roam-mode)
-  :custom
-  (org-roam-directory "~/totto/org")
-  :bind
-  (:map org-roam-mode-map
-	(("C-c n l" . org-roam)
-	 ("C-c n f" . org-roam-find-file)
-	 ("C-c n g" . org-roam-show-graph))
-	:map org-mode-map
-	(("C-c n i" . org-roam-insert))))
-
-(use-package deft
-  :ensure t
-  :after org
-  :bind ("C-c n d" . deft)
-  :custom
-  (deft-recursive t)
-  (deft-use-filter-string-for-filename t)
-  (deft-default-extension "org")
-  (deft-directory "~/totto"))
 
 (provide 'init-org)

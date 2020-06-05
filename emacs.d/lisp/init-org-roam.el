@@ -1,0 +1,62 @@
+;;; init-org-roam.el
+;;; Commentary:
+
+;; keep init-org from growing too much
+
+;;; Code:
+
+(use-package org-roam
+  :ensure t
+  :hook
+  (after-init . org-roam-mode)
+  :custom
+  (org-roam-directory "~/braindump")
+  :bind
+  (:map org-roam-mode-map
+	(("C-c n l" . org-roam)
+	 ("C-c n f" . org-roam-find-file)
+	 ("C-c n g" . org-roam-show-graph))
+	:map org-mode-map
+	(("C-c n i" . org-roam-insert)))
+  :config
+  (setq org-roam-completion-system 'helm)
+
+  (setq org-roam-capture-templates
+	'(("d" "default" plain (function org-roam--capture-get-point)
+	   "%?"
+	   :file-name "org/%<%Y%m%d-%H>-${slug}"
+	   :head "#+TITLE: ${title}\n#+ROAM_TAGS:"
+	   :unnarrowed t)
+	  ("p" "private" plain (function org-roam--capture-get-point)
+	   "%?"
+	   :file-name "org/private/%<%Y%m%d-%H>-${slug}"
+	   :head "#+TITLE: ${title}\n#+ROAM_TAGS:"
+	   :unnarrowed t)
+	  ("w" "website")
+	  ("wd" "draft" plain (function org-roam--capture-get-point)
+	   "%?"
+	   :file-name "journal/_drafts/%s<%Y-%m-%d>-${slug}"
+	   :head "#+TITLE: ${title}\n#+CREATED_AT: %u\n#+LAYOUT: post\n#+ROAM_TAGS:"
+	   :unnarrowed t)
+	  ("wd" "post" plain (function org-roam--capture-get-point)
+	   "%?"
+	   :file-name "journal/_posts/%s<%Y-%m-%d>-${slug}"
+	   :head "#+TITLE: ${title}\n#+CREATED_AT: %u\n#+LAYOUT: post\n#+ROAM_TAGS:"
+	   :unnarrowed t))))
+
+(use-package company-org-roam
+  :ensure t
+  :config
+  (push 'company-org-roam company-backends))
+
+(use-package deft
+  :ensure t
+  :after org
+  :bind ("C-c n d" . deft)
+  :custom
+  (deft-recursive t)
+  (deft-use-filter-string-for-filename t)
+  (deft-default-extension "org")
+  (deft-directory "~/braindump"))
+
+(provide 'init-org-roam)
