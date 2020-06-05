@@ -20,9 +20,6 @@
 				 (scheme . t)
 				 (clojure . t)))
 
-  ;; indent text to match heading in org mode
-  (add-hook 'org-mode 'org-indent-mode)
-
   ;; set up top level org dir
   (setq org-directory "~/org")
 
