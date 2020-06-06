@@ -68,10 +68,10 @@
 (use-package restart-emacs
   :ensure t)
 
-(use-package doom-themes
+(use-package parchment-theme
   :ensure t
   :config
-  (load-theme 'doom-vibrant t))
+  (load-theme 'parchment t))
 
 (use-package powerline
   :ensure t

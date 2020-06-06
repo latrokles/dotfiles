@@ -10,7 +10,7 @@
   :hook
   (after-init . org-roam-mode)
   :custom
-  (org-roam-directory "~/braindump")
+  (org-roam-directory "~/wald")
   :bind
   (:map org-roam-mode-map
 	(("C-c n l" . org-roam)
@@ -56,6 +56,6 @@
   (deft-recursive t)
   (deft-use-filter-string-for-filename t)
   (deft-default-extension "org")
-  (deft-directory "~/braindump"))
+  (deft-directory "~/wald"))
 
 (provide 'init-org-roam)
