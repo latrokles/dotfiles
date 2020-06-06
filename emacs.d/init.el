@@ -65,13 +65,25 @@
 (require 'init-scheme)
 (require 'init-company)
 
-(use-package restart-emacs
-  :ensure t)
+(use-package restart-emacs :ensure t)
 
 (use-package parchment-theme
   :ensure t
+  :defer t)
+
+(use-package doom-themes
+  :ensure t
+  :defer t)
+
+(use-package afternoon-theme
+  :ensure t
+  :defer t)
+
+(use-package tron-legacy-theme
+  :ensure t
   :config
-  (load-theme 'parchment t))
+  (setq tron-legacy-theme-vivi-cursor t)
+  (load-theme 'tron-legacy t))
 
 (use-package powerline
   :ensure t
