@@ -67,23 +67,10 @@
 
 (use-package restart-emacs :ensure t)
 
-(use-package parchment-theme
-  :ensure t
-  :defer t)
-
 (use-package doom-themes
   :ensure t
-  :defer t)
-
-(use-package afternoon-theme
-  :ensure t
-  :defer t)
-
-(use-package tron-legacy-theme
-  :ensure t
   :config
-  (setq tron-legacy-theme-vivi-cursor t)
-  (load-theme 'tron-legacy t))
+  (load-theme 'doom-vibrant t))
 
 (use-package powerline
   :ensure t
