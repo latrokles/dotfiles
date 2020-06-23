@@ -61,6 +61,7 @@
 ;; -- packages
 (require 'init-evil-leader)
 (require 'init-evil)
+(require 'init-cl)
 (require 'init-clojure)
 (require 'init-scheme)
 (require 'init-company)
@@ -208,10 +209,11 @@
   :ensure t
   :after lsp-mode)
 
-(use-package lsp-treemacs
-  :config
-  (lsp-metals-treeview-enable t)
-  (setq lsp-metals-treeview-show-when-views-received t))
+;; seems to be giving me errors in 26.3... strange
+;(use-package lsp-treemacs
+;  :config
+;  (lsp-metals-treeview-enable t)
+;  (setq lsp-metals-treeview-show-when-views-received t))
 
 (use-package helm-lsp
   :ensure t

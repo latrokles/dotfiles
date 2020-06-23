@@ -16,9 +16,4 @@
   :after company
   :hook (global-company-mode . company-box-mode))
 
-(use-package company-quickhelp
-  :ensure t
-  :after company
-  :hook (global-company-mode . company-quickhelp-mode))
-
 (provide 'init-company)
