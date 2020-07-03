@@ -358,3 +358,4 @@
 (unless (server-running-p) (server-start))
 
 (provide 'init)
+(put 'upcase-region 'disabled nil)
