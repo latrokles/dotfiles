@@ -1,10 +1,7 @@
 ;;; init-cl.el
 
 ;;; Code:
-(use-package lispy
-  :ensure t
-  :defer
-  :config)
+(use-package lispy :ensure t)
 
 (use-package evil-lispy
   :ensure t
