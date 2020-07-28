@@ -157,7 +157,11 @@
 
   (projectile-mode +1))
 
-(use-package ace-window :ensure t)
+(use-package ace-window
+  :ensure t
+  :config
+  (global-set-key (kbd "M-o") 'ace-window))
+
 (use-package all-the-icons :ensure t)
 
 (use-package treemacs
