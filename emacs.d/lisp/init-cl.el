@@ -8,7 +8,11 @@
 
 (use-package evil-lispy
   :ensure t
-  :after (evil lispy))
+  :after (evil lispy)
+  :config
+  (add-hook 'lisp-mode-hook #'evil-lispy-mode)
+  (add-hook 'emacs-lisp-mode-hook #'evil-lispy-mode)
+  (add-hook 'clojure-mode-hook #'evil-lispy-mode))
 
 (use-package sly
   :ensure t
