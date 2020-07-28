@@ -157,6 +157,7 @@
 
   (projectile-mode +1))
 
+(use-package ace-window :ensure t)
 (use-package all-the-icons :ensure t)
 
 (use-package treemacs

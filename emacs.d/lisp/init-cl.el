@@ -6,6 +6,10 @@
   :defer
   :config)
 
+(use-package evil-lispy
+  :ensure t
+  :after (evil lispy))
+
 (use-package sly
   :ensure t
   :config
