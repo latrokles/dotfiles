@@ -32,8 +32,8 @@
   :config
   (latrokles/configure-lisp-leaders)
   (setq sly-lisp-implementations
-	`((ccl ("ccl64"))
-	  (sbcl ("sbcl" "--noinform" "--no-linedit")))))
+	`((sbcl ("sbcl" "--noinform" "--no-linedit"))
+	  (ccl ("ccl64")))))
 
 (use-package sly-quicklisp
   :ensure t
