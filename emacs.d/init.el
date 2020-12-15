@@ -268,7 +268,6 @@
   (add-hook 'pdf-view-mode-hook (lambda() (linum-mode -1))))
 
 (require 'init-org)
-(require 'init-org-roam)
 (require 'init-social-media)
 
 (use-package zoom

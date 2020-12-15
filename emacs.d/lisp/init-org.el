@@ -3,6 +3,25 @@
 
 ;;; Code:
 
+(defun latrokles/org-capture-file-path (path)
+  "Given a directory path, prompt the user for a name and
+prepend it with the path and the timestamp.
+
+The returned file path is of the form path/YYYYmmdd-HHMM-name.org"
+  (interactive)
+  (let* ((name (read-string "Name: "))
+	 (current-time-stamp (format-time-string "%Y%m%d-%H%M"))
+	 (filename (format "%s-%s.org" current-time-stamp name)))
+    (expand-file-name filename path)))
+
+(defun latrokles/org-capture-date-only-path (path)
+  "Given a directory path return a filepath that uses the current
+date.
+
+The returned file path is of the form path/YYYYmmdd.org"
+  (let ((filename (format-time-string "%Y%m%d.org")))
+    (expand-file-name filename path)))
+
 (use-package org
   :ensure org-plus-contrib
   :config
@@ -21,40 +40,28 @@
 				 (clojure . t)))
 
   ;; set up top level org dir
-  (setq org-directory "~/org")
+  (setq org-directory "~/notizbuch")
 
   ;; set up org capture
+  ;; keeping things super simple. This also means potentially
+  ;; not taking full advantage of everything that org-mode and
+  ;; emacs can provide, but last time I went with something
+  ;; more elaborate it fell out of use fairly quickly.
   (setq org-capture-templates
-	`(("t" "Capture Tasks")
-	  ("tp" "Todo (self)" entry
-	   (file+headline "org-self/todo.org" "Tasks")
-	   "* TODO %?\n %i\n %a")
-	  ("tw" "Todo (work)" entry
-	   (file+headline "org-work/todo.org" "Tasks")
-	   "* TODO %?\n %i\n %a")
-	  ("n" "Capture Notes")
-	  ("np" "Notes (self)" entry
-	   (file+datetree "org-self/notes.org")
-	   "* %?\nEntered on %U\n %i\n %a"
-	   :empty-lines 1)
-	  ("nw" "Notes (work)" entry
-	   (file+datetree "org-work/notes.org")
-	   "* %?\nEntered on %U\n %i\n %a"
-	   :empty-lines 1)
-	  ("b" "Capture Bookmarks")
-	  ("bp" "Bookmarks (self)" entry
-	   (file+datetree "org-self/bookmarks.org")
-	   ,(concat "* TODO %? %:description\n"
-		    ":PROPERTIES:\n"
-		    ":CREATED: %u\n"
-		    ":END:\n")
-	   :empty-lines 1)
-	  ("bw" "Bookmarks (work)" entry
-	   (file+datetree "org-work/bookmarks.org")
-	   ,(concat "* TODO %? %:description\n"
-		    ":PROPERTIES:\n"
-		    ":CREATED: %u\n"
-		    ":END:\n")
-	   :empty-lines 1))))
+	`(("z"
+	   "zettel - little notes"
+	   plain
+	   (file (latrokles/org-capture-file-path "zettel/"))
+	   "#+TITLE:\n#+CREATED: %U\n+#+KEYWORDS:")
+	  ("t"
+	   "tracker - track shit"
+	   plain
+	   (file (latrokles/org-capture-date-only-path "tracker/"))
+	   "%u\n")
+	  ("u"
+	   "unerledigt - the pending stuff"
+	   plain
+	   (file (latrokles/org-capture-date-only-path "unerledigt/"))
+	   "%u\n"))))
 
 (provide 'init-org)
