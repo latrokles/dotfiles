@@ -2,17 +2,16 @@
 ;;; Commentary:
 
 ;;; Code:
-
 (defun latrokles/org-capture-file-path (path)
   "Given a directory path, prompt the user for a name and
 prepend it with the path and the timestamp.
 
 The returned file path is of the form path/YYYYmmdd-HHMM-name.org"
-  (interactive)
-  (let* ((name (read-string "Name: "))
-	 (current-time-stamp (format-time-string "%Y%m%d-%H%M"))
-	 (filename (format "%s-%s.org" current-time-stamp name)))
-    (expand-file-name filename path)))
+  (let ((name (read-string "Name: ")))
+    (expand-file-name (format "%s-%s.org"
+			      (format-time-string "%Y%m%d-%H%M")
+			      name)
+		      path)))
 
 (defun latrokles/org-capture-date-only-path (path)
   "Given a directory path return a filepath that uses the current
@@ -51,17 +50,17 @@ The returned file path is of the form path/YYYYmmdd.org"
 	`(("z"
 	   "zettel - little notes"
 	   plain
-	   (file (latrokles/org-capture-file-path "zettel/"))
-	   "#+TITLE:\n#+CREATED: %U\n+#+KEYWORDS:")
+	   (file ,(concat org-directory "/zettel/" (format-time-string "%Y%m%d-%H%M.org")))
+	   "#+TITLE:%?\n#+CREATED: %U\n#+KEYWORDS:")
 	  ("t"
 	   "tracker - track shit"
-	   plain
-	   (file (latrokles/org-capture-date-only-path "tracker/"))
-	   "%u\n")
+	   item
+	   (file ,(concat org-directory "/tracker/" (format-time-string "%Y%m%d.org")))
+	   "%u:%?")
 	  ("u"
 	   "unerledigt - the pending stuff"
-	   plain
-	   (file (latrokles/org-capture-date-only-path "unerledigt/"))
-	   "%u\n"))))
+	   checkitem
+	   (file ,(concat org-directory "/unerledigt/" (format-time-string "%Y%m%d.org")))
+	   "[ ]%u:%?"))))
 
 (provide 'init-org)
