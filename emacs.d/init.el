@@ -13,7 +13,7 @@
        ";; To create a file, visit it with C-x C-f and enter text in its buffer.\n"
        ";;\n"))
 
-(package-initialize)
+;; (package-initialize)
 
 ;; load more specific configs from lisp directory
 (add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))

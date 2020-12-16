@@ -17,15 +17,12 @@
     "swu" 'sly-edit-uses 		; edit users of this symbol
     ))
 
-(use-package lispy :ensure t)
-
-(use-package evil-lispy
+(use-package evil-cleverparens
   :ensure t
-  :after (evil lispy)
   :config
-  (add-hook 'lisp-mode-hook #'evil-lispy-mode)
-  (add-hook 'emacs-lisp-mode-hook #'evil-lispy-mode)
-  (add-hook 'clojure-mode-hook #'evil-lispy-mode))
+  (add-hook 'lisp-mode-hook #'evil-cleverparens-mode)
+  (add-hook 'emacs-lisp-mode-hook #'evil-cleverparens-mode)
+  (add-hook 'clojure-mode-hook #'evil-cleverparens-mode))
 
 (use-package sly
   :ensure t
