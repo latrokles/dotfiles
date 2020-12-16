@@ -61,6 +61,6 @@ The returned file path is of the form path/YYYYmmdd.org"
 	   "unerledigt - the pending stuff"
 	   checkitem
 	   (file ,(concat org-directory "/unerledigt/" (format-time-string "%Y%m%d.org")))
-	   "[ ]%u:%?"))))
+	   "[ ] %u:%?"))))
 
 (provide 'init-org)
