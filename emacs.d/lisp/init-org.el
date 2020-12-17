@@ -55,12 +55,12 @@ The returned file path is of the form path/YYYYmmdd.org"
 	  ("t"
 	   "tracker - track shit"
 	   item
-	   (file ,(concat org-directory "/tracker/" (format-time-string "%Y%m%d.org")))
+	   (file ,(concat org-directory "/tracker/current.org"))
 	   "%u:%?")
 	  ("u"
 	   "unerledigt - the pending stuff"
 	   checkitem
-	   (file ,(concat org-directory "/unerledigt/" (format-time-string "%Y%m%d.org")))
+	   (file ,(concat org-directory "/tasks/unerledigt.org"))
 	   "[ ] %u:%?"))))
 
 (provide 'init-org)
