@@ -56,7 +56,7 @@ The returned file path is of the form path/YYYYmmdd.org"
 	   "tracker - track shit"
 	   item
 	   (file ,(concat org-directory "/tracker/current.org"))
-	   "%u:%?")
+	   "%u|%?|||")
 	  ("u"
 	   "unerledigt - the pending stuff"
 	   checkitem
