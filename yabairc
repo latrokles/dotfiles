@@ -1,5 +1,8 @@
 #!/usr/bin/env sh
 
+# ignore system preferences
+yabai -m rule --add label="System Preferences" app="^System Pref*" manage=off
+
 # general space settings
 # bsp layout, not padding or gap between windows
 yabai -m config layout                       bsp

@@ -65,6 +65,7 @@
 (require 'init-clojure)
 (require 'init-scheme)
 (require 'init-company)
+(require 'init-go)
 
 (use-package restart-emacs :ensure t)
 
