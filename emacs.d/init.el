@@ -362,5 +362,12 @@
 (setq server-socket-dir "~/.emacs.d/server")
 (unless (server-running-p) (server-start))
 
+(use-package nim-mode
+  :ensure t
+  :hook
+  (nim-mode . rainbow-delimiters-mode)
+  (nim-mode . subword-mode)
+  (nim-mode . nimsuggest-mode))
+
 (provide 'init)
 (put 'upcase-region 'disabled nil)
