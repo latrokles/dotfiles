@@ -6,11 +6,11 @@ yabai -m rule --add label="System Preferences" app="^System Pref*" manage=off
 # general space settings
 # bsp layout, not padding or gap between windows
 yabai -m config layout                       bsp
-yabai -m config top_padding                  0
-yabai -m config bottom_padding               0
-yabai -m config left_padding                 0
-yabai -m config right_padding                0
-yabai -m config window_gap                   0
+yabai -m config top_padding                  100
+yabai -m config bottom_padding               100
+yabai -m config left_padding                 100
+yabai -m config right_padding                100
+yabai -m config window_gap                   10
 
 # global settings
 # set focus follows mouse mode (default: off, options: off, autoraise, autofocus)

@@ -31,11 +31,28 @@
   (interactive)
   (wm-swap-window "south"))
 
-;; use C-(wasd) to interact with chunkc
+(defun wm-stack-next nil
+  "move to next window on the current stack"
+  (interactive)
+  (start-process-shell-command "" nil (concat "yabai -m window --focus stack.next"
+					      " || "
+					      "yabai -m window --focus stack.first")))
+(defun wm-stack-prev nil
+  "move to previous window on the current stack"
+  (interactive)
+  (start-process-shell-command "" nil (concat "yabai -m window --focus stack.prev"
+					      " || "
+					      "yabai -m window --focus stack.last")))
+
+;; use C-c [hjkl] to interact with yabai wm
 (global-set-key (kbd "C-c h") 'wm-swap-window-w)
 (global-set-key (kbd "C-c j") 'wm-swap-window-s)
 (global-set-key (kbd "C-c k") 'wm-swap-window-n)
 (global-set-key (kbd "C-c l") 'wm-swap-window-e)
+
+;; C-c C-[pn] to cycle through window stacks
+(global-set-key (kbd "C-c C-n") 'wm-stack-next)
+(global-set-key (kbd "C-c C-p") 'wm-stack-prev)
 
 ;; control Mac OS volume from emacs
 (defun volume-up (level)
