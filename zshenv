@@ -5,6 +5,7 @@ export VISUAL=${EDITOR}
 export WORKSPACE=${HOME}/workspace
 export GOPATH=${WORKSPACE}
 export SOURCES=${WORKSPACE}/src/github.com/latrokles
+export MEMEXDIR=${WORKSPACE}/memex
 
 export DOTFILES="${HOME}/workspace/dotfiles"
 source ${DOTFILES}/dockerfunc
