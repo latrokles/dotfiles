@@ -62,3 +62,4 @@ fn - f5 : screensaver
 default < ralt + rshift - e : open -na /Applications/Emacs.app
 default < ralt + rshift - f : open -na /Applications/Firefox Developer Edition.app || open -na /Applications/Firefox.app
 default < ralt + rshift - g : start_godoc_server
+default < ralt + rshift - b : bookmarksd
