@@ -5,3 +5,13 @@ alias pd=pushd
 alias zz=suspend
 alias show-files='defaults write com.apple.finder AppleShowAllFiles YES; killall Finder /System/Library/CoreServices/Finder.app'
 alias hide-files='defaults write com.apple.finder AppleShowAllFiles NO; killall Finder /System/Library/CoreServices/Finder.app'
+
+# some git conveniences
+alias branches='git branch -vv'
+alias checkout='git checkout'
+alias merge='git merge'
+alias pull='git pull'
+alias pull-rebase='pull --rebase'
+
+# TODO move some functions to aliases instead
+alias dotfiles='pd ${DOTFILES}'

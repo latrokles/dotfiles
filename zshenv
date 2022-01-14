@@ -8,7 +8,7 @@ export SOURCES=${WORKSPACE}/src/github.com/latrokles
 export WIKIDIR=${HOME}/vademecum
 
 export DOTFILES="${HOME}/workspace/dotfiles"
-source ${DOTFILES}/dockerfunc
+source ${DOTFILES}/aliases
 source ${DOTFILES}/functions
 
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
