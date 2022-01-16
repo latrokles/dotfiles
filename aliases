@@ -15,3 +15,7 @@ alias pull-rebase='pull --rebase'
 
 # TODO move some functions to aliases instead
 alias dotfiles='pd ${DOTFILES}'
+alias wiki='pd ${WIKIDIR}'
+alias wikiweb='pd ${WIKIWEB}'
+alias work='pd ${WORKSPACE}'
+alias dev='pd ${SOURCES}'

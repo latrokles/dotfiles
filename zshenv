@@ -5,9 +5,10 @@ export VISUAL=${EDITOR}
 export WORKSPACE=${HOME}/workspace
 export GOPATH=${WORKSPACE}
 export SOURCES=${WORKSPACE}/src/github.com/latrokles
-export WIKIDIR=${HOME}/vademecum
+export WIKIDIR=${SOURCES}/wiki
+export WIKIWEB=${SOURCES}/wiki-web
+export DOTFILES=${SOURCES}/dotfiles
 
-export DOTFILES="${HOME}/workspace/dotfiles"
 source ${DOTFILES}/aliases
 source ${DOTFILES}/functions
 

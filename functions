@@ -3,13 +3,6 @@
 #
 
 #
-# navigate to dev directory
-#
-dev() {
-  cd ${WORKSPACE}/src/github.com/latrokles
-}
-
-#
 # quick function to take notes
 #
 notes() {
@@ -96,10 +89,6 @@ wifi_off() {
 #
 wifi_on() {
   networksetup -setairportpower en0 on
-}
-
-work() {
-  cd ${WORKSPACE}
 }
 
 start_godoc_server() {
