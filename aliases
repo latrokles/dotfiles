@@ -2,16 +2,21 @@
 # some useful aliases
 ###
 alias pd=pushd
+alias pop=popd
 alias zz=suspend
 alias show-files='defaults write com.apple.finder AppleShowAllFiles YES; killall Finder /System/Library/CoreServices/Finder.app'
 alias hide-files='defaults write com.apple.finder AppleShowAllFiles NO; killall Finder /System/Library/CoreServices/Finder.app'
+alias reload='source ~/.zshenv'
 
 # some git conveniences
+alias add='git add'
 alias branches='git branch -vv'
 alias checkout='git checkout'
 alias merge='git merge'
 alias pull='git pull'
 alias pull-rebase='pull --rebase'
+alias status='git status'
+alias commit='git commit'
 
 # TODO move some functions to aliases instead
 alias dotfiles='pd ${DOTFILES}'
