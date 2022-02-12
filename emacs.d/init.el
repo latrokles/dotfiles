@@ -66,6 +66,7 @@
 (require 'init-scheme)
 (require 'init-company)
 (require 'init-go)
+(require 'init-unison)
 
 (use-package restart-emacs :ensure t)
 
