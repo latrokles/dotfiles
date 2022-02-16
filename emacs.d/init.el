@@ -370,5 +370,7 @@
   (nim-mode . subword-mode)
   (nim-mode . nimsuggest-mode))
 
+
+(require 'init-wiki)
 (provide 'init)
 (put 'upcase-region 'disabled nil)

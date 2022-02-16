@@ -94,3 +94,20 @@ wifi_on() {
 start_godoc_server() {
   godoc
 }
+
+## some wiki related stuff
+commit_logs() {
+  wiki         # navigate to wikidir
+  git add logs # add all updates to logs
+  d=`date`     # put current date in var
+  git commit -m "updating logs on ${d}"
+  pop          # leave wikidir
+}
+
+commit_bookmarks() {
+  wiki              # navigate to wikidir
+  git add bookmarks # add all updates to logs
+  d=`date`          # put current date in var
+  git commit -m "updating links on ${d}"
+  pop               # leave wikidir
+}
