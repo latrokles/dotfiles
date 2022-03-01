@@ -40,6 +40,8 @@
 ;; -- basic settings
 (tool-bar-mode -1)           ; disable toolbar
 (savehist-mode 1)            ; save minibuffer history (per machine really)
+(global-auto-revert-mode 1)  ; automatically refresh buffer if file changes on disk
+(recentf-mode 1)             ; remember most recent files
 (global-linum-mode 1)        ; always show line numbers
 (global-hl-line-mode 1)      ; highlight current line
 (show-paren-mode 1)          ; highlight parens
@@ -336,7 +338,7 @@
   ("<f5>" . 'multi-term-dedicated-toggle)
 
   :config
-  (setq multi-term-program "/usr/local/bin/zsh")
+  (setq multi-term-program "zsh")
   (add-hook 'term-mode-hook (lambda ()
 			      (setq term-buffer-maximum-size 10000)
 			      (define-key term-raw-map (kbd "C-c y") 'term-paste)
@@ -346,7 +348,7 @@
 			      (add-to-list 'term-bind-key-alist '("M-[" . multi-term-prev)))))
 
 ; automatically kill the ansi-term buffer after exiting terminal
-(setq explicit-shell-file-name "/usr/local/bin/zsh")
+(setq explicit-shell-file-name "zsh")
 (defun oleh-term-exec-hook ()
   (let* ((buff (current-buffer))
          (proc (get-buffer-process buff)))
@@ -369,6 +371,7 @@
   (nim-mode . rainbow-delimiters-mode)
   (nim-mode . subword-mode)
   (nim-mode . nimsuggest-mode))
+
 
 
 (require 'init-wiki)
