@@ -69,6 +69,7 @@
 (require 'init-company)
 (require 'init-go)
 (require 'init-unison)
+(require 'init-tree-sitter)
 
 (use-package restart-emacs :ensure t)
 
@@ -374,6 +375,7 @@
 
 
 
+(require 'init-lsp)
 (require 'init-wiki)
 (provide 'init)
 (put 'upcase-region 'disabled nil)
