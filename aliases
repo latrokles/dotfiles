@@ -17,6 +17,8 @@ alias pull='git pull'
 alias pull-rebase='pull --rebase'
 alias status='git status'
 alias commit='git commit'
+alias delete-branch='git branch -D'
+alias gidiff='git diff'
 
 # TODO move some functions to aliases instead
 alias dotfiles='pd ${DOTFILES}'
