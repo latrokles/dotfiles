@@ -8,4 +8,7 @@
     (shell-command (concat "git commit -m " "\"" commit-message "\""))
     (message "file committed successfully")))
 
+(evil-leader/set-key
+  "cf" 'latrokles/commit-current-file)
+
 (provide 'init-tools)

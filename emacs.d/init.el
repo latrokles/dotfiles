@@ -377,5 +377,6 @@
 
 (require 'init-lsp)
 (require 'init-wiki)
+(require 'init-tools)
 (provide 'init)
 (put 'upcase-region 'disabled nil)

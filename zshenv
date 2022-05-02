@@ -13,4 +13,4 @@ source ${DOTFILES}/aliases
 source ${DOTFILES}/functions
 
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
-export PATH="${PATH}:${WORKSPACE}/bin:${HOME}/.toolbox/bin"
+export PATH="/usr/local/opt/openjdk/bin:${PATH}:${WORKSPACE}/bin:${HOME}/.toolbox/bin"
