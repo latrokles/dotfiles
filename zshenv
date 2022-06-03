@@ -14,3 +14,4 @@ source ${DOTFILES}/functions
 
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 export PATH="/usr/local/opt/openjdk/bin:${PATH}:${WORKSPACE}/bin:${HOME}/.toolbox/bin"
+source $HOME/.cargo/env
