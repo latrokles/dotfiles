@@ -378,5 +378,6 @@
 (require 'init-lsp)
 (require 'init-wiki)
 (require 'init-tools)
+(require 'init-rust)
 (provide 'init)
 (put 'upcase-region 'disabled nil)
