@@ -8,6 +8,8 @@ alias show-files='defaults write com.apple.finder AppleShowAllFiles YES; killall
 alias hide-files='defaults write com.apple.finder AppleShowAllFiles NO; killall Finder /System/Library/CoreServices/Finder.app'
 alias tree='tree -I "target|__pycache__|node_modules"'
 alias reload='source ~/.zshenv'
+alias vim=nvim
+alias vi=nvim
 
 # some git conveniences
 alias add='git add'
