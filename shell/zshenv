@@ -9,9 +9,10 @@ export WIKIDIR=${SOURCES}/wiki
 export WIKIWEB=${SOURCES}/wiki-web
 export DOTFILES=${SOURCES}/dotfiles
 
-source ${DOTFILES}/aliases
-source ${DOTFILES}/functions
+source ${DOTFILES}/shell/aliases
+source ${DOTFILES}/shell/functions
 
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+export PATH="/opt/homebrew/bin:/opt/homebrew/opt/python/libexec/bin:${PATH}"
 export PATH="/usr/local/opt/openjdk/bin:${PATH}:${WORKSPACE}/bin:${HOME}/.toolbox/bin"
-source $HOME/.cargo/env
+#source $HOME/.cargo/env
