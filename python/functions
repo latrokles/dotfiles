@@ -1,0 +1,15 @@
+
+venv_create() {
+   project=$1
+   cd ${WORKSPACE}/virtualenvs
+   python -m venv $project
+}
+
+venv_start() {
+   project=$1
+   source ${WORKSPACE}/virtualenvs/$project/bin/activate
+}
+
+venv_stop() {
+   deactivate
+}

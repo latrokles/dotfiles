@@ -111,3 +111,5 @@ commit_bookmarks() {
   git commit -m "updating links on ${d}"
   pop               # leave wikidir
 }
+
+source ${DOTFILES}/python/functions
