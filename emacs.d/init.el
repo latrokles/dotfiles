@@ -88,11 +88,8 @@
   :defer t
   :bind (("M-x" . helm-M-x)
 	 ("C-x b" . helm-mini)
-	 ("C-x C-f" . helm-find-files)
-	 ("C-x p" . helm-projectile-switch-project))
+	 ("C-x C-f" . helm-find-files))
   :config
-  (use-package helm-projectile
-    :ensure t)
 
   (use-package helm-company
     :ensure t)
@@ -148,66 +145,12 @@
   :ensure t
   :defer t)
 
-(use-package perspective
-  :ensure t
-  :config
-  (persp-mode))
-
-(use-package projectile
-  :ensure t
-  :config
-
-  (evil-leader/set-key
-    "pc" 'projectile-command-map)
-
-  (projectile-mode +1))
-
 (use-package ace-window
   :ensure t
   :config
   (global-set-key (kbd "M-o") 'ace-window))
 
 (use-package all-the-icons :ensure t)
-
-(use-package treemacs
-  :ensure t
-  :defer t
-  :init
-  (with-eval-after-load 'winum
-    (define-key winum-keymap (kbd "M-0") #'treemacs-select-window))
-  :config
-  ;; maybe a good thing to come back and look at
-  ;; https://github.com/Alexander-Miller/treemacs#installation later for
-  ;; configuration options
-
-  (use-package treemacs-evil
-    :after treemacs evil
-    :ensure t)
-
-  (use-package treemacs-projectile
-    :after treemacs projectile
-    :ensure t)
-
-  (use-package treemacs-icons-dired
-    :after treemacs dired
-    :ensure t
-    :config (treemacs-icons-dired-mode))
-
-  (use-package treemacs-magit
-    :after treemacs magit
-    :ensure t)
-
-  (use-package treemacs-persp
-    :after treemacs persp-mode
-    :ensure t
-    :config (treemacs-set-scope-type 'Perspectives))
-
-  (evil-leader/set-key
-    "to" 'treemacs
-    "tf" 'treemacs-find-file
-    "tp" 'treemacs-projectile
-    "tca" 'treemacs-add-project-to-workspace
-    "tco" 'treemacs-collapse-all-projects))
 
 (use-package lsp-mode
   :commands lsp
@@ -218,12 +161,6 @@
   :commands lsp-ui-mode
   :ensure t
   :after lsp-mode)
-
-;; seems to be giving me errors in 26.3... strange
-;(use-package lsp-treemacs
-;  :config
-;  (lsp-metals-treeview-enable t)
-;  (setq lsp-metals-treeview-show-when-views-received t))
 
 (use-package helm-lsp
   :ensure t
@@ -294,13 +231,9 @@
   (setq dashboard-navigator-buttons
 	`(;; line 1
 	  ((,(all-the-icons-alltheicon "git" :height 0.8 :v-adjust 0.0)
-	    "code"
-	    "Dired to Code"
+	    "dev"
+	    "Dired to dev workspace"
 	    (lambda (&rest _) (dired "~/src/github.com/latrokles")))
-	   (,(all-the-icons-fileicon "org" :height 0.8 :v-adjust 0.0)
-	    "org"
-	    "Dired to Org"
-	    (lambda (&rest _) (dired "~/org")))
 	   (,(all-the-icons-octicon "home" :height 0.8 :v-adjust 0.0)
 	    "home"
 	    "Dired to Home"
@@ -315,8 +248,7 @@
   (setq dashboard-set-file-icons t)
 
   :custom
-  (dashboard-items '((recents . 5)
-		     (projects . 5))))
+  (dashboard-items '((recents . 5))))
 
 ;; -- ibuffer config
 
