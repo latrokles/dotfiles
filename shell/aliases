@@ -10,6 +10,7 @@ alias tree='tree -I "target|__pycache__|node_modules"'
 alias reload='source ~/.zshenv'
 alias vim=nvim
 alias vi=nvim
+alias 9acme='9 acme -f $PLAN9/font/fixed/unicode.8x13.font'
 
 # some git conveniences
 alias add='git add'

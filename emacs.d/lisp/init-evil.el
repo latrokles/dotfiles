@@ -8,6 +8,7 @@
   :ensure t
   :config
   (evil-mode 1)
+  (evil-esc-mode 1)
   
   (use-package evil-visual-mark-mode
     :ensure t)

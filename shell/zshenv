@@ -8,6 +8,7 @@ export SOURCES=${WORKSPACE}/src/github.com/latrokles
 export WIKIDIR=${SOURCES}/wiki
 export WIKIWEB=${SOURCES}/wiki-web
 export DOTFILES=${SOURCES}/dotfiles
+export PLAN9=${WORKSPACE}/src/github.com/9fans/plan9
 
 source ${DOTFILES}/shell/aliases
 source ${DOTFILES}/shell/functions
@@ -15,4 +16,6 @@ source ${DOTFILES}/shell/functions
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 export PATH="/opt/homebrew/bin:/opt/homebrew/opt/python/libexec/bin:${PATH}"
 export PATH="/usr/local/opt/openjdk/bin:${PATH}:${WORKSPACE}/bin:${HOME}/.toolbox/bin"
+export PATH=$PATH:$PLAN9/bin
+
 #source $HOME/.cargo/env
