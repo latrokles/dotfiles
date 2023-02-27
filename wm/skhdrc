@@ -1,6 +1,7 @@
 # do not use shortcuts in emacs
 .blacklist [
-    "emacs"
+    "emacs",
+    "acme"
 ]
 
 # change windows focus (select active window)

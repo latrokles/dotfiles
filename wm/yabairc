@@ -2,6 +2,7 @@
 
 # ignore system preferences
 yabai -m rule --add label="System Preferences" app="^System Pref*" manage=off
+yabai -m rule --add label="iTerm" app="^iTerm*" manage=off
 
 # general space settings
 # bsp layout, not padding or gap between windows
