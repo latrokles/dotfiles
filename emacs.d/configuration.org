@@ -348,46 +348,44 @@ Need I say more?
 ** configurations
 
 #+begin_src emacs-lisp
-(setq latrokles-worklog (expand-file-name "Desktop/worklog.org" (getenv "HOME")))
-(setq latrokles-devlog (expand-file-name "devlog.org" (getenv "WIKIDIR")))
+(setq worklog (expand-file-name "Desktop/worklog.org" (getenv "HOME")))
+(setq devlog (expand-file-name "devlog.org" (getenv "WIKIDIR")))
 #+end_src
-
-#+RESULTS:
 
 ** utils
 
 Get a log entry time stamp (e.g. /2023-06-12 (Mon) 13:30 PDT/).
 #+begin_src emacs-lisp
-(defun latrokles/log-entry-ts ()
+(defun dwim-log-entry-ts ()
   (format-time-string "%Y-%m-%d (%a) - %H:%M %Z"))
 #+end_src
 
 Open log and start an entry.
 #+begin_src emacs-lisp
-(defun latrokles/make-log-entry (logfile)
+(defun dwim-make-log-entry (logfile)
   (interactive)
   (find-file logfile)
-  (insert (concat "* " (latrokles/log-entry-ts)))
+  (insert (concat "* " (dwim-log-entry-ts)))
   (insert "\n"))
 #+end_src
 
 Open worklog and start an entry
 #+begin_src emacs-lisp
-(defun latrokles/worklog-entry ()
+(defun dwim-write-to-worklog ()
   (interactive)
-  (latrokles/make-log-entry latrokles-worklog))
+  (dwim-make-log-entry worklog))
 #+end_src
 
 Open devlog and start an entry
 #+begin_src emacs-lisp
-(defun latrokles/devlog-entry ()
+(defun dwim-write-to-devlog ()
   (interactive)
-  (latrokles/make-log-entry latrokles-devlog))
+  (dwim-make-log-entry devlog))
 #+end_src
 
 Quick facility to open ~~./emacs.d/configuration.org~ for editing.
 #+begin_src emacs-lisp
-(defun latrokles/update-emacs-config ()
+(defun dwim-write-to-emacs-config ()
   (interactive)
   (find-file (expand-file-name ".emacs.d/configuration.org"
                                (getenv "HOME"))))
@@ -395,8 +393,8 @@ Quick facility to open ~~./emacs.d/configuration.org~ for editing.
 
 Commit the current file with one liner commit. This is useful as a means of making quick commits on a draft branch or somewhere the commit message doesn't need to be that elaborate.
 
-,#+begin_src emacs-lisp
-(defun latrokles/commit-current-file ()
+#+begin_src emacs-lisp
+(defun dwim-commit-current-file ()
   (interactive)
   (let ((path (buffer-file-name))
         (commit-message (read-string "enter commit message: ")))
@@ -405,18 +403,76 @@ Commit the current file with one liner commit. This is useful as a means of maki
     (message "file committed successfully")))
 #+end_src
 
+*** macos utils
+
+Lock screen
+#+begin_src emacs-lisp
+(defun dwim-lock-screen ()
+  (interactive)
+  (shell-command "open -a ScreenSaverEngine"))
+#+end_src
+
+Taking screenshots and recording the screen.
+#+begin_src emacs-lisp
+(defun dwim-screenshot-full-save ()
+  (interactive)
+  (let ((destination (read-string "destination: ")))
+    (shell-command (concat "screencapture " destination))
+    (message (concat "screenshot saved to " destination "!"))))
+
+(defun dwim-screenshot-full-pb ()
+  (interactive)
+  (shell-command "screencapture -c ")
+  (message "screenshot saved to pasteboard!"))
+
+(defun dwim-screenshot-crop-save ()
+  (interactive)
+  (let ((destination (read-string "destination: ")))
+    (shell-command (concat "screencapture -is " destination))
+    (message (concat "screenshot saved to " destination "!"))))
+
+(defun dwim-screenshot-crop-pb ()
+  (interactive)
+  (shell-command "screencapture -cis ")
+  (message "screenshot saved to pasteboard!"))
+
+(defun dwim-screen-record-save ()
+  (interactive)
+  (let ((destination (read-string "destination: "))
+	(total-seconds (read-string "video length in seconds: ")))
+    (shell-command (concat "screencapture -V "
+			   total-seconds
+			   " "
+			   destination))
+    (message (concat "recording saved to " destination "!"))))
+#+end_src
+
+Controlling sound (mostly mute/un-mute.
+
+#+begin_src emacs-lisp
+(defun dwim-sound-off ()
+  (interactive)
+  (shell-command "osascript -e \"set volume output muted true\"")
+  (message "sound off!"))
+
+(defun dwim-sound-on ()
+  (interactive)
+  (shell-command "osascript -e \"set volume output muted false\"")
+  (message "sound on!"))
+#+end_src
+
 ** webkit
 
 My current [[https://github.com/d12frosted/homebrew-emacs-plus][emacs install]] has support for embedded webkit via [[https://github.com/d12frosted/homebrew-emacs-plus#xwidgets-webkit][xwidgets-webkit]]. This is some documentation for it.
 
-~~
+#+begin_comment
 M-x xwidget-webkit-browse-url  to go to a url
 b, r, +/-                      for backward, forward, zoom in/out
 C-x 2                          split horizontal
 C-x 3                          split vertical
 C-s, C-r                       isearch
 C-x r m, C-x r l               bookmark
-~~
+#+end_comment
 
 - TODO define some function to open url that cursor is on
 
@@ -431,14 +487,20 @@ Function to set up leader keybindings
 (defun latrokles/configure-leader-keys ()
   (evil-leader/set-leader "<SPC>")
   (evil-leader/set-key
-   "ce"   'latrokles/update-emacs-config
-   "cf"   'latrokles/commit-current-file
-   "dl"   'latrokles/devlog-entry
-   "wl"   'latrokles/worklog-entry
-   "g"    'magit-status
-   "k"    'kill-this-buffer
    "eb"   'eval-buffer
    "ee"   'eval-expression
+
+   ;; personal dwim functions
+   "we"   'dwim-write-to-emacs-config
+   "wd"   'dwim-write-to-devlog
+   "ww"   'dwim-write-to-worklog
+   "cf"   'dwim-commit-current-file
+
+   ;; org mode
+   "ob"   (lambda () (interactive) (call-interactively 'org-insert-structure-template))
+
+   "g"    'magit-status
+   "k"    'kill-this-buffer
    "W"    (lambda () (interactive) (save-buffer) (kill-this-buffer))))
 #+end_src
 
