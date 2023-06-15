@@ -461,6 +461,16 @@ Controlling sound (mostly mute/un-mute.
   (message "sound on!"))
 #+end_src
 
+Searching github.
+#+begin_src emacs-lisp
+(defun dwim-github-search ()
+  (interactive)
+  (shell-command (concat
+		  "open -a \"Firefox Developer Edition.app\" \"https://github.com/search?q="
+		  (buffer-substring (region-beginning) (region-end))
+		  "\"")))
+#+end_src
+
 ** webkit
 
 My current [[https://github.com/d12frosted/homebrew-emacs-plus][emacs install]] has support for embedded webkit via [[https://github.com/d12frosted/homebrew-emacs-plus#xwidgets-webkit][xwidgets-webkit]]. This is some documentation for it.
