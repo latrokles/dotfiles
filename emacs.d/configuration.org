@@ -43,7 +43,8 @@ Global behavior and styling
 (setq tramp-syntax 'simplified)(setq visual-line-fringe-indicators '(left-curly-arrow right-curly-arrow))
 (setq-default mac-option-modifier 'meta) ; set alt/option as meta
 (defalias 'yes-or-no-p 'y-or-n-p) ; I'm tired of typing yes (yolo!)
-(add-hook 'before-save-hook 'delete-trailing-whitespace)
+(add-hook 'before-save-hook 'delete-trailing-whitespace)   ; self-explanatory!
+(add-hook 'text-mode-hook 'visual-line-mode)               ; wrap text
 #+end_src
 
 * package management
@@ -174,6 +175,110 @@ Set up use-package
   (require 'use-package))
 #+end_src
 
+* narrowing search and autocomplete
+
+** company
+[[company-mode][company-mode]]: Modular in-buffer completion framework for emac
+
+#+begin_src emacs-lisp
+(use-package company
+  :ensure t
+  :hook (after-init . global-company-mode)
+  :config
+  (setq company-require-match 'never)
+  (setq company-idle-delay 0.2)
+  (setq company-show-numbers t))
+
+(use-package company-box
+  :ensure t
+  :after company
+  :hook (global-company-mode . company-box-mode))
+#+end_src
+
+** helm
+[[https://emacs-helm.github.io/helm/][helm]]: Emacs incremental completion and selection narrowing framework
+
+#+begin_src emacs-lisp
+(use-package helm
+  :ensure t
+  :defer t
+  :bind (("M-x" . helm-M-x)
+	 ("C-x b" . helm-mini)
+	 ("C-x C-f" . helm-find-files))
+  :config
+
+  (use-package helm-company
+    :ensure t)
+
+  (use-package helm-eww
+    :ensure t)
+
+  (use-package helm-osx-app
+    :ensure t
+    :defer t))
+#+end_src
+
+* some utilities
+
+** misc
+
+restart emacs
+
+#+begin_src emacs-lisp
+(use-package restart-emacs :ensure t)
+#+end_src
+
+[[https://github.com/justbur/emacs-which-key][which-key]]: displays key bindings for commands or incomplete commands in minibuffer, helpful to learn shortcuts to commonly used commands with ~M-...~.
+
+#+begin_src emacs-lisp
+(use-package which-key
+  :ensure t
+  :init
+  (setq which-key-separator " ")
+  (setq which-key-prefix-prefix "+")
+  :config
+  (which-key-mode 1))
+#+end_src
+
+** source control
+
+Basic magit setup
+
+#+begin_src emacs-lisp
+(use-package magit
+  :ensure t
+  :defer t)
+#+end_src
+
+** some basic syntax modes
+
+markdown
+
+#+begin_src emacs-lisp
+(use-package markdown-mode
+  :ensure t
+  :defer t)
+#+end_src
+
+yaml
+
+#+begin_src emacs-lisp
+(use-package yaml-mode
+  :ensure t
+  :defer t)
+#+end_src
+
+* org mode
+
+Configure org babel language support
+
+#+begin_src emacs-lisp
+(org-babel-do-load-languages 'org-babel-load-languages
+                             '((shell . t)
+                               (emacs-lisp . t)
+                               (python . t))
+#+end_src
+
 * evil
 
 Because emacs is a better vim than vim!
@@ -200,6 +305,25 @@ Because emacs is a better vim than vim!
 
 * fun
 
+** themes
+
+After spending a solid two months using [[http://acme.cat-v.org/][plan 9's acme]] I kinda developed a soft spot for its color scheme. There's a few of them out there:
+- [[https://github.com/nnoodle/emacs-acme-theme][nnoodle/emacs-acme-theme]] (this is the one I'm using)
+- [[https://github.com/ianyepan/acme-emacs-theme][ianyepan/acme-emacs-theme]]
+
+Let's how long I can stick with this theme before going to something a bit on the darker side.
+
+#+begin_src emacs-lisp
+(use-package acme-theme
+  :ensure t
+  :defer t
+  :init
+  ;; variables to configure
+  (setq acme-theme-gray-rainbow-delimiters nil)
+  (setq acme-theme-more-syntax-hl t)
+  (load-theme 'acme t nil))
+#+end_src
+
 ** xkcd
 
 Need I say more?
@@ -208,4 +332,46 @@ Need I say more?
 (use-package xkcd
   :commands (xkcd-get xkcd-get-latest)
   :ensure t)
+#+end_src
+
+* personal utilities
+
+** git
+
+Commit the current file with one liner commit. This is useful as a means of making quick commits on a draft branch or somewhere the commit message doesn't need to be that elaborate.
+
+#+begin_src emacs-lisp
+(defun latrokles/commit-current-file ()
+  (interactive)
+  (let ((path (buffer-file-name))
+        (commit-message (read-string "enter commit message: ")))
+    (shell-command (concat "git add " path))
+    (shell-command (concat "git commit -m " "\"" commit-message "\""))
+    (message "file committed successfully")))
+#+end_src
+
+* keybindings
+
+Leaving this at the end to have a single place where bindings are set up AND so I can reference anything that has been defined prior.
+
+** evil-leader
+
+Setting it up
+#+begin_src emacs-lisp
+(use-package evil-leader
+  :ensure t
+  :config
+  (global-evil-leader-mode))
+#+end_src
+
+Setting up leader bindings
+#+begin_src emacs-lisp
+(evil-leader/set-leader "<SPC>")
+(evil-leader/set-key
+  "cf"   'latrokles/commit-current-file
+  "g"    'magit-status
+  "k"    'kill-this-buffer
+  "eb"   'eval-buffer
+  "ee"   'eval-expression
+  "W"    (lambda () (interactive) (save-buffer) (kill-this-buffer)))
 #+end_src
