@@ -261,7 +261,7 @@ Basic magit setup
 
 ** some basic syntax modes
 
-markdown
+*** markdown
 
 #+begin_src emacs-lisp
 (use-package markdown-mode
@@ -269,12 +269,34 @@ markdown
   :defer t)
 #+end_src
 
-yaml
+*** yaml
 
 #+begin_src emacs-lisp
 (use-package yaml-mode
   :ensure t
   :defer t)
+#+end_src
+
+*** mermaid
+
+requires
+- [[https://github.com/mermaid-js/mermaid-cli][mermaid cli]]
+- [[https://github.com/abrochard/mermaid-mode][mermaid-mode]]
+
+#+begin_src emacs-lisp
+(use-package mermaid-mode
+  :mode ("\\.mmd\\'" . mermaid-mode)
+  :config
+  (setq mermaid-mmdc-location "/opt/homebrew/bin/mmdc"))
+#+end_src
+
+and [[https://github.com/arnm/ob-mermaid][support for org-babel]] !
+
+#+begin_src emacs-lisp
+(use-package ob-mermaid
+    :ensure t
+    :custom
+    (ob-mermaid-cli-path "/opt/homebrew/bin/mmdc"))
 #+end_src
 
 * org mode
@@ -283,7 +305,8 @@ Configure org babel language support
 
 #+begin_src emacs-lisp
 (org-babel-do-load-languages 'org-babel-load-languages
-                             '((shell . t)
+                             '((mermaid . t)
+                               (shell . t)
                                (emacs-lisp . t)
                                (python . t)))
 #+end_src
