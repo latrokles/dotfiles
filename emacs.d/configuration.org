@@ -345,19 +345,69 @@ Need I say more?
 
 * personal utilities
 
-** configurations
+** datetime
 
+Some useful time functions.
 #+begin_src emacs-lisp
-(setq worklog (expand-file-name "Desktop/worklog.org" (getenv "HOME")))
-(setq devlog (expand-file-name "devlog.org" (getenv "WIKIDIR")))
+(defun latrokles/dt-epoch-now-seconds ()
+  "Return number of seconds since epoch."
+  (interactive)
+  (number-to-string (float-time)))
+
+(defun latrokles/dt-epoch-now-millis ()
+  "Return number of millis since epoch."
+  (interactive)
+  (number-to-string (truncate (* 1000 (float-time)))))
+
+(defun latrokles/dt-seconds-to-isoformat (seconds)
+  "Return iso formatted string from seconds."
+  (interactive)
+  (format-time-string "%Y-%m-%d%T%T%Z" seconds)))
+
+(defun latrokles/dt-millis-to-isoformat (millis)
+  "Return iso formatted string from millis"
+  (interactive)
+  (latrokles/dt-seconds-to-isoformat (/ millis 1000)))
 #+end_src
 
-** utils
+Insert timestamps at current point.
+#+begin_src emacs-lisp
+(defun dwim-epoch-seconds-insert ()
+  (interactive)
+  (insert (latrokles/dt-epoch-now-seconds)))
+
+(defun dwim-epoch-millis-insert ()
+  (interactive)
+  (insert (latrokles/dt-epoch-now-millis)))
+#+end_src
+
+Convert epoch time to iso format and insert at point.
+#+begin_src emacs-lisp
+(defun dwim-dt-region-seconds-to-isoformat ()
+  (interactive)
+  (let ((epoch-str (buffer-substring (region-beginning) (region-end))))
+    (forward-char 1)
+    (insert (concat " (" (latrokles/dt-seconds-to-isoformat (string-to-number epoch-str)) ") "))))
+
+(defun dwim-dt-region-millis-to-isoformat ()
+  (interactive)
+  (let ((epoch-str (buffer-substring (region-beginning) (region-end))))
+    (forward-char 1)
+    (insert (concat " (" (latrokles/dt-millis-to-isoformat (string-to-number epoch-str)) ") "))))
+#+end_src
 
 Get a log entry time stamp (e.g. /2023-06-12 (Mon) 13:30 PDT/).
 #+begin_src emacs-lisp
 (defun dwim-log-entry-ts ()
   (format-time-string "%Y-%m-%d (%a) - %H:%M %Z"))
+#+end_src
+
+
+*** devlog
+
+#+begin_src emacs-lisp
+(setq worklog (expand-file-name "Desktop/worklog.org" (getenv "HOME")))
+(setq devlog (expand-file-name "devlog.org" (getenv "WIKIDIR")))
 #+end_src
 
 Open log and start an entry.
