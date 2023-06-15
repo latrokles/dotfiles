@@ -1,0 +1,211 @@
+
+* the basics
+
+Set text encoding to utf 8 and linux file formats.
+#+begin_src emacs-lisp
+(setq-default buffer-file-coding-system 'utf-8-unix)
+(set-default-coding-systems 'utf-8-unix)
+(setq locale-coding-system 'utf-8-unix)
+(prefer-coding-system 'utf-8-unix)
+
+(setq org-src-preserve-indentation t)
+#+end_src
+
+Set the binary path
+#+begin_src emacs-lisp
+(if (not (eq window-system 'w32))
+    (add-to-list 'exec-path "/opt/homebrew/bin"))
+#+end_src
+
+Prevent emacs from modifying init file
+#+begin_src emacs-lisp
+(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
+(load custom-file 'noerror)
+#+end_src
+
+Global behavior and styling
+#+begin_src emacs-lisp
+(tool-bar-mode -1)                           ; disable toolbar
+(savehist-mode 1)                            ; save minibuffer history (per machine really)
+(global-auto-revert-mode 1)                  ; automatically refresh buffer if file changes on disk
+(recentf-mode 1)                             ; remember most recent files
+(global-display-line-numbers-mode  1)        ; always show line numbers
+(global-hl-line-mode 1)                      ; highlight current line
+(show-paren-mode 1)                          ; highlight parens
+
+(setq show-paren-style 'expression) ; highlight expression inside parens
+(setq make-backup-files nil)        ; stop creating backup~ files
+(setq auto-save-default nil)        ; stop creating #autosave# files
+(setq vc-follow-symlinks t)         ; allways follow the symlink and edit the file it points to directly
+(setq ibuffer-expert t)             ; stop prompting me to confirm killing a buffer
+
+(setq tramp-default-method "ssh")
+(setq tramp-syntax 'simplified)(setq visual-line-fringe-indicators '(left-curly-arrow right-curly-arrow))
+(setq-default mac-option-modifier 'meta) ; set alt/option as meta
+(defalias 'yes-or-no-p 'y-or-n-p) ; I'm tired of typing yes (yolo!)
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
+#+end_src
+
+* package management
+
+#+begin_quote
+I lifted this from Steve Purcell's emacs.d config.
+#+end_quote
+
+Install into separate directories for each Emacs version in order
+to prevent bytecode incompatibility.
+
+#+begin_src emacs-lisp
+(require 'package)
+
+(let ((versioned-package-dir
+       (expand-file-name (format "elpa-%s.%s" emacs-major-version emacs-minor-version)
+			 user-emacs-directory)))
+  (setq package-user-dir versioned-package-dir))
+#+end_src
+
+Set the standard package repositories:
+
+#+begin_src emacs-lisp
+(let* ((no-ssl (and (memq system-type '(windows-nt ms-dos))
+		    (not (gnutls-available-p))))
+       (proto (if no-ssl "http" "https")))
+
+  (add-to-list 'package-archives (cons "gnu" (concat proto "://elpa.gnu.org/packages/")) t)
+  (add-to-list 'package-archives (cons "org" (concat proto "://orgmode.org/elpa/")) t)
+  (add-to-list 'package-archives (cons "melpa" (concat proto "://melpa.org/packages/")) t)
+  (add-to-list 'package-archives (cons "melpa-stable" (concat proto "://stable.melpa.org/packages/")) t)
+
+  ;; Official MELPA Mirror, in case necessary.
+  ;;(add-to-list 'package-archives (cons "melpa-mirror" (concat proto "://www.mirrorservice.org/sites/melpa.org/packages/")) t))
+#+end_src
+
+On demand installation of packages
+
+#+begin_src emacs-lisp
+(require 'cl-lib)
+
+(defun require-package (package &optional min-version no-refresh)
+  "Install given PACKAGE, optionally requiring MIN-VERSION.
+If NO-REFRESH is non-nil, the available package lists will
+not be re-downloaded in order to locate PACKAGE."
+  (or (package-installed-p package min-version)
+      (let* ((known (cdr (assoc package package-archive-contents)))
+	     (versions (mapcar #'package-desc-version known)))
+	(if (cl-find-if (lambda (v) (version-list-<= min-version v)) versions)
+	    (package-install package)
+	  (if no-refresh
+	      (error "No version of %s >= %S is available" package min-version)
+	    (package-refresh-contents)
+	    (require-package package min-version t)))))))
+
+
+(defun maybe-require-package (package &optional min-version no-refresh)
+  "Try to install PACKAGE, and return non-nil if successful.
+In the event of failure, return nil and print a warning message.
+
+Optionally require MIN-VERSION.  If NO-REFRESH is non-nil, the
+available package lists will not be re-downloaded in order to locate PACKAGE."
+  (condition-case err
+      (require-package package min-version no-refresh)
+    (error
+     (message "Couldn't install optional package `%s': %S" package err)
+     nil)))
+#+end_src
+
+Lanch package.el
+
+#+begin_src emacs-lisp
+(setq package-enable-at-startup nil)
+(package-initialize)
+
+;; package.el updates the saved version of package-selected-packages correctly only
+;; after custom-file has been loaded, which is a bug. We work around this by adding
+;; the required packages to package-selected-packages after startup is complete.
+
+(defvar sanityinc/required-packages nil)
+
+(defun sanityinc/note-selected-package (oldfun package &rest args)
+  "If OLDFUN reports PACKAGE was successfully installed, note it in `sanityinc/required-packages'."
+  (let ((available (apply oldfun package args)))
+    (prog1 available
+      (when (and available (boundp 'package-selected-packages))
+        (add-to-list 'sanityinc/required-packages package)))))
+
+(advice-add 'require-package :around 'sanityinc/note-selected-package)
+
+(when (fboundp 'package--save-selected-packages)
+  (require-package 'seq)
+  (add-hook 'after-init-hook
+            (lambda () (package--save-selected-packages
+                   (seq-uniq (append sanityinc/required-packages package-selected-packages))))))
+
+(require-package 'fullframe)
+(fullframe list-packages quit-window)
+
+(let ((package-check-signature nil))
+  (require-package 'gnu-elpa-keyring-update))
+
+(defun sanityinc/set-tabulated-list-column-width (col-name width)
+  "Set any column with name COL-NAME to the given WIDTH."
+  (when (> width (length col-name))
+    (cl-loop for column across tabulated-list-format
+             when (string= col-name (car column))
+             do (setf (elt column 1) width))))
+
+(defun sanityinc/maybe-widen-package-menu-columns ()
+  "Widen some columns of the package menu table to avoid truncation."
+  (when (boundp 'tabulated-list-format)
+    (sanityinc/set-tabulated-list-column-width "Version" 13)
+    (let ((longest-archive-name (apply 'max (mapcar 'length (mapcar 'car package-archives)))))
+      (sanityinc/set-tabulated-list-column-width "Archive" longest-archive-name))))
+
+(add-hook 'package-menu-mode-hook 'sanityinc/maybe-widen-package-menu-columns)
+#+end_src
+
+Set up use-package
+
+#+begin_src emacs-lisp
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
+
+(eval-when-compile
+  (require 'use-package))
+#+end_src
+
+* evil
+
+Because emacs is a better vim than vim!
+
+#+begin_src emacs-lisp
+(use-package evil
+  :ensure t
+  :config
+  (evil-mode 1)
+  (evil-esc-mode 1)
+
+  (use-package evil-visual-mark-mode
+    :ensure t)
+
+  (use-package evil-surround
+    :ensure t
+    :config
+    (global-evil-surround-mode))
+
+  (add-to-list 'evil-emacs-state-modes 'term-mode)
+  (delete 'term-mode evil-insert-state-modes)
+  (delete 'eshell-mode evil-insert-state-modes))
+#+end_src
+
+* fun
+
+** xkcd
+
+Need I say more?
+
+#+begin_src emacs-lisp
+(use-package xkcd
+  :commands (xkcd-get xkcd-get-latest)
+  :ensure t)
+#+end_src

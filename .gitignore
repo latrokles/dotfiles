@@ -5,4 +5,5 @@ emacs.d/*
 # but not my emacs configs
 !emacs.d/init.el
 !emacs.d/lisp
+!emacs.d/configuration.org
 
