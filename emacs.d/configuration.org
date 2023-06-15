@@ -362,7 +362,7 @@ Some useful time functions.
 (defun latrokles/dt-seconds-to-isoformat (seconds)
   "Return iso formatted string from seconds."
   (interactive)
-  (format-time-string "%Y-%m-%d%T%T%Z" seconds)))
+  (format-time-string "%Y-%m-%d%T%T%Z" seconds))
 
 (defun latrokles/dt-millis-to-isoformat (millis)
   "Return iso formatted string from millis"
