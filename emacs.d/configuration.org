@@ -44,6 +44,10 @@ Global behavior and styling
 (setq vc-follow-symlinks t)         ; allways follow the symlink and edit the file it points to directly
 (setq ibuffer-expert t)             ; stop prompting me to confirm killing a buffer
 
+;; fix for dired (see: https://github.com/d12frosted/homebrew-emacs-plus/issues/383#issuecomment-899157143)
+(setq insert-directory-program "gls" dired-use-ls-dired t)
+(setq dired-listing-switches "-al --group-directories-first")
+
 (setq tramp-default-method "ssh")
 (setq tramp-syntax 'simplified)(setq visual-line-fringe-indicators '(left-curly-arrow right-curly-arrow))
 (setq-default mac-option-modifier 'meta) ; set alt/option as meta
