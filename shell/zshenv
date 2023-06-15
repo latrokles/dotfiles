@@ -7,6 +7,7 @@ export GOPATH=${WORKSPACE}
 export SOURCES=${WORKSPACE}/src/github.com/latrokles
 export WIKIDIR=${SOURCES}/wiki
 export WIKIWEB=${SOURCES}/wiki-web
+export WORKLOG="${HOME}/Desktop/WORKLOG.org"
 export DOTFILES=${SOURCES}/dotfiles
 export PLAN9=${WORKSPACE}/src/github.com/9fans/plan9
 
