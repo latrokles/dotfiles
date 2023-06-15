@@ -1,4 +1,8 @@
 
+#+begin_quote
+Used [[https://harryrschwartz.com/2016/02/15/switching-to-a-literate-emacs-configuration][this article]] to switch to a literate emacs configuration.
+#+end_quote
+
 * the basics
 
 Set text encoding to utf 8 and linux file formats.
