@@ -27,6 +27,6 @@ alias gidiff='git diff'
 # TODO move some functions to aliases instead
 alias dotfiles='pd ${DOTFILES}'
 alias wiki='pd ${WIKIDIR}'
-alias wikiweb='pd ${WIKIWEB}'
+alias notes='pd ${NOTESDIR}'
 alias work='pd ${WORKSPACE}'
 alias dev='pd ${SOURCES}'

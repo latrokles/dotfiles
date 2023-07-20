@@ -3,20 +3,6 @@
 #
 
 #
-# quick function to take notes
-#
-notes() {
-    NOTES="${HOME}/Desktop/notes.md"
-    if [ ! -z "$1" ]; then
-        # write params to notes
-        echo "$@" >> "${NOTES}"
-    else
-        # no arguments, use STDIN
-        cat - >> "${NOTES}"
-    fi
-}
-
-#
 # take fullscreen screenshot and save to Desktop/capture.png
 #
 screen_capture_fullscreen() {
