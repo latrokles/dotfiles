@@ -1,3 +1,5 @@
+#+TITLE: latrokles' emacs configuration
+#+AUTHOR: latrokles
 
 #+begin_quote
 Used [[https://harryrschwartz.com/2016/02/15/switching-to-a-literate-emacs-configuration][this article]] to switch to a literate emacs configuration.
@@ -227,9 +229,8 @@ Set up use-package
     :defer t))
 #+end_src
 
-* some utilities
 
-** misc
+* misc
 
 restart emacs
 
@@ -249,7 +250,7 @@ restart emacs
   (which-key-mode 1))
 #+end_src
 
-** source control
+* source control
 
 Basic magit setup
 
@@ -259,9 +260,9 @@ Basic magit setup
   :defer t)
 #+end_src
 
-** some basic syntax modes
+* syntax support
 
-*** markdown
+** markdown
 
 #+begin_src emacs-lisp
 (use-package markdown-mode
@@ -269,7 +270,7 @@ Basic magit setup
   :defer t)
 #+end_src
 
-*** yaml
+** yaml
 
 #+begin_src emacs-lisp
 (use-package yaml-mode
@@ -277,7 +278,7 @@ Basic magit setup
   :defer t)
 #+end_src
 
-*** mermaid
+** mermaid
 
 requires
 - [[https://github.com/mermaid-js/mermaid-cli][mermaid cli]]
@@ -391,8 +392,14 @@ Some useful time functions.
   "Return iso formatted string from millis"
   (interactive)
   (latrokles/dt-seconds-to-isoformat (/ millis 1000)))
+
+(defun latrokles/today-as-yyyy-mm-dd-string ()
+  "Return current date as a string in YYYY-MM-DD format."
+  (interactive)
+  (format-time-string "%Y-%m-%d" (float-time)))
 #+end_src
 
+** some date editing functions (WIP)
 Insert timestamps at current point.
 #+begin_src emacs-lisp
 (defun dwim-epoch-seconds-insert ()
@@ -425,40 +432,55 @@ Get a log entry time stamp (e.g. /2023-06-12 (Mon) 13:30 PDT/).
   (format-time-string "%Y-%m-%d (%a) - %H:%M %Z"))
 #+end_src
 
+** notetatking
 
 *** devlog
 
 #+begin_src emacs-lisp
+(setq scribbles (getenv "NOTESDIR"))
+(setq daily-dir (expand-file-name "00-daily" scribbles))
+(setq inbox-dir (expand-file-name "01-inbox" scribbles))
+(setq notes-dir (expand-file-name "02-notes" scribbles))
+(setq posts-dir (expand-file-name "03-posts" scribbles))
+
 (setq worklog (expand-file-name "Desktop/worklog.org" (getenv "HOME")))
-(setq devlog (expand-file-name "devlog.org" (getenv "WIKIDIR")))
 #+end_src
 
-Open log and start an entry.
 #+begin_src emacs-lisp
-(defun dwim-make-log-entry (logfile)
+(defun latrokles/todays-daily-log ()
+  "Return pathname for today's daily log."
   (interactive)
-  (find-file logfile)
+  (expand-file-name (concat (latrokles/today-as-yyyy-mm-dd-string) ".org") daily-dir))
+#+end_src
+
+Add a new daily entry
+#+begin_src emacs-lisp
+(defun latrokles/new-log-entry (pathname)
+  (interactive)
+  (find-file pathname)
+  (goto-char (point-max))
+  (insert "\n")
   (insert (concat "* " (dwim-log-entry-ts)))
   (insert "\n"))
 #+end_src
 
-Open worklog and start an entry
+Write a new daily entry
 #+begin_src emacs-lisp
-(defun dwim-write-to-worklog ()
+(defun dwim-new-daily ()
   (interactive)
-  (dwim-make-log-entry worklog))
+  (latrokles/new-log-entry (latrokles/todays-daily-log)))
 #+end_src
 
-Open devlog and start an entry
+Write a new worklog entry
 #+begin_src emacs-lisp
-(defun dwim-write-to-devlog ()
+(defun dwim-new-worklog ()
   (interactive)
-  (dwim-make-log-entry devlog))
+  (latrokles/new-log-entry worklog))
 #+end_src
 
 Quick facility to open ~~./emacs.d/configuration.org~ for editing.
 #+begin_src emacs-lisp
-(defun dwim-write-to-emacs-config ()
+(defun dwim-edit-emacs-config ()
   (interactive)
   (find-file (expand-file-name ".emacs.d/configuration.org"
                                (getenv "HOME"))))
@@ -476,7 +498,7 @@ Commit the current file with one liner commit. This is useful as a means of maki
     (message "file committed successfully")))
 #+end_src
 
-*** macos utils
+** macos utils
 
 Lock screen
 #+begin_src emacs-lisp
