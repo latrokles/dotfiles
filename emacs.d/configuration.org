@@ -478,8 +478,15 @@ Write a new worklog entry
   (latrokles/new-log-entry worklog))
 #+end_src
 
-Quick facility to open ~~./emacs.d/configuration.org~ for editing.
+Open notes-inbox
 #+begin_src emacs-lisp
+(defun dwim-notes-inbox ()
+  (interactive)
+  (dired inbox-dir))
+#+end_src
+
+Quick facility to open ~~./emacs.d/configuration.org~ for editing.
+,#+begin_src emacs-lisp
 (defun dwim-edit-emacs-config ()
   (interactive)
   (find-file (expand-file-name ".emacs.d/configuration.org"
