@@ -443,14 +443,14 @@ Get a log entry time stamp (e.g. /2023-06-12 (Mon) 13:30 PDT/).
 (setq notes-dir (expand-file-name "02-notes" scribbles))
 (setq posts-dir (expand-file-name "03-posts" scribbles))
 
-(setq worklog (expand-file-name "Desktop/worklog.org" (getenv "HOME")))
+(setq worklog (expand-file-name "Desktop/worklog.md" (getenv "HOME")))
 #+end_src
 
 #+begin_src emacs-lisp
 (defun latrokles/todays-daily-log ()
   "Return pathname for today's daily log."
   (interactive)
-  (expand-file-name (concat (latrokles/today-as-yyyy-mm-dd-string) ".org") daily-dir))
+  (expand-file-name (concat (latrokles/today-as-yyyy-mm-dd-string) ".md") daily-dir))
 #+end_src
 
 Add a new daily entry
@@ -460,7 +460,7 @@ Add a new daily entry
   (find-file pathname)
   (goto-char (point-max))
   (insert "\n")
-  (insert (concat "* " (dwim-log-entry-ts)))
+  (insert (concat "# " (dwim-log-entry-ts)))
   (insert "\n"))
 #+end_src
 
@@ -603,9 +603,6 @@ Function to set up leader keybindings
    "ee"   'eval-expression
 
    ;; personal dwim functions
-   "we"   'dwim-write-to-emacs-config
-   "wd"   'dwim-write-to-devlog
-   "ww"   'dwim-write-to-worklog
    "cf"   'dwim-commit-current-file
 
    ;; org mode
