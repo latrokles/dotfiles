@@ -37,6 +37,7 @@ Global behavior and styling
 (global-auto-revert-mode 1)                  ; automatically refresh buffer if file changes on disk
 (recentf-mode 1)                             ; remember most recent files
 (global-display-line-numbers-mode  1)        ; always show line numbers
+(setq show-trailing-whitespace t)            ; highlight blank space at the end of lines
 (global-hl-line-mode 1)                      ; highlight current line
 (show-paren-mode 1)                          ; highlight parens
 
