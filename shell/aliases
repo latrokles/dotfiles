@@ -11,6 +11,9 @@ alias reload='source ~/.zshenv'
 alias vim=nvim
 alias vi=nvim
 alias 9acme='9 acme -f $PLAN9/font/fixed/unicode.8x13.font'
+alias tmuxls='tmux ls'
+alias tmuxn='tmux new -s '
+alias tmuxc='tmux at -t '
 
 # some git conveniences
 alias add='git add'
