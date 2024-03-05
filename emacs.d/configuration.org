@@ -251,6 +251,12 @@ restart emacs
   (which-key-mode 1))
 #+end_src
 
+#+begin_src emacs-lisp
+(use-package dired-sidebar
+  :ensure t
+  :commands (dired-sidebar-toggle-sidebar))
+#+end_src
+
 * source control
 
 Basic magit setup
