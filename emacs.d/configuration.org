@@ -211,29 +211,26 @@ Set up use-package
   :hook (global-company-mode . company-box-mode))
 #+end_src
 
-** helm
-[[https://emacs-helm.github.io/helm/][helm]]: Emacs incremental completion and selection narrowing framework
+** Ivy
 
 #+begin_src emacs-lisp
-(use-package helm
+
+(use-package ivy
   :ensure t
-  :defer t
-  :bind (("M-x" . helm-M-x)
-	 ("C-x b" . helm-mini)
-	 ("C-x C-f" . helm-find-files))
-  :config
+  :init
+  (use-package counsel :ensure :config (counsel-mode 1))
+  (use-package swiper :ensure t)
+  (use-package find-file-in-project :ensure t)
+  (ivy-mode 1)
+  :bind
+  (("C-s" . swiper-isearch)
+   ("M-x" . counsel-M-x)
+   ("C-x C-f" . counsel-find-file)
+   ("C-x b" . counsel-switch-buffer))
+  :custom
+  (ivy-height 10))
 
-  (use-package helm-company
-    :ensure t)
-
-  (use-package helm-eww
-    :ensure t)
-
-  (use-package helm-osx-app
-    :ensure t
-    :defer t))
 #+end_src
-
 
 * misc
 
@@ -323,6 +320,11 @@ Configure org babel language support
                                (python . t)))
 #+end_src
 
+* python development
+
+#+begin_src emacs-lisp
+#+end_src
+
 * evil
 
 Because emacs is a better vim than vim!
@@ -357,7 +359,7 @@ After spending a solid two months using [[http://acme.cat-v.org/][plan 9's acme]
 
 Let's how long I can stick with this theme before going to something a bit on the darker side.
 
-#+begin_src emacs-lisp
+#+begin_src
 (use-package acme-theme
   :ensure t
   :defer t
@@ -366,6 +368,28 @@ Let's how long I can stick with this theme before going to something a bit on th
   (setq acme-theme-gray-rainbow-delimiters nil)
   (setq acme-theme-more-syntax-hl t)
   (load-theme 'acme t nil))
+#+end_src
+
+Trying out [[https://protesilaos.com/emacs/modus-themes-pictures][~modus-themes~]]
+
+
+**light**
+- modus-operandi
+- modus-operandi-tinted
+- modus-operandi-deuteranopia
+- modus-operandi-tritanopia
+
+**dark**
+- modus-vivendi
+- modus-vivendi-tinted
+- modus-vivendi-deuteranopia
+- modus-vivendi-tritanopia
+
+#+begin_src emacs-lisp
+(use-package modus-themes
+  :ensure t
+  :config
+  (load-theme 'modus-vivendi t nil))
 #+end_src
 
 ** xkcd
@@ -610,6 +634,7 @@ Function to set up leader keybindings
 (defun latrokles/configure-leader-keys ()
   (evil-leader/set-leader "<SPC>")
   (evil-leader/set-key
+   "f"    'find-file-in-project
    "eb"   'eval-buffer
    "ee"   'eval-expression
 
@@ -632,4 +657,17 @@ Installing and configuring it.
   :config
   (global-evil-leader-mode)
   (latrokles/configure-leader-keys))
+#+end_src
+
+
+** snippets
+
+#+begin_src emacs-lisp
+(use-package yasnippet
+  :ensure t
+  :config
+  (setq yas-snippet-dirs '("~/dotfiles/snippets"
+                           "~/Desktop/WORKLOG/snippets"))
+  (yas-global-mode 1)
+)
 #+end_src
