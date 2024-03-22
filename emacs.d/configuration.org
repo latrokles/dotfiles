@@ -323,6 +323,22 @@ Configure org babel language support
 * python development
 
 #+begin_src emacs-lisp
+(use-package flycheck
+  :ensure t
+  :config
+  (global-flycheck-mode))
+
+(use-package elpy
+  :ensure t
+  :after (flycheck)
+  :config
+  ;; replace flymake with flycheck
+  (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
+  (elpy-enable))
+
+;; install blacken but don't enable format on save... yet!
+(use-package blacken :ensure t)
+
 #+end_src
 
 * evil
