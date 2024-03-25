@@ -226,7 +226,8 @@ Set up use-package
   (("C-s" . swiper-isearch)
    ("M-x" . counsel-M-x)
    ("C-x C-f" . counsel-find-file)
-   ("C-x b" . counsel-switch-buffer))
+   ("C-x b" . counsel-switch-buffer)
+   ("C-c g" . counsel-ag))
   :custom
   (ivy-height 10))
 
@@ -335,6 +336,9 @@ Configure org babel language support
   ;; replace flymake with flycheck
   (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
   (elpy-enable))
+
+;; poetry support for personal projects
+(use-package poetry :ensure t)
 
 ;; install blacken but don't enable format on save... yet!
 (use-package blacken :ensure t)
@@ -650,12 +654,19 @@ Function to set up leader keybindings
 (defun latrokles/configure-leader-keys ()
   (evil-leader/set-leader "<SPC>")
   (evil-leader/set-key
-   "f"    'find-file-in-project
    "eb"   'eval-buffer
    "ee"   'eval-expression
 
+   ;; file searching
+   "ff"   'find-file-in-project
+   "fg"   'counsel-ag
+
    ;; personal dwim functions
    "cf"   'dwim-commit-current-file
+
+   ;; python development stuff
+   "pb"  'blacken-buffer
+   "pp"  'poetry-tracking-mode
 
    ;; org mode
    "ob"   (lambda () (interactive) (call-interactively 'org-insert-structure-template))
