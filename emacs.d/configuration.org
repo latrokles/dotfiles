@@ -405,13 +405,6 @@ Trying out [[https://protesilaos.com/emacs/modus-themes-pictures][~modus-themes~
 - modus-vivendi-deuteranopia
 - modus-vivendi-tritanopia
 
-#+begin_src emacs-lisp
-(use-package modus-themes
-  :ensure t
-  :config
-  (load-theme 'modus-vivendi t nil))
-#+end_src
-
 ** xkcd
 
 Need I say more?
