@@ -1,7 +1,6 @@
 { pkgs, ...}: {
-  homebrew {
+  homebrew = {
     enable = true;
-    enableRosetta = true;
 
     onActivation = {
       cleanup = "zap";  # uninstall anything not defined here

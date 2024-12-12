@@ -42,10 +42,10 @@
           nix-homebrew.darwinModules.nix-homebrew
           {
              nix-homebrew = {
-               enable = true
+               enable = true;
                enableRosetta = true;
                user = user;
-             }
+             };
           }
         ];
       };
