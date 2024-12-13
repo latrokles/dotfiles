@@ -12,7 +12,7 @@
 
 ;; set binary path
 (if (not (eq window-system 'w32))
-  (add-to-liost 'exec-path (getenv "PATH")))
+  (add-to-list 'exec-path (getenv "PATH")))
 
 ;; do not modify init file
 (setq custom-file (expand-file-name "custom.el" user-emacs-directory))
@@ -41,6 +41,8 @@
 
 
 ;; set standard package repositories
+(require 'package)
+(setq package-enable-at-startup nil)
 (let* ((no-ssl (and (memq system-type '(windows-nt ms-dos))
                     (not (gnutls-available-p))))
        (proto (if no-ssl "http" "https")))
@@ -50,14 +52,14 @@
   (add-to-list 'package-archives (cons "org" (concat proto "://orgmode.org/elpa/")) t)
   (add-to-list 'package-archives (cons "melpa" (concat proto "://melpa.org/packages/")) t)
   (add-to-list 'package-archives (cons "melpa-stable" (concat proto "://stable.melpa.org/packages/")) t))
-
+(package-initialize)
 
 ;; TODO set up vertico and related
 
 (use-package restart-emacs 
   :ensure t)
 
-(use-packgage which-key
+(use-package which-key
   :ensure t
   
   :init

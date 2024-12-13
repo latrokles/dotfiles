@@ -62,7 +62,7 @@
 	  executable = false;
 	  recursive = true;
 	  source = ./config/emacs.d;
-	  target = "~/.emacs.d";
+	  target = ".emacs.d";
         };
       };
 
