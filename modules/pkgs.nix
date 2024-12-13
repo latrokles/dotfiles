@@ -6,6 +6,7 @@
     # tools
     pkgs.neovim
     pkgs.git
+    pkgs.jujutsu
     pkgs.tree
     pkgs.jq
     pkgs.rlwrap
