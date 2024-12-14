@@ -28,25 +28,6 @@
       # The platform the configuration will be used on.
       nixpkgs.hostPlatform = "aarch64-darwin";
     };
-
-    homeconfig = {pkgs, ...}: {
-      home.stateVersion = "23.05";
-      programs.home-manager.enable = true;
-      home.file = {
-        emacs = {
-          enable = true;
-	  executable = false;
-	  recursive = true;
-	  source = ./config/emacs.d;
-	  target = ".emacs.d";
-        };
-      };
-
-      home.packages = with pkgs; [];
-      home.sessionVariables = {
-      };
-    };
-
     darwinSystem = { user }:
       nix-darwin.lib.darwinSystem {
         modules = [
@@ -54,8 +35,9 @@
 	  home-manager.darwinModules.home-manager {
 	    home-manager.useGlobalPkgs = true;
 	    home-manager.useUserPackages = true;
+	    home-manager.backupFileExtension = "bak";
 	    home-manager.verbose = true;
-	    home-manager.users.${user} = import ./modules/home.nix
+	    home-manager.users.${user} = import ./modules/home.nix;
 	    users.users.${user}.home = "/Users/${user}";
 	  }
           ./modules/macos.nix
