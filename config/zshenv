@@ -1,0 +1,2 @@
+source ${DOTFILES}/config/aliases
+export PATH=${PATH}:${HOME}/.toolbox/bin

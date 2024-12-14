@@ -1,0 +1,39 @@
+alias switch='darwin-rebuild switch --flake'
+alias reload='source ~/.zshenv'
+
+alias vi=nvim
+alias vim=nvim
+alias tree='tree -I "target|__pycache__|node_modules"'
+
+alias pd='pushd'
+alias pop='popd'
+alias zz='suspend'
+
+# git stuff
+g-stat='git status'
+g-branch='git branch -vv'
+g-add='git add'
+g-commit='git commit'
+g-ammend='git commit --amend'
+g-diff='git diff'
+g-merge='git merge'
+g-push='git push'
+g-pull='git pull'
+g-pull-r='git pull --rebase'
+g-rmbr='git branch -D'
+
+
+# some python stuff
+p-run='poetry run'
+p-python='poetry run python'
+p-test='poetry run pytest'
+p-see-cov='open dev/reports/cov/index.html'
+p-see-tst='open dev/reports/tst/index.html'
+
+# general utilities
+alias screensaver='open -a ScreenSaverEngine'
+alias scfull='screencapture'
+alias sccrop='screencapture -is'
+alias scclip='screencapture -cis'
+alias scwin='screencapture -W'
+alias scvid='screencapture -v'
