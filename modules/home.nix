@@ -10,14 +10,15 @@
     programs.zsh = {
       enable = true;
       shellAliases = {
-        reload = "darwin-rebuild swtich --flake";
+        update = "darwin-rebuild switch --flake";
+	refresh = "source ~/.zshenv && source ~/.zshrc";
 
-        vi = "nvim";
-        vim ="nvim";
-        tree ="tree -I 'target|__pycache__|node_modules'";
+        # navigation
         pd ="pushd";
         pop = "popd";
         zz = "suspend";
+	dotfiles = "cd $DOTFILES";
+	dev = "cd $DEVENV";
 
         # git stuff
         g-stat = "git status";
@@ -43,6 +44,9 @@
         p-see-tst = "open dev/reports/tst/index.html";
 
         # general utilities
+        vi = "nvim";
+        vim ="nvim";
+        tree ="tree -I 'target|__pycache__|node_modules'";
         screensaver = "open -a ScreenSaverEngine";
         scfull = "screencapture";
         sccrop = "screencapture -is";
@@ -62,7 +66,7 @@
     home.packages = with pkgs; [];
 
     home.sessionVariables = {
-      DOTIFLES="${dotfilesPath}";
+      DOTFILES="${dotfilesPath}";
       DEVENV="${home}/dev/src/latrokles";
       PYSDL2_DLL_PATH="${pkgs.SDL2.outPath}/lib";
     };
