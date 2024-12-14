@@ -1,4 +1,3 @@
-
 ;; init.el
 ;; latrokles
 
@@ -8,7 +7,6 @@
 (setq locale-coding-system 'utf-8-unix)
 (prefer-coding-system 'utf-8-unix)
 (setq org-src-preserve-indentation t)
-
 
 ;; set binary path
 (if (not (eq window-system 'w32))
@@ -34,6 +32,10 @@
 (setq vc-follow-symlinks t)              ; always follow symlink and edit the file it points to directly
 (setq ibuffer-expert t)                  ; stop prompting me to confirm killing a buffer
 (setq-default mac-option-modifier 'meta) ; set alt/option as meta
+(setq select-enable-clipboard t)         ; enable copying
+(setq interporgram-paste-function        ; enable pasting
+      (lambda ()
+	(shell-command-to-string "pbpaste")))
 
 (add-hook 'before-save-hook 'delete-trailing-whitespace)  ; delete trailing blank space on save
 (add-hook 'text-mode-hook 'visual-line-mode)              ; wrap text
@@ -46,7 +48,7 @@
 (let* ((no-ssl (and (memq system-type '(windows-nt ms-dos))
                     (not (gnutls-available-p))))
        (proto (if no-ssl "http" "https")))
-  
+
   ;; (add-to-list 'package-archives (cons "melpa-mirror" (concat proto "://www.mirrorservice.org/sites/melpa.org/packages/")) t)  ; Official MELPA Mirror, in case necessary.
   (add-to-list 'package-archives (cons "gnu" (concat proto "://elpa.gnu.org/packages/")) t)
   (add-to-list 'package-archives (cons "org" (concat proto "://orgmode.org/elpa/")) t)
@@ -56,16 +58,16 @@
 
 ;; TODO set up vertico and related
 
-(use-package restart-emacs 
+(use-package restart-emacs
   :ensure t)
 
 (use-package which-key
   :ensure t
-  
+
   :init
   (setq which-key-separator " ")
   (setq which-key-prefix "+")
-  
+
   :config
   (which-key-mode 1))
 
@@ -73,6 +75,30 @@
   :ensure t
   :commands
   (dired-sidebar-toggle-sidebar))
+
+;; narrowing search and completion https://github.com/minad/vertico
+(use-package vertico
+  :ensure t
+  :custom
+  (vertico-cycle t)
+  :init
+  (vertico-mode))
+
+(use-package savehist
+  :ensure t
+  :init
+  (savehist-mode))
+
+(use-package orderless
+  :ensure t
+  :custom
+  (completion-styles '(orderless basic))
+  (completion-category-defaults nil)
+  (completion-category-overrides '((file (styles partial-completion)))))
+
+;; https://github.com/minad/consult#use-package-example
+(use-package consult
+  :ensure t)
 
 (use-package tramp
   :ensure t
@@ -118,9 +144,11 @@
    "eb"   'eval-buffer
    "ee"   'eval-expression
 
-   ;; file searching
-   "ff"   'find-file-in-project
-   "fg"   'counsel-ag
+   ;; file navigation
+   "ff"   'consult-find
+   "fg"   'consult-grep
+   "ba"   'bookmark-set
+   "bf"   'consult-bookmark
 
    ;; personal dwim functions
    "cf"   'dwim-commit-current-file

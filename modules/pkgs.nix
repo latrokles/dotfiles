@@ -8,17 +8,19 @@
     pkgs.git
     pkgs.jujutsu
     pkgs.tree
+    pkgs.ripgrep
+    pkgs.fd
     pkgs.jq
     pkgs.rlwrap
     pkgs.exiftool
     pkgs.yt-dlp
     pkgs.ffmpeg-full
     pkgs.mpv
-  
+
     # libraries
     pkgs.SDL2
     pkgs.mpg123
-  
+
     # programming languages
     pkgs.python312Full
     pkgs.python312Packages.pip
