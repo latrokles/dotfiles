@@ -4,14 +4,16 @@
 
   environment.systemPackages = with pkgs; [
     # tools
-    pkgs.neovim
-    pkgs.git
-    pkgs.jujutsu
     pkgs.tree
-    pkgs.ripgrep
+    pkgs.watch
+    pkgs.git
     pkgs.fd
+    pkgs.ripgrep
+    pkgs.neovim
+    pkgs.jujutsu
     pkgs.jq
     pkgs.rlwrap
+    pkgs.hexyl
     pkgs.exiftool
     pkgs.yt-dlp
     pkgs.ffmpeg-full
@@ -19,7 +21,13 @@
 
     # libraries
     pkgs.SDL2
+    pkgs.SDL2.dev
+    pkgs.SDL2_image
     pkgs.mpg123
+
+    # build
+    pkgs.cmake
+    pkgs.pkg-config
 
     # programming languages
     pkgs.python312Full
