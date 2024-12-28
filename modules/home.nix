@@ -61,6 +61,10 @@
         enable = true;
 	source = symlink "${dotfilesPath}/config/emacs.d";
       };
+      ".phoenix.js" = {
+        enable = true;
+	source = symlink "${dotfilesPath}/config/phoenix.js";
+      };
     };
 
     home.packages = with pkgs; [];

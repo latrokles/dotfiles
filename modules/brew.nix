@@ -8,7 +8,6 @@
       upgrade = false;
     };
     taps = [
-      "nikitabobko/tap"
       "railwaycat/emacsmacport"
     ];
 
@@ -17,8 +16,8 @@
       "firefox@developer-edition"
       "google-chrome"
       "iterm2"
-      "nikitabobko/tap/aerospace"
       "xquartz"
+      "phoenix"
     ];
   };
 }
