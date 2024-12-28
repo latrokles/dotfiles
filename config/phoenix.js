@@ -1,3 +1,5 @@
+// See API docs: https://kasper.github.io/phoenix/api/app
+// See Example Config: https://github.com/fabiospampinato/phoenix
 Phoenix.set({
   openAtLogin: true
 });
