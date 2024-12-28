@@ -3,18 +3,27 @@ Phoenix.set({
 });
 
 // CONSTANTS 
+const HYPER = ['ctrl', 'alt', 'cmd'];
+const HYPER_SHIFT = ['ctrl', 'alt', 'cmd', 'shift'];
 const ALT_SHIFT = ['alt', 'shift'];
 
 // GLOBALS
 
-// WINDOW METHODS
-const cacheWindowFrame = function(win) {
-  FOCUSED_PREVIOUS_FRAME = {
-    x: win.frame().x,
-    y: win.frame().y,
-    width: win.frame().width,
-    height: win.frame().height,
-  };
+// WINDOW POSITIONING
+Window.prototype.toTop = function() {
+  this.setTopLeft({x:0, y:0});
+  this.setSize({
+    width: this.screen().frame().width,
+    height: this.screen().frame().height / 2,
+  });
+};
+
+Window.prototype.toBottom = function() {
+  this.setTopLeft({x: 0, y: this.screen().frame().height / 2});
+  this.setSize({
+    width: this.screen().frame().width,
+    height: this.screen().frame().height / 2,
+  });
 };
 
 Window.prototype.toLeft = function() {
@@ -23,7 +32,6 @@ Window.prototype.toLeft = function() {
     width: this.screen().frame().width / 2,
     height: this.screen().frame().height
   });
-  cacheWindowFrame(this);
 };
 
 Window.prototype.toRight = function() {
@@ -32,18 +40,11 @@ Window.prototype.toRight = function() {
     width: this.screen().frame().width / 2,
     height: this.screen().frame().height
   });
-  cacheWindowFrame(this);
 };
 
 // POSITIONING
-Key.on('left', ALT_SHIFT, function() {
-  Window.focused().toLeft();
-});
-
-Key.on('right', ALT_SHIFT, function() {
-  Window.focused().toRight();
-});
-
-Key.on('m', ALT_SHIFT, function() {
-  Window.focused().maximise();
-});
+Key.on('up', ALT_SHIFT, function() { Window.focused().toTop(); });
+Key.on('down', ALT_SHIFT, function() { Window.focused().toBottom(); });
+Key.on('left', ALT_SHIFT, function() { Window.focused().toLeft(); });
+Key.on('right', ALT_SHIFT, function() { Window.focused().toRight(); });
+Key.on('m', ALT_SHIFT, function() { Window.focused().maximise(); });
