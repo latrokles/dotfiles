@@ -153,12 +153,20 @@
    ;; personal dwim functions
    "cf"   'dwim-commit-current-file
 
+   ;; markdown control
+   "ml"  'markdown-insert-link
+   "mi"  'markdown-insert-image
+   "mt"  'markdown-insert-table
+
+   ;; narrow / widen
+   "nd"  'narrow-to-defun
+   "nr"  'narrow-to-region
+   "nw"  'widen
+
+
    ;; python development stuff
    "pb"  'blacken-buffer
    "pp"  'poetry-tracking-mode
-
-   ;; org mode
-   "ob"   (lambda () (interactive) (call-interactively 'org-insert-structure-template))
 
    "g"    'magit-status
    "k"    'kill-this-buffer
