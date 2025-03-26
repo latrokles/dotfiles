@@ -1,0 +1,60 @@
+####
+# install with:
+# brew bundle --file Brewfile
+####
+
+## taps
+tap "d12frosted/emacs-plus"
+tap "homebrew/bundle"
+tap "railwaycat/emacsmacport"
+
+# tools - source control
+brew "git"
+brew "jj"  # jujutsu vcs
+
+# tools - cli
+brew "tree"
+brew "watch"
+brew "fd"
+brew "ripgrep"
+brew "jq"
+brew "rlwrap"
+brew "hexyl"
+brew "exiftool"
+brew "yt-dlp"
+brew "ffmpeg"
+brew "mpv"
+
+# tools - editor
+brew "neovim"
+
+# tools - build
+brew "uv"
+brew "poetry"
+brew "cmake"
+brew "pkg-config"
+
+# programming languages
+brew "python"
+brew "zig"
+brew "sbcl"
+brew "borkdude/brew/babashka"
+brew "clojure"
+brew "clojurescript"
+brew "node"
+brew "go"
+
+# libraries
+brew "sdl2"
+brew "sdl2_image"
+brew "mpg123"
+
+# casks
+cask "emacs-mac"
+cask "firefox@developer-edition"
+cask "iterm2"
+cask "ghostty"
+cask "qutebrowser"
+cask "xquartz"
+cask "phoenix"
+

@@ -1,0 +1,52 @@
+# for macos defaults see:
+# https://macos-defaults.com/#%F0%9F%99%8B-what-s-a-defaults-command
+
+# displays have separate spaces
+defaults write com.apple.spaces "spans-displays" -bool "true" 
+
+# dock
+defaults write com.apple.dock "orientation" -string "bottom"
+defaults write com.apple.dock "tilesize" -int "48"
+defaults write com.apple.dock "autohide" -bool "true"
+killall Dock
+
+# clock format
+defaults write com.apple.menuextra.clock "DateFormat" -string "\"EEE d MMM HH:mm:ss\""
+
+# navigation
+defaults write com.apple.Terminal "FocusFollowsMouse" -bool "true" # follow mouse
+defaults write NSGlobalDomain AppleKeyboardUIMode -int "2" # follow tab on inputs
+
+# screensaver
+defaults write com.apple.screensaver "askForPassword" -bool "true"
+defaults write com.apple.screensaver "askForPasswordDelay" -int "10"
+defaults write com.apple.screensaver "tokenRemovalAction" -bool "false"
+
+# screenshots
+defaults write com.apple.screencapture "location" -string "~/Desktop/screenshots" 
+defaults write com.apple.screencapture "include-date" -bool "true"
+defaults write com.apple.screencapture "show-thumbnail" -bool "false"
+
+# finder
+# show path bar
+defaults write com.apple.finder "ShowPathbar" -bool "true"
+
+# show file extensions
+defaults write -g "AppleShowAllExtensions" -bool "true"
+
+# sort folders first
+defaults write com.apple.finder "_FXSortFoldersFirst" -bool "true"  
+
+# dont create .DS_Store on network or usb volumes
+defaults write com.apple.desktopservices "DSDontWriteNetworkStores" -bool "true"
+defaults write com.apple.desktopservices "DSDontWriteUSBStores" -bool "true"
+
+# don't warn on file extension change
+defaults write com.apple.finder "FXEnableExtensionChangeWarning" -bool "false"
+
+# make ~/Library visible
+chflags nohidden ~/Library
+
+
+killall SystemUIServer
+

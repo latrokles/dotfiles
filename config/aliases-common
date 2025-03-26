@@ -1,0 +1,37 @@
+# common alias across machines
+alias pd='pushd'
+alias pop='popd'
+alias zz='suspend'
+alias dotfiles='cd ${DOTFILES}'
+alias dev='cd ${DEVENV}'
+alias tree='tree -I "target|__pycache__|node_modules"'
+alias update='bash ${DOTFILES}/setup.sh'
+alias reload='source ~/.zshenv && source ~/.zshrc && source ~/.zprofile'
+
+alias vi=nvim
+alias vim=nvim
+
+# git
+alias gcheckout='git checkout'
+alias gcommit='git commit'
+alias gbranches='git branch -vv'
+alias gpull='git pull'
+alias gpullrebase='git pull --rebase'
+alias gmerge='git merge'
+alias gpush='git push'
+alias gstatus='git status'
+alias glog='git log'
+alias gdel='git branch -D'
+alias gdiff='git diff'
+alias gdifff='git diff --name-only'
+alias gadd='git add'
+alias gblame='git blame'
+
+# python
+alias prun='poetry run'
+alias ppyn='poetry python'
+alias ptst='poetry run pytest'
+
+[ $TERM = "dumb" ] && unsetopt zle && PS1='$ '
+EDITOR=nvim
+

@@ -1,0 +1,7 @@
+alias screensaver='open -a ScreenSaverEngine'
+alias capfull='screencapture'
+alias capcrop='screencapture -is'
+alias capclip='screencapture -cis'
+alias capwin='screencapture -W'
+alias capvid='screencapture -v'
+
