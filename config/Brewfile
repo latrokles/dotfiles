@@ -43,6 +43,7 @@ brew "clojure"
 brew "clojurescript"
 brew "node"
 brew "go"
+brew "rustup"
 
 # libraries
 brew "sdl2"
