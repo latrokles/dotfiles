@@ -120,6 +120,34 @@
   :ensure t
   :defer t)
 
+
+(use-package rustic
+  :ensure t
+  :config
+  (setq rustic-format-on-save t)
+
+  :custom
+  (rustic-analyzer-command '("rustup" "run" "stable" "rust-analyzer")))
+
+(use-package lsp-mode
+  :ensure t
+  :commands lsp
+  :config
+  (add-hook 'lsp-mode-hook 'lsp-ui-mode)
+
+  :custom
+  (lsp-rust-analyzer-cargo-watch-command "clippy")
+  (lsp-eldoc-render-all t)
+  (lsp-idle-delay 0.6))
+
+(use-package lsp-ui
+  :ensure t
+  :commands lsp-ui-mode
+  :custom
+  (lsp-ui-peek-always-show t)
+  (lsp-ui-sideline-show-hover t)
+  (lsp-ui-doc-enable nil))
+
 (use-package evil
   :ensure t
   :config
@@ -150,23 +178,26 @@
    "ba"   'bookmark-set
    "bf"   'consult-bookmark
 
-   ;; personal dwim functions
-   "cf"   'dwim-commit-current-file
-
    ;; markdown control
    "ml"  'markdown-insert-link
    "mi"  'markdown-insert-image
    "mt"  'markdown-insert-table
 
+   ;; lsp
+   "lsu"  'lsp-ui-imenu
+   "lsr"  'lsp-find-references
+   "lse"  'flycheck-list-error
+   "lsn"  'lsp-rename
+   "lswr" 'lsp-worspace-restart
+   "lsws" 'lsp-workspace-shutdown
+
+   ;; rust mode
+   "ras" 'lsp-rust-analyzer-status
+
    ;; narrow / widen
    "nd"  'narrow-to-defun
    "nr"  'narrow-to-region
    "nw"  'widen
-
-
-   ;; python development stuff
-   "pb"  'blacken-buffer
-   "pp"  'poetry-tracking-mode
 
    "g"    'magit-status
    "k"    'kill-this-buffer
