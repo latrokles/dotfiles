@@ -5,3 +5,4 @@ source ${DOTFILES}/config/aliases-common
 source ${DOTFILES}/config/aliases-macos
 
 export PATH=${HOME}/.local/bin:${PATH}
+. "$HOME/.cargo/env"

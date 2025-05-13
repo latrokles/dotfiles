@@ -5,8 +5,8 @@ alias zz='suspend'
 alias dotfiles='cd ${DOTFILES}'
 alias dev='cd ${DEVENV}'
 alias tree='tree -I "target|__pycache__|node_modules"'
-alias update='bash ${DOTFILES}/setup.sh'
-alias reload='source ~/.zshenv && source ~/.zshrc && source ~/.zprofile'
+alias update='bash ${DOTFILES}/script-clean.sh && bash ${DOTFILES}/script-setup.sh'
+alias reload='source ~/.zshenv && source ~/.zshrc'
 
 alias vi=nvim
 alias vim=nvim
