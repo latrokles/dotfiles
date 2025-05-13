@@ -200,7 +200,7 @@
    "nw"  'widen
 
    "g"    'magit-status
-   "k"    'kill-this-buffer
+   "k"    'kill-this-buffer-and-window
    "W"    (lambda () (interactive) (save-buffer) (kill-this-buffer))))
 
 (use-package evil-leader
