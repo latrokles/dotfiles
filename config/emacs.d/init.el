@@ -76,6 +76,11 @@
   :commands
   (dired-sidebar-toggle-sidebar))
 
+(use-package company
+  :ensure t
+  :custom
+  (global-company-mode 1))
+
 ;; narrowing search and completion https://github.com/minad/vertico
 (use-package vertico
   :ensure t
