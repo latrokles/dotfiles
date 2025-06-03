@@ -134,8 +134,22 @@
   :custom
   (rustic-analyzer-command '("rustup" "run" "stable" "rust-analyzer")))
 
+(use-package editorconfig
+  :ensure t
+  :config (editorconfig-mode +1))
+
+(use-package swift-mode
+  :ensure t
+  :mode "\\.swift\\'"
+  :interpreter "swift")
+
+(use-package rainbow-delimiters
+    :ensure t
+    :hook ((prog-mode . rainbow-delimiters-mode)))
+
 (use-package lsp-mode
   :ensure t
+  :hook ((swift-mode . lsp))
   :commands lsp
   :config
   (add-hook 'lsp-mode-hook 'lsp-ui-mode)
@@ -152,6 +166,10 @@
   (lsp-ui-peek-always-show t)
   (lsp-ui-sideline-show-hover t)
   (lsp-ui-doc-enable nil))
+
+(use-package lsp-sourcekit
+    :ensure t
+    :after lsp-mode)
 
 (use-package evil
   :ensure t
