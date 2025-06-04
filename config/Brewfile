@@ -51,6 +51,9 @@ brew "sdl2"
 brew "sdl2_image"
 brew "mpg123"
 
+# frameworks
+brew "vapor"
+
 # casks
 cask "emacs-mac"
 cask "firefox@developer-edition"
