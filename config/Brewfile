@@ -13,6 +13,7 @@ brew "git"
 brew "jj"  # jujutsu vcs
 
 # tools - cli
+brew "lcov"
 brew "tree"
 brew "watch"
 brew "fd"
