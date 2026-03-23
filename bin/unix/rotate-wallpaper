@@ -1,0 +1,34 @@
+#!/bin/sh
+
+WALLPAPERS=${HOME}/pictures/wallpapers
+INTERVAL_SECONDS=7200
+
+# change wallpaper once
+rotate_once() {
+    feh --bg-fill --randomize "${WALLPAPERS}"/*
+}
+
+# change the wallpaper every INTERVAL_SECONDS
+rotate_cron() {
+  while true; do
+    rotate_once
+    sleep $INTERVAL_SECONDS
+  done
+}
+
+# change the wallpaper every INTERVAL_SECONDS
+rotate_lock() {
+  while true; do
+    rotate_once
+    sleep 60
+  done
+}
+
+# MAIN
+if [ "$1" = "--once" ]; then
+  rotate_once
+elif [ "$1" = "--cron" ]; then
+  rotate_cron
+elif [ "$1" = "--lock" ]; then
+  rotate_lock
+fi

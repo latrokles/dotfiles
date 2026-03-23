@@ -1,0 +1,7 @@
+#!/bin/sh
+
+# lock screen and suspend laptop
+
+( sleep 2; sudo acpiconf -s 3 ) &
+
+xlock -mode blank

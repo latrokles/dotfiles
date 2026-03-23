@@ -1,0 +1,4 @@
+#!/bin/sh
+
+# lock screen
+xlock -mode blank

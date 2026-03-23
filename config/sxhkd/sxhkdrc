@@ -1,0 +1,56 @@
+XF86AudioLowerVolume
+  mixer -d pcm0 vol=-5%
+
+XF86AudioRaiseVolume
+  mixer -d pcm0 vol=+5%
+
+##-- Launchers --##
+super + {x,f,e}
+  {xterm,firefox,emacs}
+
+##-- Berry Control --##
+
+super + q
+  berryc window_close
+
+super + shift + {h, j, k, l}
+  berryc window_resize {-50 0, 0 50, 0 -50, 50 0}
+
+super + ctrl + {h, j, k, l}
+  berryc window_move {-50 0, 0 50, 0 -50, 50 0}
+
+super + bracketleft
+  berryc snap_left
+
+super + bracketright
+  berryc snap_right
+
+super + c
+  berryc window_center
+
+alt + Tab
+  berryc cycle_focus
+
+super + ctrl + {0-5}
+  berryc switch_workspace {0-5}
+
+super + alt + {0-5}
+  berryc send_to_workspace {0-5}
+
+super + l
+  ${HOME}/bin/unix/lock-screen
+
+super + s
+  ${HOME}/bin/unix/lock-suspend
+
+super + shift + q
+  berryc quit
+
+# reload hotkeys
+super + Escape
+  pkill -x sxhkd && sxhkd
+
+##-- Script Invocations --##
+
+super + w
+  ${HOME}/bin/unix/rotate-wallpaper --once
