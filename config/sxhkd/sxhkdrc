@@ -19,10 +19,10 @@ super + shift + {h, j, k, l}
 super + ctrl + {h, j, k, l}
   berryc window_move {-50 0, 0 50, 0 -50, 50 0}
 
-super + bracketleft
+super + Left
   berryc snap_left
 
-super + bracketright
+super + Right
   berryc snap_right
 
 super + c
