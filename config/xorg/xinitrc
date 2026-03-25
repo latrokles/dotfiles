@@ -6,8 +6,6 @@ xrdb="xrdb"
 xinitdir="${prefix}/etc/X11/xinit"
 clock="xclock"
 xterm="xterm"
-wm="berry"
-hotkey="sxhkd"
 xmodmap="xmodmap"
 
 userresources="$HOME/.Xresources"
@@ -50,9 +48,6 @@ if [ -d "$xinitdir"/xinitrc.d ] ; then
 	unset f
 fi
 
-sleep 1; ~/.fehbg &
-$HOME/bin/unix/rotate-wallpaper --cron &
-"$hotkey" &
 "$xterm" -geometry 80x50+494+51 &
 "$xterm" -geometry 80x20+494-0 &
-exec $wm
+exec openbox-session
