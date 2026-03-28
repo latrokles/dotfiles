@@ -1,0 +1,42 @@
+#!/bin/sh
+
+# refresh-statsbar
+#
+# collect relevant system information and display in x11 status bar
+
+clock() {
+  DATETIME=$(date "+%a %-d %b, %-l:%M:%S %p")
+  printf "%s" "${DATETIME}"
+}
+
+wifissid() {
+  SSID=$(ifconfig wlan0 | grep ssid | sed -e 's/^\t//' | cut -d' ' -f2)
+  printf "[SSID: %s]" "${SSID}"
+}
+
+volume() {
+  VOLUME=$(mixer | grep vol | cut -d'=' -f 2 | cut -d: -f1 | sed -e 's/\.//')
+  printf "[VOLUME:%s%%]" "${VOLUME}"
+}
+
+power() {
+  PERCENT_STR="Remaining battery life: "
+  TIME_STR="Remaining battery time: "
+  APM_OUTPUT=$(apm)
+  AC_POWER=$(echo "${APM_OUTPUT}" | grep "AC Line status" | cut -d: -f2 )
+  BATT1_PERCENT=$(echo "${APM_OUTPUT}" | grep -A3 "Battery 0:" | grep "${PERCENT_STR}" | sed -e "s/${PERCENT_STR}//g" | sed -e 's/\t//g')
+  BATT1_TIME=$(echo "${APM_OUTPUT}" | grep -A3 "Battery 0:" | grep "${TIME_STR}" | sed -e "s/${TIME_STR}//g" | sed -e 's/\t//g')
+
+  BATT2_PERCENT=$(echo "${APM_OUTPUT}" | grep -A3 "Battery 1:" | grep "${PERCENT_STR}" | sed -e "s/${PERCENT_STR}//g" | sed -e 's/\t//g')
+  BATT2_TIME=$(echo "${APM_OUTPUT}" | grep -A3 "Battery 1:" | grep "${TIME_STR}" | sed -e "s/${TIME_STR}//g" | sed -e 's/\t//g')
+
+  printf "[PWR:%s | 0: %s -%s | 1: %s -%s]" "${AC_POWER}" "${BATT1_PERCENT}" "${BATT1_TIME}" "${BATT2_PERCENT}" "${BATT2_TIME}"
+}
+
+
+
+
+while true; do
+  echo "%{r}%{F#00ff00}$(power) $(volume) $(wifissid)%{F-}  $(clock)%{r}"
+  sleep 1
+done

@@ -48,6 +48,5 @@ if [ -d "$xinitdir"/xinitrc.d ] ; then
 	unset f
 fi
 
-"$xterm" -geometry 80x50+494+51 &
-"$xterm" -geometry 80x20+494-0 &
+"$xterm" -geometry 80x20-0+0 &
 exec openbox-session
