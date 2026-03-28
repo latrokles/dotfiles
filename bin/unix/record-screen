@@ -1,0 +1,16 @@
+#!/bin/sh
+
+# TODO:
+# - implement stop functionality (--stop)
+# - get display using xdotool
+# - window selection using xwininfo
+#   - call xwininfo
+#   - select window
+#   - parse position and dimensions
+#   - pass as params into ffmpeg
+# reference:
+# https://trac.ffmpeg.org/wiki/Capture/Desktop#Linux
+
+NOW=$(date -Iseconds)
+
+ffmpeg -framerate 25 -f x11grab -i :0 "${HOME}/videos/screenrecordings/${NOW}.mp4"
