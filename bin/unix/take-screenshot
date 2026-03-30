@@ -1,0 +1,30 @@
+#!/bin/sh
+
+SCREENSHOT_DIR="${HOME}/pictures/screenshots"
+NOW=$(date -Iseconds)
+
+screenshot_fullscreen() {
+  if [ ! "$1" = "--copy" ]; then
+    scrot --format "png" -F "${SCREENSHOT_DIR}/${NOW}.png"
+  else
+    scrot --format "png" - | xclip -selection clipboard -target image/png
+  fi
+}
+
+screenshot_selection() {
+  if [ ! "$1" = "--copy" ]; then
+    scrot -s --format "png" -F "${SCREENSHOT_DIR}/${NOW}.png"
+  else
+    scrot -s --format "png" - | xclip -selection clipboard -target image/png
+  fi
+} 
+
+# MAIN
+if [ "$1" = "--full" ]; then
+  screenshot_fullscreen $2
+elif [ "$1" = "--select" ]; then
+  screenshot_selection $2
+else
+  printf "Invalid params!\n" >&2
+  exit 1
+fi

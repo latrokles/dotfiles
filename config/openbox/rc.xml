@@ -215,6 +215,37 @@
     </action>
   </keybind>
 
+  <!-- screenshots -->
+  
+  <!-- take full screen and save to screenshots dir -->
+  <keybind key="W-S-3">
+    <action name="Execute">
+      <command>take-screenshot --full</command>
+    </action>
+  </keybind>
+
+  <!-- screenshot full screen and copy it to clipboard -->
+  <keybind key="W-S-A-3">
+    <action name="Execute">
+      <command>take-screenshot --full --copy</command>
+    </action>
+  </keybind>
+  
+  <!-- screenshot full screen and save to screenshots dir -->
+  <keybind key="W-S-4">
+    <action name="Execute">
+      <command>take-screenshot --select</command>
+    </action>
+  </keybind>
+  
+  <!-- screenshot full screen and copy it to clipboard dir -->
+  <keybind key="W-S-A-4">
+    <action name="Execute">
+      <command>take-screenshot --select --copy</command>
+    </action>
+  </keybind>
+
+
   <!-- Keybindings for running applications -->
   <keybind key="W-e">
     <action name="Execute">
